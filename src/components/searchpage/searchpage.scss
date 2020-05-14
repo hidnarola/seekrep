@@ -1,0 +1,129 @@
+.searchbox {
+  margin: 45px 0 50px 0;
+  display: block;
+  position: relative;
+
+  h4 {
+    display: block;
+    line-height: 1;
+    margin: 0 0 20px 0;
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+    font-family: "Canela-Medium";
+    letter-spacing: -0.81px;
+  }
+
+  .search-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+
+    .form-group {
+      width: 100%;
+      position: relative;
+      margin: 0;
+
+      .form-control {
+        width: 100%;
+        height: auto;
+        padding: 20px 209px 20px 16px;
+        line-height: 1;
+        border: solid 1px #d0d0d0;
+        background-color: #ffffff;
+        font-size: 20px;
+        color: #000;
+        letter-spacing: -0.63px;
+      }
+    }
+
+    .btn.btn-dark {
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      z-index: 1;
+      padding: 14px 55px;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+      border-radius: 0;
+      background: #000;
+    }
+  }
+}
+
+.userlist {
+  display: block;
+  background-color: #f6f6f6;
+  margin: 0 0 20px;
+
+  .user-info {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+    width: 100%;
+
+    .left {
+      display: flex;
+      flex-wrap: wrap;
+
+      .img {
+        width: 50px;
+        img {
+          display: block;
+          max-width: 100%;
+        }
+      }
+
+      .content {
+        width: calc(100% - 50px);
+        padding: 0 0 0 10px;
+
+        h5 {
+          font-family: "Canela-Medium";
+          display: block;
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 1;
+          letter-spacing: -0.63px;
+          color: #000000;
+          margin: 0;
+        }
+
+        .review-text {
+          display: block;
+          margin: 0;
+          font-size: 18px;
+          line-height: 1.5;
+          letter-spacing: -0.56px;
+          color: #000000;
+        }
+
+        p {
+          display: block;
+          font-size: 12px;
+          line-height: 1;
+          letter-spacing: -0.38px;
+          color: #000000;
+          margin: 0;
+        }
+      }
+    }
+
+    .reting-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      img {
+        width: 20px;
+        margin-left: 8px;
+        &.opacity15 {
+          opacity: 0.15;
+        }
+      }
+    }
+  }
+}

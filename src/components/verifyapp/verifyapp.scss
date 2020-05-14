@@ -1,0 +1,46 @@
+.verification-bg {
+    padding: 63px 0 0 0;
+    background-color: #000000;
+
+    .content {
+        display: block;
+
+        h2 {
+            display: block;
+            font-family: 'Canela-Regular';
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -1.13px;
+            color: #ffffff;
+            margin: 0 0 8px;
+        }
+
+        p {
+            display: block;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.28;
+            letter-spacing: -0.13px;
+            color: #ffffff;
+            margin: 0 0 40px 0;
+        }
+
+        .btn {
+            padding: 0;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: -0.14px;
+            display: block;
+            font-family: 'Canela-Medium';
+            
+            &.btn-link {
+                color: #ffffff;
+            }
+
+        }
+
+    }
+
+}

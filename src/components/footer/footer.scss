@@ -1,0 +1,46 @@
+footer {
+  background: #000000;
+  padding: 52px 0px;
+
+  p {
+    display: block;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.56px;
+    color: #ffffff;
+
+    a {
+      font-size: 18px;
+      color: #ffffff;
+    }
+  }
+
+  ul.footer-link {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      display: block;
+
+      &:first-child {
+        a {
+          padding: 0;
+        }
+      }
+
+      a {
+        display: block;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1;
+        letter-spacing: -0.56px;
+        color: #ffffff;
+        padding: 0 0 0 40px;
+      }
+    }
+  }
+}
