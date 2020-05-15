@@ -1,29 +1,38 @@
 import React from "react"
 import { Button, Alert, Form } from "react-bootstrap"
-// import { loginuser } from "../../functions";
+import { reviewpost } from "../../functions"
 import Rating from "react-rating"
-import StarRating from "react-star-ratings"
+import "./writereview.scss"
+import { threadId } from "worker_threads"
 
 export default class WriteReview extends React.Component {
   state = {
-    value: 0,
+    rating: 0,
     file: "",
     place: "",
     review: "",
+    transactionproof: "",
   }
 
   changehandler = e => {
+    // let reader = new FileReader()
     // let file = e.target.files[0]
-    // this.setState({
-    //   file: file,
-    // })
-    let file = e.target.files[0].name
 
-    this.setState({
-      file: file,
-    })
+    // reader.onloadend = () => {
+    //   this.setState({
+    //     file: file,
+    //     transactionproof: reader.result,
+    //   })
+    // }
+
+    // reader.readAsDataURL(file)
+    let file = e.traget.files[0].name
+
+    this.setState({ file: file })
   }
-
+  ratingChange = value => {
+    this.setState({ rating: value })
+  }
   handleInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -33,33 +42,47 @@ export default class WriteReview extends React.Component {
     event.preventDefault()
     console.log("submit data", this.state)
     // const data = {
-    //   email: this.state.email,
-    //   password: this.state.password,
+    //   rating: this.state.rating,
+    //   transactionproof: this.state.transactionproof,
+    //   place: this.state.place,
+    //   review: this.state.review,
     // }
     // console.log("data....", data)
-    // await loginuser(data)
+    // await reviewpost(data)
     //   .then(res => {
     //     console.log("result....", res)
-    //     this.setState({ showMessage: true, message: res })
+    //     // this.setState({ showMessage: true, message: res })
     //   })
     //   .catch(err => console.log(err))
   }
 
   render() {
+    let { transactionproof } = this.state
+    let $transactionproof = null
+    if (transactionproof) {
+      $transactionproof = <img src={transactionproof} />
+    }
     return (
       <>
+        <h4> Review Blake Green </h4>
+        <p>* Required</p>
         <form onSubmit={this.handleSubmit}>
-          <Rating
-            name="value"
-            emptySymbol="fa fa-star-o fa-2x"
-            fullSymbol="fa fa-star fa-2x"
-            initialRating={this.state.value}
-            onChange={event => this.handleInputChange(event)}
-          />
-
+          <div className="ratingbox">
+            <h4>Your rating*</h4>
+            <Rating
+              name="rating"
+              emptySymbol="fa fa-star-o fa-2x"
+              fullSymbol="fa fa-star fa-2x"
+              initialRating={this.state.rating}
+              value={this.state.rating}
+              onChange={this.ratingChange}
+            />
+          </div>
           <div className="ProfilePicture">
+            <h4>Upload proof of transaction</h4>
+            <p>Please upload invoices/screenshots of chats/recieved items</p>
             <Form.File id="formcheck-api-custom" className="d-flex" custom>
-              {/* <div className="ProfilePictureDIV">{$imagePreview}</div> */}
+              <div className="ProfilePictureDIV">{$transactionproof}</div>
               <Form.File.Input onChange={e => this.changehandler(e)} />
               <Form.File.Label data-browse="UPLOAD">
                 <i className="fa fa-upload"></i>
@@ -67,7 +90,7 @@ export default class WriteReview extends React.Component {
             </Form.File>
           </div>
           <div className="form-group">
-            <label>password</label>
+            <label>Where did you buy from?*</label>
             <select
               id="places"
               name="place"

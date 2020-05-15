@@ -1,4 +1,5 @@
 import { Navbar, Nav, Container } from "react-bootstrap"
+import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import "./header.scss"
@@ -27,20 +28,24 @@ export default class Header extends React.Component {
                 </li>
                 <li>
                   {token ? (
-                    <Nav.Link href="/editprofile">My Profile</Nav.Link>
+                    <Link to="/editprofile" className="nav-link">
+                      My Profile
+                    </Link>
                   ) : (
-                    <Nav.Link href="/login">Log in</Nav.Link>
+                    <Link to="/login" className="nav-link">
+                      Login
+                    </Link>
                   )}
                 </li>
                 <li>
                   {token ? (
-                    <Nav.Link href="/logout" className="btn btn-dark">
+                    <Link to="/logout" className="btn btn-dark">
                       logout
-                    </Nav.Link>
+                    </Link>
                   ) : (
-                    <Nav.Link href="/signup" className="btn btn-dark">
+                    <Link to="/signup" className="btn btn-dark">
                       Sign up
-                    </Nav.Link>
+                    </Link>
                   )}
                 </li>
               </ul>

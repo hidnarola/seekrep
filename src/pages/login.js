@@ -3,6 +3,7 @@ import Header from "../components/header/header"
 import GoogleImg from "../images/google.png"
 import Login from "../components/login/login"
 import { Nav, Container, Row, Col } from "react-bootstrap"
+import { Link } from "gatsby"
 
 const Loginpage = () => (
   <div>
@@ -14,10 +15,14 @@ const Loginpage = () => (
             <div className="login-boxs">
               <Nav defaultActiveKey="/login">
                 <Nav.Item>
-                  <Nav.Link href="/signup">Signup</Nav.Link>
+                  <Link to="/signup" className="nav-link">
+                    Signup
+                  </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link href="/login">Login</Nav.Link>
+                  <Link to="/login" className="nav-link">
+                    Login
+                  </Link>
                 </Nav.Item>
               </Nav>
               <Login />

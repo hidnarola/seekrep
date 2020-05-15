@@ -175,3 +175,16 @@ export function searchuser(data) {
       return err
     })
 }
+
+export function reviewpost(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}/review/addreview`, data)
+    .then(res => {
+      console.log("res review post", res)
+      return res
+    })
+    .catch(err => {
+      console.log("err review post", err)
+      return err
+    })
+}
