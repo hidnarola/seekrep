@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import "./header.scss"
 
+const loginToken = localStorage.getItem("login-token")
+
 const Header = () => (
   <Navbar expand="lg">
     <Container>
@@ -15,12 +17,22 @@ const Header = () => (
               <Nav.Link href="#">About</Nav.Link>
             </li>
             <li>
-              <Nav.Link href="/login">Log in</Nav.Link>
+              {loginToken ? (
+                <Nav.Link href="/editprofile">My Profile</Nav.Link>
+              ) : (
+                <Nav.Link href="/login">Log in</Nav.Link>
+              )}
             </li>
             <li>
-              <Nav.Link href="/signup" className="btn btn-dark">
-                Sign up
-              </Nav.Link>
+              {loginToken ? (
+                <Nav.Link href="/logout" className="btn btn-dark">
+                  logout
+                </Nav.Link>
+              ) : (
+                <Nav.Link href="/signup" className="btn btn-dark">
+                  Sign up
+                </Nav.Link>
+              )}
             </li>
           </ul>
         </Nav>
@@ -30,11 +42,11 @@ const Header = () => (
 )
 
 Header.propTypes = {
-  siteTitle: PropTypes.string
+  siteTitle: PropTypes.string,
 }
 
 Header.defaultProps = {
-  siteTitle: ``
+  siteTitle: ``,
 }
 
 export default Header

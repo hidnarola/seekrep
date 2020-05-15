@@ -14,15 +14,7 @@ export function createuser(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}/signup`, data)
     .then(res => {
-      console.log("res.....", res)
-      console.log("message...", res.data.message)
-      if (res.data.status === 0) {
-        return res.data.message
-      } else if (res.data.status === 1) {
-        window.location = "/"
-      } else {
-        return res.data.message
-      }
+      return res
     })
     .catch(err => {
       return err
@@ -30,19 +22,11 @@ export function createuser(data) {
 }
 
 export function loginuser(login_data) {
-  console.log("HOST login", process.env.SERVER_API)
   return axios
     .post(`${process.env.GATSBY_SERVER_API}/login`, login_data)
     .then(res => {
       console.log("res.....", res)
-      console.log("message...", res.data.message)
-      if (res.data.status === 0) {
-        return res.data.message
-      } else if (res.data.status === 1) {
-        return res.data.message
-      } else {
-        return res.data.message
-      }
+      return res
     })
     .catch(err => {
       return err

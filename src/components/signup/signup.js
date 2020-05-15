@@ -1,4 +1,5 @@
 import React from "react"
+import { navigate } from "gatsby"
 import { Button, Form, Alert } from "react-bootstrap"
 import "./signup.scss"
 import { GoogleLogin } from "react-google-login"
@@ -34,7 +35,13 @@ export default class Signup extends React.Component {
     await createuser(data)
       .then(res => {
         console.log("result....", res)
-        this.setState({ showMessage: true, message: res })
+        if (res.data.status === 0) {
+          this.setState({ showMessage: true, message: res.data.message })
+        } else if (res.data.register_resp.status === 1) {
+          navigate("/login")
+        } else {
+          this.setState({ showMessage: true, message: res.data.message })
+        }
       })
       .catch(err => console.log(err))
   }
@@ -69,9 +76,6 @@ export default class Signup extends React.Component {
   render() {
     return (
       <>
-        {this.state.showMessage ? (
-          <Alert variant="danger">{this.state.message}</Alert>
-        ) : null}
         <div className="seekrep-box">
           <h2>
             Sign up to <span>SEEKREP</span>
@@ -93,8 +97,10 @@ export default class Signup extends React.Component {
             <span>Or</span>
           </div>
         </div>
-
-        <form onSubmit={this.handleSubmit}>
+        {this.state.showMessage ? (
+          <Alert variant="danger">{this.state.message}</Alert>
+        ) : null}
+        <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">
             <label> First name</label>
             <input
@@ -103,6 +109,7 @@ export default class Signup extends React.Component {
               className="form-control"
               value={this.state.firstName}
               onChange={this.handleInputChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -113,6 +120,7 @@ export default class Signup extends React.Component {
               className="form-control"
               value={this.state.lastName}
               onChange={this.handleInputChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -123,6 +131,7 @@ export default class Signup extends React.Component {
               className="form-control"
               value={this.state.email}
               onChange={this.handleInputChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -133,6 +142,7 @@ export default class Signup extends React.Component {
               className="form-control"
               value={this.state.password}
               onChange={this.handleInputChange}
+              required
             />
           </div>
           <Button type="submit" variant="dark" className="w-100">

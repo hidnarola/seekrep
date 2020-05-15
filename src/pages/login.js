@@ -1,7 +1,7 @@
-import React from "react";
-import Header from "../components/header/header";
+import React from "react"
+import Header from "../components/header/header"
 import GoogleImg from "../images/google.png"
-import Login from "../components/login/login";
+import Login from "../components/login/login"
 import { Nav, Container, Row, Col } from "react-bootstrap"
 
 const Loginpage = () => (
@@ -20,14 +20,6 @@ const Loginpage = () => (
                   <Nav.Link href="/login">Login</Nav.Link>
                 </Nav.Item>
               </Nav>
-
-              <div className="seekrep-box">
-                <h2>Log in to <span>SEEKREP</span></h2>
-                <img src={GoogleImg} alt="" />
-                <div className="or-box">
-                  <span>Or</span>
-                </div>
-              </div>
               <Login />
             </div>
           </Col>

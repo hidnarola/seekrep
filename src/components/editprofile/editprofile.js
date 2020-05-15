@@ -103,7 +103,6 @@ export default class EditProfile extends React.Component {
     return (
       <>
         <div className="ProfilePage">
-          Hii {process.env.GATSBY_SERVER_API}
           <h4>Profile picture</h4>
           <Form onSubmit={this.handleSubmit}>
             <div className="ProfilePicture">
@@ -120,7 +119,7 @@ export default class EditProfile extends React.Component {
               <Form.File id="formcheck-api-custom" className="d-flex" custom>
                 <div className="ProfilePictureDIV">{$imagePreview}</div>
                 <Form.File.Input onChange={e => this.changehandler(e)} />
-                <Form.File.Label data-browse="Button text">
+                <Form.File.Label data-browse="UPLOAD">
                   <i className="fa fa-upload"></i>
                 </Form.File.Label>
               </Form.File>

@@ -1,13 +1,27 @@
 import React from "react"
 import { Button, Alert, Form } from "react-bootstrap"
-// import { loginuser } from "../../functions"
+// import { loginuser } from "../../functions";
+import Rating from "react-rating"
+import StarRating from "react-star-ratings"
 
 export default class WriteReview extends React.Component {
   state = {
-    ratings: "",
+    rating: 0,
     file: "",
     place: "",
     review: "",
+  }
+
+  changehandler = e => {
+    // let file = e.target.files[0]
+    // this.setState({
+    //   file: file,
+    // })
+    let file = e.target.files[0].name
+
+    this.setState({
+      file: file,
+    })
   }
 
   handleInputChange = event => {
@@ -18,7 +32,6 @@ export default class WriteReview extends React.Component {
       [name]: value,
     })
   }
-
   handleSubmit = async event => {
     event.preventDefault()
     console.log("submit data", this.state)
@@ -38,35 +51,50 @@ export default class WriteReview extends React.Component {
   render() {
     return (
       <>
-        <Form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
+          <Rating
+            name="rating"
+            emptySymbol="fa fa-star-o fa-2x"
+            fullSymbol="fa fa-star fa-2x"
+            initialRating={this.state.rating}
+            onChange={event => this.handleInputChange(event)}
+          />
+
           <div className="ProfilePicture">
             <Form.File id="formcheck-api-custom" className="d-flex" custom>
+              {/* <div className="ProfilePictureDIV">{$imagePreview}</div> */}
               <Form.File.Input onChange={e => this.changehandler(e)} />
-              <Form.File.Label data-browse="Button text">
+              <Form.File.Label data-browse="UPLOAD">
                 <i className="fa fa-upload"></i>
               </Form.File.Label>
             </Form.File>
           </div>
           <div className="form-group">
-            <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Label>Example select</Form.Label>
-              <Form.Control as="select" onChange={e => this.changehandler(e)}>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Form.Control>
-            </Form.Group>
+            <label>password</label>
+            <select
+              id="places"
+              name="place"
+              onChange={event => this.handleInputChange(event)}
+            >
+              <option value="place 1">place 1</option>
+              <option value="place 2">place 2</option>
+              <option value="place 3">place 3</option>
+            </select>
           </div>
           <div className="form-group">
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows="3" />
+            <label>Your review*</label>
+            <input
+              type="textarea"
+              name="review"
+              className="form-control"
+              value={this.state.review}
+              onChange={this.handleInputChange}
+            />
           </div>
           <Button type="submit" variant="dark" className="w-100">
-            Log in
+            Submit
           </Button>
-        </Form>
+        </form>
       </>
     )
   }
