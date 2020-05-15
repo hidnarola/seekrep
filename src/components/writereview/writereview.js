@@ -6,7 +6,7 @@ import StarRating from "react-star-ratings"
 
 export default class WriteReview extends React.Component {
   state = {
-    rating: 0,
+    value: 0,
     file: "",
     place: "",
     review: "",
@@ -25,11 +25,8 @@ export default class WriteReview extends React.Component {
   }
 
   handleInputChange = event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
     this.setState({
-      [name]: value,
+      [event.target.name]: event.target.value,
     })
   }
   handleSubmit = async event => {
@@ -53,10 +50,10 @@ export default class WriteReview extends React.Component {
       <>
         <form onSubmit={this.handleSubmit}>
           <Rating
-            name="rating"
+            name="value"
             emptySymbol="fa fa-star-o fa-2x"
             fullSymbol="fa fa-star fa-2x"
-            initialRating={this.state.rating}
+            initialRating={this.state.value}
             onChange={event => this.handleInputChange(event)}
           />
 
