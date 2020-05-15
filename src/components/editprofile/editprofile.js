@@ -103,6 +103,7 @@ export default class EditProfile extends React.Component {
     return (
       <>
         <div className="ProfilePage">
+          Hii {process.env.GATSBY_SERVER_API}
           <h4>Profile picture</h4>
           <Form onSubmit={this.handleSubmit}>
             <div className="ProfilePicture">

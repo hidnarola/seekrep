@@ -13,7 +13,7 @@ export default class Search extends React.Component {
   componentDidMount() {
     getalluser()
       .then(result => {
-        console.log("gat al*l user result", result)
+        console.log("gat all user result", result)
         this.setState({ users: result.data.users })
         console.log("users array", this.state.users)
       })

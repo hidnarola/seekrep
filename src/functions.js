@@ -1,8 +1,9 @@
 import axios from "axios"
+const url = process.env.SERVER_API
 
 export function fetchSignUp() {
   axios
-    .get("http://localhost:3000/product/list")
+    .get(`${process.env.GATSBY_SERVER_API}/product/list`)
     .then(res => console.log("res.....", res))
     .catch(err => {
       console.log("err....", err)
@@ -11,7 +12,7 @@ export function fetchSignUp() {
 
 export function createuser(data) {
   return axios
-    .post("http://localhost:3000/signup", data)
+    .post(`${process.env.GATSBY_SERVER_API}/signup`, data)
     .then(res => {
       console.log("res.....", res)
       console.log("message...", res.data.message)
@@ -29,8 +30,9 @@ export function createuser(data) {
 }
 
 export function loginuser(login_data) {
+  console.log("HOST login", process.env.SERVER_API)
   return axios
-    .post("http://localhost:3000/login", login_data)
+    .post(`${process.env.GATSBY_SERVER_API}/login`, login_data)
     .then(res => {
       console.log("res.....", res)
       console.log("message...", res.data.message)
@@ -49,7 +51,7 @@ export function loginuser(login_data) {
 
 export function geteditprofile() {
   return axios
-    .get("http://localhost:3000/users/editprofile")
+    .get(`${process.env.GATSBY_SERVER_API}/users/editprofile`)
     .then(res => {
       console.log("res get edit profile", res)
       return res
@@ -61,7 +63,7 @@ export function geteditprofile() {
 
 export function editprofiledata(data) {
   return axios
-    .post("http://localhost:3000/users/editprofiledata", data)
+    .post(`${process.env.GATSBY_SERVER_API}/users/editprofiledata`, data)
     .then(res => {
       console.log("res edited data", res)
       return res
@@ -74,7 +76,7 @@ export function editprofiledata(data) {
 
 export function forgotpassworduser(email) {
   return axios
-    .post("http://localhost:3000/forgot_password", email)
+    .post(`${process.env.GATSBY_SERVER_API}/forgot_password`, email)
     .then(res => {
       console.log("res...", res)
       return res
@@ -86,7 +88,7 @@ export function forgotpassworduser(email) {
 
 export function resetpasswordfunc(data) {
   return axios
-    .post("http://localhost:3000/reset_password", data)
+    .post(`${process.env.GATSBY_SERVER_API}/reset_password`, data)
     .then(res => {
       console.log("res...reset pass", res)
       return res
@@ -108,18 +110,20 @@ export function googleLogin(accessToken) {
     mode: "cors",
     cache: "default",
   }
-  return fetch("http://localhost:3000/auth/google", options).then(r => {
-    console.log("r google", r)
-    const token = r.headers.get("x-auth-token")
-    console.log("token google front", token)
-    r.json().then(user => {
-      console.log("user google", user)
-      // console.log("token", token)
-      if (token) {
-        return user, token
-      }
-    })
-  })
+  return fetch(`${process.env.GATSBY_SERVER_API}/auth/google`, options).then(
+    r => {
+      console.log("r google", r)
+      const token = r.headers.get("x-auth-token")
+      console.log("token google front", token)
+      r.json().then(user => {
+        console.log("user google", user)
+        // console.log("token", token)
+        if (token) {
+          return user, token
+        }
+      })
+    }
+  )
 }
 
 export function facebookLogin(accessToken) {
@@ -134,7 +138,7 @@ export function facebookLogin(accessToken) {
     mode: "cors",
     cache: "default",
   }
-  fetch("http://localhost:3000/auth/facebook", options).then(r => {
+  fetch(`${process.env.GATSBY_SERVER_API}/auth/facebook`, options).then(r => {
     console.log("fb r", r)
     const token = r.headers.get("x-auth-token")
     r.json()
@@ -164,7 +168,7 @@ export function profileDetail() {
 
 export function getalluser() {
   return axios
-    .get("http://localhost:3000/users/alluser")
+    .get(`${process.env.GATSBY_SERVER_API}/users/alluser`)
     .then(res => {
       console.log("res.. all user..", res)
       return res
@@ -177,7 +181,7 @@ export function getalluser() {
 
 export function searchuser(data) {
   return axios
-    .post("http://localhost:3000/users/search", data)
+    .post(`${process.env.GATSBY_SERVER_API}/users/search`, data)
     .then(res => {
       console.log("res.. all user..", res)
       return res
