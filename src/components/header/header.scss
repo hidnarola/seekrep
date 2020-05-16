@@ -18,6 +18,7 @@ nav.navbar {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
 
       li {
         margin: 0 0 0 5px;
@@ -49,22 +50,22 @@ nav.navbar {
               display: none;
             }
           }
+        }
+        .btn {
+          color: #fff;
+          font-weight: 300;
+          padding: 20px 44px;
+          letter-spacing: -0.5px;
+          border-radius: 0;
+          border: 0;
+          font-size: 16px;
 
-          &.btn {
-            color: #fff;
-            font-weight: 300;
-            padding: 20px 44px;
-            letter-spacing: -0.5px;
-            border-radius: 0;
-            border: 0;
+          &::before {
+            display: none;
+          }
 
-            &::before {
-              display: none;
-            }
-
-            &.btn-dark {
-              background: #000000;
-            }
+          &.btn-dark {
+            background: #000000;
           }
         }
       }

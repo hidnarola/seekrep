@@ -1,0 +1,150 @@
+*:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+.review-main {
+  display: block;
+  padding: 54px 0 0 0;
+
+  h4 {
+    display: block;
+    font-family: "Canela-Medium";
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.81px;
+    color: #000000;
+    margin: 0;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.56px;
+    color: #4a4a4a;
+    margin: 0 0 24px;
+  }
+
+  .ratingbox {
+    background-color: #f6f6f6;
+    display: block;
+    padding: 35px;
+    margin: 0 0 65px;
+
+    h4 {
+      display: block;
+      font-family: "Canela-Regular";
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.81px;
+      color: #000000;
+      margin: 0 0 14px;
+    }
+    > span > span {
+      margin-right: 14px;
+    }
+  }
+
+  .ProfilePicture {
+    display: block;
+    margin: 0 0 65px;
+
+    h4 {
+      font-family: "Canela-Regular";
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.81px;
+      color: #000000;
+      margin: 0 0 10px;
+    }
+
+    p {
+      display: block;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: -0.56px;
+      color: #4a4a4a;
+      margin: 0 0 10px 0;
+    }
+    .custom-file {
+      border: solid 1px #d0d0d0;
+      background-color: #ffffff;
+      padding: 8px;
+      height: 63px;
+      .custom-file-input {
+        height: 100%;
+      }
+      label.custom-file-label {
+        border: 0;
+        margin: 0;
+        height: 100%;
+        padding: 0;
+        padding: 8px 15px;
+        display: flex;
+        align-items: center;
+        i.fa.fa-upload {
+          font-size: 32px;
+          color: #000;
+        }
+        &:after {
+          background-color: #000000;
+          border-radius: 0;
+          color: #fff;
+          padding: 0 0;
+          line-height: 46px;
+          height: auto;
+          top: 50%;
+          bottom: auto;
+          width: 220px;
+          text-align: center;
+          transform: translateY(-50%);
+          right: 8px;
+        }
+      }
+    }
+  }
+  form {
+    margin: 0 0 65px 0;
+    .form-group {
+      margin: 0 0 65px 0;
+      label {
+        font-family: "Canela-Regular";
+        font-size: 26px;
+        line-height: 1;
+        letter-spacing: -0.81px;
+        color: #000000;
+        margin: 0 0 10px;
+      }
+      select {
+        border: solid 1px #d0d0d0;
+        background-color: #ffffff;
+        width: 100%;
+        padding: 10px 15px;
+        min-height: 60px;
+      }
+      textarea {
+        border: solid 1px #d0d0d0;
+        background-color: #ffffff;
+        min-height: 220px;
+        resize: none;
+      }
+    }
+    .btn {
+      color: #fff;
+      font-weight: 300;
+      padding: 0 44px;
+      letter-spacing: -0.5px;
+      border-radius: 0;
+      border: 0;
+      font-size: 18px;
+      line-height: 56px;
+      max-width: 280px;
+      margin-left: auto;
+      display: block;
+      text-transform: uppercase;
+      &.btn-dark {
+        background: #000000;
+      }
+    }
+  }
+}

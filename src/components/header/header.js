@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import "./header.scss"
+import profileImg from "../../images/verify-img.png"
 
 export default class Header extends React.Component {
   state = {
@@ -39,8 +40,8 @@ export default class Header extends React.Component {
                 </li>
                 <li>
                   {token ? (
-                    <Link to="/logout" className="btn btn-dark">
-                      logout
+                    <Link to="/logout" className="">
+                      <img src={profileImg} />
                     </Link>
                   ) : (
                     <Link to="/signup" className="btn btn-dark">

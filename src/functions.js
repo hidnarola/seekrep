@@ -3,7 +3,7 @@ const url = process.env.SERVER_API
 
 export function fetchSignUp() {
   axios
-    .get(`${process.env.GATSBY_SERVER_API}/product/list`)
+    .get(`${process.env.GATSBY_SERVER_API}product/list`)
     .then(res => console.log("res.....", res))
     .catch(err => {
       console.log("err....", err)
@@ -12,7 +12,7 @@ export function fetchSignUp() {
 
 export function createuser(data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/signup`, data)
+    .post(`${process.env.GATSBY_SERVER_API}signup`, data)
     .then(res => {
       return res
     })
@@ -23,7 +23,7 @@ export function createuser(data) {
 
 export function loginuser(login_data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/login`, login_data)
+    .post(`${process.env.GATSBY_SERVER_API}login`, login_data)
     .then(res => {
       console.log("res.....", res)
       return res
@@ -35,7 +35,7 @@ export function loginuser(login_data) {
 
 export function geteditprofile() {
   return axios
-    .get(`${process.env.GATSBY_SERVER_API}/users/editprofile`)
+    .get(`${process.env.GATSBY_SERVER_API}users/editprofile`)
     .then(res => {
       console.log("res get edit profile", res)
       return res
@@ -47,7 +47,7 @@ export function geteditprofile() {
 
 export function editprofiledata(data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/users/editprofiledata`, data)
+    .post(`${process.env.GATSBY_SERVER_API}users/editprofiledata`, data)
     .then(res => {
       console.log("res edited data", res)
       return res
@@ -60,7 +60,7 @@ export function editprofiledata(data) {
 
 export function forgotpassworduser(email) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/forgot_password`, email)
+    .post(`${process.env.GATSBY_SERVER_API}forgot_password`, email)
     .then(res => {
       console.log("res...", res)
       return res
@@ -72,7 +72,7 @@ export function forgotpassworduser(email) {
 
 export function resetpasswordfunc(data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/reset_password`, data)
+    .post(`${process.env.GATSBY_SERVER_API}reset_password`, data)
     .then(res => {
       console.log("res...reset pass", res)
       return res
@@ -94,7 +94,7 @@ export function googleLogin(accessToken) {
     mode: "cors",
     cache: "default",
   }
-  return fetch(`${process.env.GATSBY_SERVER_API}/auth/google`, options).then(
+  return fetch(`${process.env.GATSBY_SERVER_API}auth/google`, options).then(
     r => {
       console.log("r google", r)
       const token = r.headers.get("x-auth-token")
@@ -122,7 +122,7 @@ export function facebookLogin(accessToken) {
     mode: "cors",
     cache: "default",
   }
-  fetch(`${process.env.GATSBY_SERVER_API}/auth/facebook`, options).then(r => {
+  fetch(`${process.env.GATSBY_SERVER_API}auth/facebook`, options).then(r => {
     console.log("fb r", r)
     const token = r.headers.get("x-auth-token")
     r.json()
@@ -140,7 +140,7 @@ export function facebookLogin(accessToken) {
 
 export function profileDetail() {
   return axios
-    .get("http://localhost:3000/users/editprofile")
+    .get(`${process.env.GATSBY_SERVER_API}users/editprofile`)
     .then(res => {
       console.log("res...", res)
       return res
@@ -152,7 +152,7 @@ export function profileDetail() {
 
 export function getalluser() {
   return axios
-    .get(`${process.env.GATSBY_SERVER_API}/users/alluser`)
+    .get(`${process.env.GATSBY_SERVER_API}users/alluser`)
     .then(res => {
       console.log("res.. all user..", res)
       return res
@@ -165,7 +165,7 @@ export function getalluser() {
 
 export function searchuser(data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/users/search`, data)
+    .post(`${process.env.GATSBY_SERVER_API}users/search`, data)
     .then(res => {
       console.log("res.. all user..", res)
       return res
@@ -178,7 +178,7 @@ export function searchuser(data) {
 
 export function reviewpost(data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}/review/addreview`, data)
+    .post(`${process.env.GATSBY_SERVER_API}review/addreview`, data)
     .then(res => {
       console.log("res review post", res)
       return res
