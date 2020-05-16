@@ -22,7 +22,7 @@ export default class Search extends React.Component {
       })
   }
 
-  handleInputChange = async event => {
+  handleInputChange = event => {
     const target = event.target
     const value = target.value
     const name = target.name
