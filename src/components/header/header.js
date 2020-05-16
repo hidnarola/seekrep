@@ -19,13 +19,17 @@ export default class Header extends React.Component {
     return (
       <Navbar expand="lg">
         <Container>
-          <Navbar.Brand href="/">SEEKREP</Navbar.Brand>
+          <Link to="/" className="navbar-brand">
+            SEEKREP
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <ul>
                 <li>
-                  <Nav.Link href="#">About</Nav.Link>
+                  <Link to="#" className="nav-link">
+                    About
+                  </Link>
                 </li>
                 <li>
                   {token ? (
