@@ -3,6 +3,7 @@ import { Button, Alert, Form } from "react-bootstrap"
 import { reviewpost } from "../../functions"
 import Rating from "react-rating"
 import "./writereview.scss"
+import swal from "sweetalert"
 
 export default class WriteReview extends React.Component {
   state = {
@@ -11,6 +12,8 @@ export default class WriteReview extends React.Component {
     place: "",
     review: "",
     transactionproof: "",
+    message: "",
+    showMessage: false,
   }
 
   changehandler = e => {
@@ -46,7 +49,13 @@ export default class WriteReview extends React.Component {
     await reviewpost(data)
       .then(res => {
         console.log("result....", res)
-        // this.setState({ showMessage: true, message: res })
+        if (res.data.status === 1) {
+          swal(res.data.message)
+        }
+        this.setState({
+          showMessage: true,
+          message: res.data.status,
+        })
       })
       .catch(err => console.log(err))
   }
@@ -63,6 +72,9 @@ export default class WriteReview extends React.Component {
           <div className="review-main">
             <h4> Review Blake Green </h4>
             <p>* Required</p>
+            {this.state.showMessage ? (
+              <Alert variant="danger"> {this.state.message}</Alert>
+            ) : null}
             <form onSubmit={this.handleSubmit}>
               <div className="ratingbox">
                 <h4>Your rating*</h4>
@@ -81,7 +93,7 @@ export default class WriteReview extends React.Component {
                   Please upload invoices/screenshots of chats/recieved items
                 </p>
                 <Form.File id="formcheck-api-custom" className="d-flex" custom>
-                  <div className="ProfilePictureDIV">{$transactionproof}</div>
+                  {/* <div className="ProfilePictureDIV">{$transactionproof}</div> */}
                   <Form.File.Input onChange={e => this.changehandler(e)} />
                   <Form.File.Label data-browse="UPLOAD">
                     <i className="fa fa-upload"></i>
@@ -93,6 +105,7 @@ export default class WriteReview extends React.Component {
                 <select
                   id="places"
                   name="place"
+                  required
                   onChange={event => this.handleInputChange(event)}
                 >
                   <option value="place 1">place 1</option>
@@ -105,6 +118,7 @@ export default class WriteReview extends React.Component {
                 <textarea
                   type="textarea"
                   name="review"
+                  required
                   className="form-control"
                   value={this.state.review}
                   onChange={this.handleInputChange}

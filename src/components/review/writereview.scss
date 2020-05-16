@@ -121,6 +121,10 @@
         width: 100%;
         padding: 10px 15px;
         min-height: 60px;
+        background: url("../../images/multimedia-option.png") no-repeat right
+          #fff;
+        background-size: 50px;
+        -webkit-appearance: none;
       }
       textarea {
         border: solid 1px #d0d0d0;
