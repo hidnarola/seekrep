@@ -22,7 +22,7 @@ export default class Search extends React.Component {
       })
   }
 
-  handleInputChange = event => {
+  handleInputChange = async event => {
     const target = event.target
     const value = target.value
     const name = target.name
@@ -30,6 +30,7 @@ export default class Search extends React.Component {
       [name]: value,
     })
   }
+
   handleSubmit = async event => {
     event.preventDefault()
     console.log("submit serach value", this.state.search)
