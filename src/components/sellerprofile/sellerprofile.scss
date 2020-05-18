@@ -1,0 +1,264 @@
+.seller-profile {
+  margin-top: 63px;
+
+  .seller-img {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  h4 {
+    display: block;
+    font-family: "Canela-Medium";
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.81px;
+    color: #000000;
+    margin: 0 0 7px;
+  }
+
+  .verified-boxs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    margin: 0 0 10px;
+
+    .btn.btn-success {
+      margin-right: 10px;
+    }
+    span {
+      font-size: 18px;
+      letter-spacing: -0.56px;
+      color: #000000;
+    }
+  }
+
+  p {
+    display: block;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.56px;
+    color: #000000;
+    margin: 0 0 10px;
+  }
+
+  .reting-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    img {
+      width: 20px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.write-review {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  margin: 25px 0 40px 0;
+  border: solid 1px #000000;
+  background-color: #000000;
+  padding: 25px;
+
+  p {
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: -0.63px;
+    color: #ffffff;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .btn.btn-light {
+    padding: 15px 44px;
+    border-radius: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #000000;
+  }
+}
+
+.readreview-box {
+  display: block;
+  padding: 25px;
+  background-color: #f6f6f6;
+  margin: 0 0 40px;
+
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .left {
+      display: flex;
+      flex-wrap: wrap;
+
+      img {
+        width: 50px;
+      }
+
+      .content {
+        width: calc(100% - 50px);
+        padding: 0 0 0 10px;
+        border: 0;
+
+        h6 {
+          display: block;
+          font-family: "Canela-Medium";
+          font-size: 24px;
+          font-weight: 500;
+          line-height: 1;
+          letter-spacing: -0.47px;
+          color: #000000;
+          margin: 0 0 5px;
+        }
+
+        p {
+          display: block;
+          font-size: 18px;
+          font-weight: normal;
+          line-height: 1;
+          letter-spacing: -0.42px;
+          color: #000000;
+          margin: 0;
+          text-align: left;
+        }
+      }
+    }
+
+    .review-icon {
+      margin-left: auto;
+
+      img {
+        margin-left: 5px;
+        width: 20px;
+
+        &.opacity {
+          opacity: 0.15;
+        }
+      }
+    }
+  }
+
+  .sub-title {
+    display: block;
+    padding: 18px 0;
+    border-bottom: solid 1px #d0d0d0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.42px;
+    color: #000000;
+  }
+
+  .content {
+    display: block;
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.33px;
+    color: #000000;
+    border-bottom: solid 1px #d0d0d0;
+  }
+
+  .week {
+    display: block;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.28px;
+    color: #4a4a4a;
+    padding: 12px 0 0;
+  }
+}
+
+.seekrep-detalis {
+  display: block;
+  margin: 59px 0 40px 0;
+
+  h4 {
+    font-family: "Canela-Regular";
+    display: block;
+    font-size: 26px;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: -0.81px;
+    color: #000000;
+    margin: 0 0 15px;
+  }
+  p {
+    background: #f6f6f6;
+    margin: 0;
+    display: block;
+    padding: 35px;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: -0.56px;
+    color: #000000;
+  }
+}
+
+.profiles-boxs {
+  display: block;
+
+  h4 {
+    font-family: "Canela-Regular";
+    display: block;
+    font-size: 26px;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: -0.81px;
+    color: #000000;
+    margin: 0 0 25px;
+  }
+
+  ul {
+    display: block;
+    border: solid 1px #d0d0d0;
+    margin: 0;
+    list-style: none;
+    padding: 34px;
+
+    li {
+      display: block;
+      margin: 0 0 20px;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      h6 {
+        display: block;
+        margin: 0 0 5px;
+        font-family: "Canela-Regular";
+        font-size: 18px;
+        line-height: 1;
+        letter-spacing: -0.56px;
+        color: #000000;
+      }
+
+      p {
+        display: block;
+        font-size: 18px;
+        line-height: 1;
+        letter-spacing: -0.56px;
+        color: #000000;
+        margin: 0;
+      }
+    }
+  }
+}

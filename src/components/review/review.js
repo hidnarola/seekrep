@@ -94,7 +94,7 @@ export default class WriteReview extends React.Component {
                   Please upload invoices/screenshots of chats/recieved items
                 </p>
                 <Form.File id="formcheck-api-custom" className="d-flex" custom>
-                  {/* <div className="ProfilePictureDIV">{$transactionproof}</div> */}
+                  <div className="ProfilePictureDIV">{$transactionproof}</div>
                   <Form.File.Input onChange={e => this.changehandler(e)} />
                   <Form.File.Label data-browse="UPLOAD">
                     <i className="fa fa-upload"></i>

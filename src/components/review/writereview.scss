@@ -71,6 +71,24 @@
       background-color: #ffffff;
       padding: 8px;
       height: 63px;
+      width: calc(100% - 130px);
+      margin-left: auto;
+
+      .ProfilePictureDIV {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        position: absolute;
+        left: -130px;
+        top: 0;
+        border: solid 1px rgba(0, 0, 0, 0.1);
+
+        img {
+          max-width: 100%;
+          display: block;
+        }
+      }
+
       .custom-file-input {
         height: 100%;
       }
