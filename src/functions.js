@@ -109,15 +109,20 @@ export function googleLogin(accessToken) {
   return fetch(`${process.env.GATSBY_SERVER_API}auth/google`, options).then(
     r => {
       console.log("r google", r)
-      const token = r.headers.get("x-auth-token")
-      console.log("token google front", token)
-      r.json().then(user => {
-        console.log("user google", user)
-        // console.log("token", token)
-        if (token) {
-          return user, token
-        }
-      })
+      // console.log("token google front", token)
+      // r.json().then(user => {
+      //   console.log("user google", user)
+      //   const token = user.token
+      //   return user
+      //   // console.log("token", token)
+      //   // if (token) {
+      //   //   console.info("--------------------------")
+      //   //   console.info("token google login =>", token)
+      //   //   console.info("--------------------------")
+      //   //   return user, token
+      //   // }
+      // })
+      return r.json()
     }
   )
 }
@@ -134,20 +139,22 @@ export function facebookLogin(accessToken) {
     mode: "cors",
     cache: "default",
   }
-  fetch(`${process.env.GATSBY_SERVER_API}auth/facebook`, options).then(r => {
-    console.log("fb r", r)
-    const token = r.headers.get("x-auth-token")
-    r.json()
-      .then(user => {
-        console.log("user fb", user)
-        if (token) {
-          return user, token
-        }
-      })
-      .catch(err => {
-        console.log("err", err)
-      })
-  })
+  fetch(`${process.env.GATSBY_SERVER_API}auth/facebook/token`, options).then(
+    r => {
+      console.log("fb r", r)
+      const token = r.headers.get("x-auth-token")
+      // r.json()
+      //   .then(user => {
+      //     console.log("user fb", user)
+      //     if (token) {
+      //       return user, token
+      //     }
+      //   })
+      //   .catch(err => {
+      //     console.log("err", err)
+      //   })
+    }
+  )
 }
 
 export function profileDetail() {
