@@ -20,7 +20,7 @@ const Loginpage = () => (
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/login" className="nav-link">
+                  <Link to="/login" className="nav-link active">
                     Login
                   </Link>
                 </Nav.Item>

@@ -14,7 +14,7 @@ const Signuppage = () => (
             <div className="login-boxs">
               <Nav defaultActiveKey="/signup">
                 <Nav.Item>
-                  <Link to="/signup" className="nav-link">
+                  <Link to="/signup" className="nav-link active">
                     Signup
                   </Link>
                 </Nav.Item>

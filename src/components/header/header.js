@@ -44,7 +44,7 @@ export default class Header extends React.Component {
                 </li>
                 <li>
                   {token ? (
-                    <Link to="/logout" className="">
+                    <Link to="/logout" className="logout-profile">
                       <img src={profileImg} />
                     </Link>
                   ) : (
