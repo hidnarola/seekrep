@@ -1,4 +1,5 @@
 import axios from "axios"
+import { argsToArgsConfig } from "graphql/type/definition"
 const url = process.env.SERVER_API
 
 export function fetchSignUp() {
@@ -21,6 +22,17 @@ export function createuser(data) {
     })
 }
 
+export function verifymailid(id) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}email_verify`, id)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
 export function loginuser(login_data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}login`, login_data)
@@ -33,9 +45,9 @@ export function loginuser(login_data) {
     })
 }
 
-export function geteditprofile() {
+export function geteditprofile(id) {
   return axios
-    .get(`${process.env.GATSBY_SERVER_API}users/editprofile`)
+    .post(`${process.env.GATSBY_SERVER_API}users/editprofile`, id)
     .then(res => {
       console.log("res get edit profile", res)
       return res
@@ -45,9 +57,9 @@ export function geteditprofile() {
     })
 }
 
-export function editprofiledata(data) {
+export function editprofiledata(data, id) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}users/editprofiledata`, data)
+    .post(`${process.env.GATSBY_SERVER_API}users/editprofiledata`, data, id)
     .then(res => {
       console.log("res edited data", res)
       return res
@@ -140,7 +152,7 @@ export function facebookLogin(accessToken) {
 
 export function profileDetail() {
   return axios
-    .get(`${process.env.GATSBY_SERVER_API}users/editprofile`)
+    .get(`${process.env.GATSBY_SERVER_API}users/editprofile/:id`)
     .then(res => {
       console.log("res...", res)
       return res
@@ -150,9 +162,23 @@ export function profileDetail() {
     })
 }
 
-export function getalluser() {
+export function getDataById(id) {
+  console.log("id", id)
   return axios
-    .get(`${process.env.GATSBY_SERVER_API}users/alluser`)
+    .get(`${process.env.GATSBY_SERVER_API}users/sellerprofile/${id}`)
+    .then(res => {
+      console.log("res....", res)
+      return res
+    })
+    .catch(err => {
+      console.log("err..", err)
+      return err
+    })
+}
+
+export function getalluser(pageno) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}users/alluser`, pageno)
     .then(res => {
       console.log("res.. all user..", res)
       return res

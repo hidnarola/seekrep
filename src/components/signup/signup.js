@@ -14,6 +14,7 @@ export default class Signup extends React.Component {
     password: "",
     showMessage: false,
     message: "",
+    status: "",
   }
   handleInputChange = event => {
     const target = event.target
@@ -38,7 +39,13 @@ export default class Signup extends React.Component {
         if (res.data.status === 0) {
           this.setState({ showMessage: true, message: res.data.message })
         } else if (res.data.register_resp.status === 1) {
-          navigate("/login")
+          this.setState({
+            showMessage: true,
+            message:
+              "Successfully register and conformation email is send on your mail",
+            status: 1,
+          })
+          localStorage.setItem("registerId", res.data.register_resp.data._id)
         } else {
           this.setState({ showMessage: true, message: res.data.message })
         }
@@ -98,7 +105,9 @@ export default class Signup extends React.Component {
           </div>
         </div>
         {this.state.showMessage ? (
-          <Alert variant="danger">{this.state.message}</Alert>
+          <Alert variant={this.state.status === 1 ? "success" : "danger"}>
+            {this.state.message}
+          </Alert>
         ) : null}
         <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">

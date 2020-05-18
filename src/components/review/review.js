@@ -44,6 +44,7 @@ export default class WriteReview extends React.Component {
       transactionproof: this.state.transactionproof,
       place: this.state.place,
       review: this.state.review,
+      creator: localStorage.getItem("id"),
     }
     console.log("data....", data)
     await reviewpost(data)
@@ -108,9 +109,16 @@ export default class WriteReview extends React.Component {
                   required
                   onChange={event => this.handleInputChange(event)}
                 >
-                  <option value="place 1">place 1</option>
-                  <option value="place 2">place 2</option>
-                  <option value="place 3">place 3</option>
+                  <option value="Depop">Depop</option>
+                  <option value="StockX">StockX</option>
+                  <option value="eBay">eBay</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Grailed">Grailed</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Other">Other</option>
+                  {/* {this.optionsValue.map(options => (
+                    <option>{options}</option>
+                  ))} */}
                 </select>
               </div>
               <div className="form-group mb-3">

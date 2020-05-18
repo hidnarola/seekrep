@@ -1,63 +1,40 @@
-const axios = require("axios")
-const crypto = require("crypto")
+// // exports.onCreatePage = ({ page, actions }) => {
+// // createPage({
+// //   path: `/sellerprofile/${id}`,
+// //   component: path.resolve("./src/pages/sellerprofile.js"),
+// // })
 
-exports.sourceNodes = async ({ boundActionCreators }) => {
-  const { createNode } = boundActionCreators
+// //   const { createPage, deletePage } = actions
+// //   if (page.path.match(/^\/sellerprofile/)) {
+// //     page.matchPath = `/sellerprofile/*`
 
-  // fetch raw data from the randomuser api
-  const fetchRandomUser = () =>
-    axios
-      .get("localhost:3000/product/list")
-      .then(response => {
-        console.log("sejal response===>", response)
-      })
-      .catch(err => {
-        console.log("sejal err===>", res)
-      })
+// //     createPage(page)
+// //   }
+// // }
 
-  // await for results
-  // const res = await fetchRandomUser();
-  // console.log("sejal res===>", res)
-  // map into these results and create nodes
-  // res.data.results.map((user, i) => {
-  //     // Create your node object
-  //     const userNode = {
-  //         // Required fields
-  //         id: `${i}`,
-  //         parent: `__SOURCE__`,
-  //         internal: {
-  //             type: `RandomUser`, // name of the graphQL query --> allRandomUser {}
-  //             // contentDigest will be added just after
-  //             // but it is required
-  //         },
-  //         children: [],
+// exports.onCreatePage = ({ page, actions }) => {
+//   const { createPage, deletePage } = actions
+//   console.log("page ===>", page)
+//   console.log("page path ===>", page.path)
 
-  //         // Other fields that you want to query with graphQl
-  //         gender: user.gender,
-  //         name: {
-  //             title: user.name.title,
-  //             first: user.name.first,
-  //             last: user.name.last,
-  //         },
-  //         picture: {
-  //             large: user.picture.large,
-  //             medium: user.picture.medium,
-  //             thumbnail: user.picture.thumbnail,
-  //         }
-  //         // etc...
-  //     }
+//   if (page.path.match(/^\/sellerprofile/)) {
+//     createPage({
+//       path: "/sellerprofile/*",
+//       matchPath: "/sellerprofile/:id",
+//       component: path.resolve(`./src/pages/sellerprofile.js`),
+//     })
+//   }
+// }
 
-  //     // Get content digest of node. (Required field)
-  //     const contentDigest = crypto
-  //         .createHash(`md5`)
-  //         .update(JSON.stringify(userNode))
-  //         .digest(`hex`);
-  //     // add it to userNode
-  //     userNode.internal.contentDigest = contentDigest;
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
 
-  //     // Create node with the gatsby createNode() API
-  //     createNode(userNode);
-  // });
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/sellerprofile/)) {
+    page.matchPath = "/sellerprofile/*"
 
-  return
+    // Update the page.
+    createPage(page)
+  }
 }

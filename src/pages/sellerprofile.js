@@ -1,15 +1,22 @@
 import React from "react"
-import SellerProfile from "../components/sellerprofile/sellerprofile"
+import SellerProfileComp from "../components/sellerprofile/sellerprofile"
 import Layout from "../components/layout/layout"
 import { Container } from "react-bootstrap"
+import { Router } from "@reach/router"
 
-const sellerProfilePage = () => (
+const SellerProfile = props => (
   <Layout>
     <section>
       <Container>
-        <SellerProfile />
+        {/* <Router> */}
+        {console.log("props===>", props)}
+        <SellerProfileComp location={props} />
+        {/* <GetSellerProfile path="/sellerprofile/:id" /> */}
+        {/* </Router> */}
+
+        {/* </Router> */}
       </Container>
     </section>
   </Layout>
 )
-export default sellerProfilePage
+export default SellerProfile

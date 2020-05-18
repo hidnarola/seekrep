@@ -3,32 +3,72 @@ import { Button, Alert } from "react-bootstrap"
 import { getalluser, searchuser } from "../../functions"
 import StartIcon from "../../images/start.png"
 import "./searchpage.scss"
+import { Link } from "gatsby"
+import Pagination from "react-paginate"
 
 export default class Search extends React.Component {
   state = {
     search: "",
     users: [],
+    pageCount: "",
+    perPageLimit: "",
+    totalPages: "",
   }
 
   componentDidMount() {
     getalluser()
       .then(result => {
         console.log("gat all user result", result)
-        this.setState({ users: result.data.users })
+        this.setState({
+          users: result.data.users,
+          perPageLimit: result.data.perPageLimit,
+          pageCount: result.data.totalPages,
+        })
         console.log("users array", this.state.users)
+        console.log("total page", this.state.totalPages)
+        console.log("perPageLimit", this.state.perPageLimit)
       })
       .catch(error => {
         console.log("error", error)
       })
   }
 
-  handleInputChange = event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
+  handlePageClick = page => {
+    const pageno = page.selected + 1
+    console.log("pageno", pageno)
+    const pageNo = {
+      pageno: pageno,
+    }
+    getalluser(pageNo)
+      .then(result => {
+        console.log("gat all user result", result)
+        this.setState({
+          users: result.data.users,
+          perPageLimit: result.data.perPageLimit,
+          pageCount: result.data.totalPages,
+        })
+      })
+      .catch(error => {
+        console.log("error", error)
+      })
+  }
+
+  handleInputChange = async event => {
+    // const target = event.target
+    // const value = target.value
+    // const name = target.name
     this.setState({
-      [name]: value,
+      [event.target.name]: event.target.value,
     })
+
+    console.log("ssi event==>", event.target.value)
+    //   await searchuser(event.target.value)
+    //     .then(res => {
+    //       console.log("ssi result....", res.data.users.data)
+    //       console.log("ssi result res ....", res)
+    //       this.setState({ users: res.data.users.data })
+    //     })
+    //     .catch(err => console.log(err))
   }
 
   handleSubmit = async event => {
@@ -38,15 +78,20 @@ export default class Search extends React.Component {
       search: this.state.search,
     }
     console.log("data....", data)
-    await searchuser(data)
+    // if (!this.state.search) {
+    //   this.setState({ users: this.state.users })
+    // }
+    await searchuser({ search: this.state.search })
       .then(res => {
-        console.log("result....", res.data.users.data)
+        console.log("ssi result....", res.data.users.data)
+        console.log("ssi result res ....", res)
         this.setState({ users: res.data.users.data })
       })
       .catch(err => console.log(err))
   }
 
   render() {
+    let { perPageLimit, totalPages } = this.state
     return (
       <div className="row">
         <div className="col-12 col-lg-7">
@@ -77,7 +122,9 @@ export default class Search extends React.Component {
                     </div>
                     <div className="content">
                       <h5>
-                        {user.firstName} {user.lastName}
+                        <Link to={`/sellerprofile/${user._id}`}>
+                          {user.firstName} {user.lastName}
+                        </Link>
                       </h5>
                       <div className="review-text">8 reviews</div>
                       <p>London, UK</p>
@@ -95,6 +142,29 @@ export default class Search extends React.Component {
             ) : (
               <p>No data Found</p>
             )}
+          </div>
+          <div className="pagination-box">
+            <Pagination
+              initialPage={0}
+              previousLabel={"previous"}
+              nextLabel={"next"}
+              breakLabel={"..."}
+              breakClassName={"page-item"}
+              breakLinkClassName={"page-link"}
+              pageClassName={"page-item"}
+              previousClassName={"page-item"}
+              pageLinkClassName={"page-link"}
+              nextClassName={"page-item"}
+              previousLinkClassName={"page-link"}
+              nextLinkClassName={"page-link"}
+              pageCount={this.state.pageCount}
+              marginPagesDisplayed={totalPages}
+              pageRangeDisplayed={perPageLimit}
+              onPageChange={this.handlePageClick}
+              containerClassName={"pagination"}
+              subContainerClassName={""}
+              activeClassName={"active"}
+            />
           </div>
         </div>
       </div>

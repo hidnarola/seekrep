@@ -1,13 +1,25 @@
 import React from "react"
 import { Button, Alert } from "react-bootstrap"
-import { profileDetail } from "../../functions"
+import { getDataById } from "../../functions"
+import { Link } from "gatsby"
 
-export default class SellerProfile extends React.Component {
-  state = {
-    userData: "",
+export default class SellerProfileComp extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      userData: "",
+    }
   }
   componentDidMount() {
-    profileDetail()
+    console.log("this.props", this.props)
+    console.log("this.props.location", this.props.location.location)
+    console.log("id", this.props.location.location.pathname)
+    const path = this.props.location.location.pathname
+    console.log("path", path)
+    const finalId = path.replace("/sellerprofile/", "")
+    console.log("finalid", finalId)
+    // console.log("this.props", this.props.match.params.id)
+    getDataById(finalId)
       .then(res => {
         console.log("res js", res.data.user.data)
         this.setState({ userData: res.data.user.data })
@@ -19,6 +31,7 @@ export default class SellerProfile extends React.Component {
   }
   render() {
     let { userData } = this.state
+    let token = localStorage.getItem("login-token")
     return (
       <div className="row">
         <div className="col-sm-8">
@@ -41,7 +54,9 @@ export default class SellerProfile extends React.Component {
                 <p>Bought from Blake before?</p>
               </div>
               <div className="col-sm-6">
-                <a href="/writereview">Write a review</a>
+                <Link to={token ? "/writereview" : "/login"}>
+                  Write a review
+                </Link>
               </div>
             </div>
           </div>

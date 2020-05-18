@@ -12,6 +12,7 @@ export default class EditProfile extends React.Component {
       imagePreviewUrl: "",
       firstname: "",
       lastname: "",
+      countryname: "",
       depop: "",
       eBay: "",
       facebook: "",
@@ -23,7 +24,11 @@ export default class EditProfile extends React.Component {
     }
   }
   componentDidMount() {
-    geteditprofile()
+    const userid = localStorage.getItem("id")
+    const id = {
+      userId: userid,
+    }
+    geteditprofile(id)
       .then(result => {
         console.log("result get prfile", result)
         console.log("first name", result.data.user.data.firstName)
@@ -32,6 +37,7 @@ export default class EditProfile extends React.Component {
           lastname: result.data.user.data.lastName,
           email: result.data.user.data.email,
           password: result.data.user.data.password,
+          countryname: result.data.user.data.countryname,
           depop: result.data.user.data.depop,
           eBay: result.data.user.data.eBay,
           facebook: result.data.user.data.facebook,
@@ -74,6 +80,7 @@ export default class EditProfile extends React.Component {
     const data = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
+      countryname: this.state.countryname,
       depop: this.state.depop,
       eBay: this.state.eBay,
       facebook: this.state.facebook,
@@ -84,8 +91,11 @@ export default class EditProfile extends React.Component {
       password: this.state.password,
       profileimage: this.state.imagePreviewUrl,
     }
+    const id = {
+      id: localStorage.getItem("id"),
+    }
     console.log("submit data", data)
-    await editprofiledata(data)
+    await editprofiledata(data, id)
       .then(result => {
         console.log("edited data result", result)
       })
@@ -147,6 +157,16 @@ export default class EditProfile extends React.Component {
                 name="lastname"
                 className="form-control"
                 value={this.state.lastname}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Country Name</label>
+              <input
+                type="text"
+                name="countryname"
+                className="form-control"
+                value={this.state.countryname}
                 onChange={this.handleInputChange}
               />
             </div>
