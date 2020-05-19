@@ -58,7 +58,12 @@ export default class Signup extends React.Component {
     const token = response.accessToken
     console.log({ token })
     try {
-      const response = await googleLogin(token)
+      const res = await googleLogin(token)
+      if (res.status === 1) {
+        navigate("/searchpage")
+        localStorage.setItem("login-token", res.token)
+        localStorage.setItem("id", res.data._id)
+      }
     } catch (error) {
       console.log("err functon", error)
     }
