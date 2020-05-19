@@ -1,4 +1,10 @@
-import { Navbar, Nav, Container } from "react-bootstrap"
+import {
+  Navbar,
+  Nav,
+  Container,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
@@ -44,9 +50,16 @@ export default class Header extends React.Component {
                 </li>
                 <li>
                   {token ? (
-                    <Link to="/logout" className="logout-profile">
-                      <img src={profileImg} />
-                    </Link>
+                    <Dropdown>
+                      <Dropdown.Toggle className="logout-profile">
+                        <img src={profileImg} />
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item>
+                          <Link to="/logout">Logout</Link>
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   ) : (
                     <Link to="/signup" className="btn btn-dark">
                       Sign up

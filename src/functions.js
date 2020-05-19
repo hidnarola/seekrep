@@ -94,6 +94,19 @@ export function resetpasswordfunc(data) {
     })
 }
 
+export function getReviewsById(finalId) {
+  console.log("finalId", finalId)
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}review/profileReview/${finalId}`)
+    .then(res => {
+      console.log("res profile id", res)
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
 export function googleLogin(accessToken) {
   const tokenBlob = new Blob(
     [JSON.stringify({ access_token: accessToken }, null, 2)],

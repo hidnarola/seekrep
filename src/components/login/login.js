@@ -32,6 +32,9 @@ export default class Login extends React.Component {
     await loginuser(data)
       .then(res => {
         console.log("result....", res)
+        // if (res.data.data.profileimage) {
+        //   profilepic = res.data.data.profileimage
+        // }
         if (res.data.status === 0) {
           this.setState({
             showMessage: true,

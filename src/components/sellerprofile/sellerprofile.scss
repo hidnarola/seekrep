@@ -142,13 +142,8 @@
     .review-icon {
       margin-left: auto;
 
-      img {
-        margin-left: 5px;
-        width: 20px;
-
-        &.opacity {
-          opacity: 0.15;
-        }
+      span > span {
+        margin-right: 5px;
       }
     }
   }
