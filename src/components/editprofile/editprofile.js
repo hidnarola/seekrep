@@ -1,7 +1,11 @@
 import React from "react"
 import { Button, Alert, Form } from "react-bootstrap"
 import { profileImg } from "../../images/verify-img.png"
-import { geteditprofile, editprofiledata } from "../../functions"
+import {
+  geteditprofile,
+  editprofiledata,
+  changepassworduser,
+} from "../../functions"
 import "./editprofile.scss"
 
 export default class EditProfile extends React.Component {
@@ -21,6 +25,8 @@ export default class EditProfile extends React.Component {
       stockX: "",
       email: "",
       password: "",
+      showUpdatePasswordAlert: false,
+      message: "",
     }
   }
   componentDidMount() {
@@ -102,6 +108,28 @@ export default class EditProfile extends React.Component {
       .catch(err => {
         console.log("err result edited", err)
       })
+  }
+
+  handleSubmitAccount = async event => {
+    event.preventDefault()
+    console.info("--------------------------")
+    console.info("handkeAccount Submit call =>")
+    console.info("--------------------------")
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+      token: localStorage.getItem("login-token"),
+    }
+    let resp = await changepassworduser(data)
+    if (resp.data.status === 1) {
+      this.setState({
+        message: resp.data.message,
+        showUpdatePasswordAlert: true,
+      })
+    }
+    console.info("--------------------------")
+    console.info("resp =>", resp)
+    console.info("--------------------------")
   }
 
   render() {
@@ -245,7 +273,7 @@ export default class EditProfile extends React.Component {
             </div>
           </form>
           <h4>Account</h4>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmitAccount}>
             <div className="form-group">
               <label>Email</label>
               <input
@@ -266,6 +294,11 @@ export default class EditProfile extends React.Component {
                 onChange={this.handleInputChange}
               />
             </div>
+            {this.state.showUpdatePasswordAlert && (
+              <div className="form-group">
+                <Alert variant="success"> {this.state.message}</Alert>
+              </div>
+            )}
             <div className="ButtonWrap">
               <Button type="submit" variant="dark">
                 Save

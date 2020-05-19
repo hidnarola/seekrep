@@ -82,6 +82,18 @@ export function forgotpassworduser(email) {
     })
 }
 
+export function changepassworduser(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}change_password`, data)
+    .then(res => {
+      console.log("res...", res)
+      return res
+    })
+    .catch(err => {
+      console.log("errorrrr", err)
+    })
+}
+
 export function resetpasswordfunc(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}reset_password`, data)
