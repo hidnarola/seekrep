@@ -71,7 +71,12 @@ export default class Login extends React.Component {
     const token = response.accessToken
     console.log("token", token)
     try {
-      const response = await facebookLogin(token)
+      const res = await facebookLogin(token)
+      if (res.status === 1) {
+        navigate("/searchpage")
+        localStorage.setItem("login-token", res.token)
+        localStorage.setItem("id", res.data._id)
+      }
     } catch (error) {
       console.log("err functon", error)
     }
@@ -96,7 +101,7 @@ export default class Login extends React.Component {
             onFailure={this.onFailure}
           />
           <FacebookLogin
-            appId="785477658920451"
+            appId="2831009733683828"
             autoLoad={false}
             fields="name,email,picture"
             callback={this.facebookResponse}

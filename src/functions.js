@@ -133,16 +133,17 @@ export function facebookLogin(accessToken) {
     { type: "application/json" }
   )
   console.log("token blob", tokenBlob)
+  // const tokenBlob = { access_token: accessToken }
   const options = {
     method: "POST",
     body: tokenBlob,
     mode: "cors",
     cache: "default",
   }
-  fetch(`${process.env.GATSBY_SERVER_API}auth/facebook/token`, options).then(
+  return fetch(`${process.env.GATSBY_SERVER_API}auth/facebook`, options).then(
     r => {
       console.log("fb r", r)
-      const token = r.headers.get("x-auth-token")
+      // const token = r.headers.get("x-auth-token")
       // r.json()
       //   .then(user => {
       //     console.log("user fb", user)
@@ -153,6 +154,13 @@ export function facebookLogin(accessToken) {
       //   .catch(err => {
       //     console.log("err", err)
       //   })
+      // r.json().then(res => {
+      //   console.info("--------------------------")
+      //   console.info("res =>", res)
+      //   console.info("--------------------------")
+      //   return res
+      // })
+      return r.json()
     }
   )
 }
