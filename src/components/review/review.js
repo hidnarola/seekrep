@@ -48,6 +48,7 @@ export default class WriteReview extends React.Component {
       place: this.state.place,
       review: this.state.review,
       creator: localStorage.getItem("id"),
+      profileReview: this.props.location.profileID,
     }
     console.log("data....", data)
     await reviewpost(data)
