@@ -16,6 +16,9 @@ export default class WriteReview extends React.Component {
     showMessage: false,
   }
 
+  componentDidMount() {
+    console.log("props....", this.props)
+  }
   changehandler = e => {
     let reader = new FileReader()
     let file = e.target.files[0]

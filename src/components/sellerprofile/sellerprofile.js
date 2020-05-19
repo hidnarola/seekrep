@@ -2,7 +2,7 @@ import React from "react"
 import { Button, Alert, Modal, Nav, Tabs, Tab } from "react-bootstrap"
 import { getDataById } from "../../functions"
 import { Link, navigate } from "gatsby"
-import displayImg from "../../images/verify-img.png"
+import displayImg from "../../images/default.png"
 import StartIcon from "../../images/start.png"
 import CheckmarkIcon from "../../images/checkmark.png"
 import RectangleImg from "../../images/rectangle.jpg"
@@ -19,6 +19,7 @@ export default class SellerProfileComp extends React.Component {
       reviewDetails: [],
       showModel: false,
       loading: false,
+      finalId: "",
     }
   }
   componentDidMount() {
@@ -26,6 +27,7 @@ export default class SellerProfileComp extends React.Component {
     const path = this.props.location.location.pathname
 
     const finalId = path.replace("/sellerprofile/", "")
+    this.setState({ finalId: finalId })
     getDataById(finalId)
       .then(res => {
         console.log("res js", res.data.user.data)
@@ -45,7 +47,7 @@ export default class SellerProfileComp extends React.Component {
     console.log("show model", this.state.showModel)
   }
   handleNavigate = () => {
-    navigate("/writereview")
+    navigate(`/writereview/${this.state.finalId}`)
   }
   handleClose = () => {
     this.setState({ showModel: false })
@@ -65,7 +67,13 @@ export default class SellerProfileComp extends React.Component {
               <div className="row">
                 <div className="col-12 col-sm-3">
                   <div className="seller-img">
-                    <img src={displayImg} />
+                    <img
+                      src={
+                        userData.profileimage
+                          ? userData.profileimage
+                          : displayImg
+                      }
+                    />
                   </div>
                 </div>
                 <div className="col-12 col-sm-9">
@@ -177,7 +185,7 @@ export default class SellerProfileComp extends React.Component {
           <div className="login-boxs">
             <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
               <Tab eventKey="login" title="Login">
-                <Login />
+                <Login navigate={"/writereview"} />
               </Tab>
               <Tab eventKey="signup" title="Signup">
                 <Signup />

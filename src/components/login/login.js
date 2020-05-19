@@ -13,6 +13,7 @@ export default class Login extends React.Component {
     message: "",
     status: "",
   }
+  navigateUrl = this.props.navigate ? this.props.navigate : "/searchpage"
   handleInputChange = event => {
     const target = event.target
     const value = target.value
@@ -37,7 +38,7 @@ export default class Login extends React.Component {
             message: res.data.message,
           })
         } else if (res.data.status === 1) {
-          navigate("/searchpage")
+          navigate(this.navigateUrl)
           localStorage.setItem("login-token", res.data.token)
           localStorage.setItem("id", res.data.data._id)
         } else {
@@ -57,7 +58,7 @@ export default class Login extends React.Component {
     try {
       const res = await googleLogin(token)
       if (res.status === 1) {
-        navigate("/searchpage")
+        navigate(this.navigateUrl)
         localStorage.setItem("login-token", res.token)
         localStorage.setItem("id", res.data._id)
       }
@@ -73,7 +74,7 @@ export default class Login extends React.Component {
     try {
       const res = await facebookLogin(token)
       if (res.status === 1) {
-        navigate("/searchpage")
+        navigate(this.navigateUrl)
         localStorage.setItem("login-token", res.token)
         localStorage.setItem("id", res.data._id)
       }
