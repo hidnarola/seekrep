@@ -44,4 +44,17 @@ exports.onCreatePage = async ({ page, actions }) => {
     // Update the page.
     createPage(page)
   }
+  if (page.path.match(/^\/emailverify/)) {
+    page.matchPath = "/emailverify/:userId"
+
+    // Update the page.
+    createPage(page)
+  }
+
+  if (page.path.match(/^\/resetpassword/)) {
+    page.matchPath = "/resetpassword/:token"
+
+    // Update the page.
+    createPage(page)
+  }
 }

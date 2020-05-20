@@ -9,6 +9,9 @@ export default class Resetpassword extends React.Component {
     showMessage: false,
     message: "",
   }
+  componentDidMount() {
+    console.log("props", this.props)
+  }
   handleInputChange = event => {
     const target = event.target
     const value = target.value
@@ -22,7 +25,7 @@ export default class Resetpassword extends React.Component {
     if (this.state.password !== this.state.confirmpassword) {
       this.setState({ showMessage: true, message: "password must be same" })
     } else {
-      const token = localStorage.getItem("reset-token")
+      const token = this.props.props.token
       const data = {
         password: this.state.password,
         token: token,
@@ -32,7 +35,6 @@ export default class Resetpassword extends React.Component {
         .then(res => {
           console.log("result....", res)
           this.setState({ showMessage: true, message: res.data.message })
-          localStorage.removeItem("reset-token")
         })
         .catch(err => console.log(err))
     }

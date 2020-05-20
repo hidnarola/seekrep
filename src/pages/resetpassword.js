@@ -3,7 +3,7 @@ import Header from "../components/header/header"
 import { Nav, Container, Row, Col } from "react-bootstrap"
 import Resetpassword from "../components/resetpassword/resetpassword"
 
-const restePasswordPage = () => (
+const restePasswordPage = props => (
   <div>
     <Header />
     <section className="login-bg">
@@ -18,7 +18,7 @@ const restePasswordPage = () => (
                   Seekrep account.{" "}
                 </p>
               </div>
-              <Resetpassword />
+              <Resetpassword props={props} />
             </div>
           </Col>
         </Row>

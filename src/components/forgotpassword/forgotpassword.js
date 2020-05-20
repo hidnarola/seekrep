@@ -24,8 +24,6 @@ export default class Forgotpassword extends React.Component {
     console.log("data....", data)
     await forgotpassworduser(data)
       .then(res => {
-        console.log("result....", res.data.token)
-        localStorage.setItem("reset-token", res.data.token)
         this.setState({ showMessage: true, message: res.data.message })
       })
       .catch(err => console.log(err))

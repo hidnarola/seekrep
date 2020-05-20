@@ -1,0 +1,64 @@
+.verifyemail-box {
+  padding: 100px 50px;
+  margin: auto;
+  text-align: center;
+  h4 {
+    text-align: center;
+    height: 43px;
+    font-family: Canela;
+    font-size: 36px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -1.13px;
+    color: #000000;
+    margin-bottom: 30px;
+  }
+  p {
+    height: 46px;
+    font-family: NeueHaasUnicaW06;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.28;
+    letter-spacing: -0.13px;
+    text-align: center;
+    color: #000000;
+  }
+  button {
+    width: 282px;
+    height: 57px;
+    background-color: #000000;
+    font-family: NeueHaasUnicaW06;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    text-align: center;
+    border: navajowhite;
+    color: #ffffff;
+  }
+
+  .alert {
+    width: 250px;
+    margin: 10px auto;
+  }
+  a {
+    font-family: NeueHaasUnicaW06;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.28;
+    letter-spacing: -0.13px;
+    text-align: center;
+    color: #000000;
+  }
+  a:hover {
+    color: black;
+  }
+}

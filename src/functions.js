@@ -24,7 +24,7 @@ export function createuser(data) {
 
 export function verifymailid(id) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}email_verify`, id)
+    .post(`${process.env.GATSBY_SERVER_API}email_verify/${id}`)
     .then(res => {
       return res
     })

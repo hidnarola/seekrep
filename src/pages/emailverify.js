@@ -3,11 +3,11 @@ import VerifyEmailComp from "../components/verifyemailcomp/verifyemailcomp"
 import Layout from "../components/layout/layout"
 import { Container } from "react-bootstrap"
 
-const EmailVerify = () => (
+const EmailVerify = props => (
   <Layout>
     <section>
       <Container>
-        <VerifyEmailComp />
+        <VerifyEmailComp props={props} />
       </Container>
     </section>
   </Layout>
