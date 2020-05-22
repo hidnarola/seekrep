@@ -30,6 +30,10 @@
     display: block;
     padding: 35px;
     margin: 0 0 65px;
+    @media (max-width: 767px) {
+      padding: 15px 0;
+      margin: 0 0 45px;
+    }
 
     h4 {
       display: block;
@@ -48,6 +52,10 @@
   .ProfilePicture {
     display: block;
     margin: 0 0 65px;
+
+    @media (max-width: 767px) {
+      margin: 0 0 85px;
+    }
 
     h4 {
       font-family: "Canela-Regular";
@@ -74,6 +82,10 @@
       width: calc(100% - 130px);
       margin-left: auto;
 
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
       .ProfilePictureDIV {
         width: 100px;
         height: 100px;
@@ -82,6 +94,10 @@
         left: -130px;
         top: 0;
         border: solid 1px rgba(0, 0, 0, 0.1);
+
+        @media (max-width: 767px) {
+          display: none;
+        }
 
         img {
           max-width: 100%;
@@ -117,6 +133,15 @@
           text-align: center;
           transform: translateY(-50%);
           right: 8px;
+
+          @media (max-width: 767px) {
+            right: 0;
+            transform: translateY(0);
+            top: auto;
+            left: 0;
+            bottom: -60px;
+            width: 100%;
+          }
         }
       }
     }
@@ -164,6 +189,11 @@
       margin-left: auto;
       display: block;
       text-transform: uppercase;
+
+      @media (max-width: 767px) {
+        max-width: 100%;
+      }
+
       &.btn-dark {
         background: #000000;
       }

@@ -3,6 +3,10 @@ nav.navbar {
   border-bottom: solid 1px #c6c6c6;
   background-color: #ffffff;
 
+  @media (max-width: 567px) {
+    padding: 0 15px;
+  }
+
   .navbar-brand {
     padding: 0;
     margin: 0;
@@ -22,6 +26,16 @@ nav.navbar {
 
       li {
         margin: 0 0 0 5px;
+
+        &.login-link {
+          @media (max-width: 567px) {
+            display: none;
+          }
+        }
+
+        @media (max-width: 567px) {
+          margin: 0;
+        }
 
         .logout-profile {
           display: block;
@@ -47,6 +61,10 @@ nav.navbar {
           position: relative;
           transition: all 0.5s;
 
+          @media (max-width: 567px) {
+            padding: 20px 15px;
+          }
+
           &::before {
             content: "";
             position: absolute;
@@ -54,6 +72,12 @@ nav.navbar {
             right: 25px;
             bottom: 18px;
             border-bottom: solid 2px #000;
+
+            @media (max-width: 567px) {
+              left: 15px;
+              right: 15px;
+              bottom: 15px;
+            }
           }
 
           &:hover {

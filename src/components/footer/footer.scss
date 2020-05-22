@@ -2,6 +2,10 @@ footer {
   background: #000000;
   padding: 52px 0px;
 
+  @media (max-width: 991px) {
+    padding: 30px 0;
+  }
+
   p {
     display: block;
     margin: 0;
@@ -23,12 +27,19 @@ footer {
     display: flex;
     flex-wrap: wrap;
 
+    @media (max-width: 991px) {
+      margin: 0px 0 20px 0;
+    }
+
     li {
       display: block;
 
       &:first-child {
         a {
           padding: 0;
+          @media (max-width: 767px) {
+            padding: 0px 20px 0px 0;
+          }
         }
       }
 
@@ -36,10 +47,18 @@ footer {
         display: block;
         font-size: 18px;
         font-weight: normal;
-        line-height: 1;
+        line-height: 1.5;
         letter-spacing: -0.56px;
         color: #ffffff;
         padding: 0 0 0 40px;
+
+        @media (max-width: 991px) {
+          padding: 0px 0 0px 20px;
+        }
+
+        @media (max-width: 767px) {
+          padding: 0px 20px 0px 0;
+        }
       }
     }
   }

@@ -1,70 +1,85 @@
 .feateredseller-bg {
+  display: block;
+  padding: 93px 0 102px;
+
+  @media (max-width: 1199px) {
+    padding: 50px 0;
+  }
+
+  h1 {
     display: block;
-    padding: 93px 0 102px;
-    
-    h1 {
+    font-family: "Canela-Regular";
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: -1.13px;
+    color: #000000;
+    margin: 0 0 45px;
+    text-align: center;
+
+    @media (max-width: 991px) {
+      margin: 0px 0 30px 0;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+
+    li {
+      width: 12.49%;
+
+      img {
+        max-width: 100%;
         display: block;
-        font-family: 'Canela-Regular';
-        font-size: 36px;
-        font-weight: normal;
+      }
+    }
+  }
+
+  .content {
+    display: block;
+    text-align: center;
+    margin: 116px 0 0 0;
+
+    @media (max-width: 1199px) {
+      margin: 45px 0 0 0;
+    }
+
+    @media (max-width: 991px) {
+      margin: 25px 0 0px 0;
+    }
+
+    @media (max-width: 767px) {
+      margin: 125px 0 0px 0;
+    }
+
+    h2 {
+      display: block;
+      font-family: "Canela-Regular";
+      font-size: 36px;
+      font-weight: normal;
+      line-height: 1;
+      letter-spacing: -1.13px;
+      color: #000000;
+      margin: 0 0 25px;
+    }
+
+    .tag {
+      margin: 0 auto;
+      width: auto;
+
+      span {
+        padding-left: 12px;
+        font-size: 20px;
+        font-weight: 400;
         line-height: 1;
-        letter-spacing: -1.13px;
+        letter-spacing: -0.63px;
+        text-align: center;
         color: #000000;
-        margin: 0 0 45px;
-        text-align: center;
+      }
     }
-
-    ul {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-
-        li {
-            width: 12.49%;
-
-            img {
-                max-width: 100%;
-                display: block;
-            }
-
-        }
-
-    }
-
-    .content {
-        display: block;
-        text-align: center;
-        margin: 116px 0 0 0;
-
-        h2 {
-            display: block;
-            font-family: 'Canela-Regular';
-            font-size: 36px;
-            font-weight: normal;
-            line-height: 1;
-            letter-spacing: -1.13px;
-            color: #000000;
-            margin: 0 0 25px;
-        }
-
-        .tag {
-            margin: 0 auto;
-            width: auto;
-
-            span {
-                padding-left: 12px;
-                font-size: 20px;
-                font-weight: 400;
-                line-height: 1;
-                letter-spacing: -0.63px;
-                text-align: center;
-                color: #000000;
-            }
-
-        }
-
-    }
-
+  }
 }

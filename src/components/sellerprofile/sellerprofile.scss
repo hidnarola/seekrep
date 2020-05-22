@@ -68,6 +68,11 @@
   background-color: #000000;
   padding: 25px;
 
+  @media (max-width: 767px) {
+    justify-content: center;
+    margin: 25px -15px 40px -15px;
+  }
+
   p {
     font-size: 20px;
     line-height: 1;
@@ -77,6 +82,12 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin: 0 0 10px;
+      justify-content: center;
+    }
   }
 
   .btn.btn-light {
@@ -88,6 +99,61 @@
     letter-spacing: -0.5px;
     text-align: center;
     color: #000000;
+  }
+}
+
+.review-chart {
+  display: block;
+  margin: 40px 0;
+
+  h4 {
+    display: block;
+    margin: 0 0 35px;
+    font-family: "Canela-Medium";
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.81px;
+    color: #000000;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0 0 10px;
+
+      .stare-text {
+        width: 60px;
+        line-height: 1;
+        font-size: 18px;
+        color: #000000;
+      }
+
+      .progress {
+        width: calc(100% - 60px - 40px);
+        background: #f6f6f6;
+        border-radius: 0;
+
+        .progress-bar {
+          box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.5);
+          background-color: #000000;
+        }
+      }
+
+      .progress-text {
+        width: 40px;
+        text-align: right;
+        line-height: 1;
+        font-size: 18px;
+        color: #000000;
+      }
+    }
   }
 }
 
@@ -105,6 +171,10 @@
     .left {
       display: flex;
       flex-wrap: wrap;
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
 
       img {
         width: 50px;
@@ -141,6 +211,11 @@
 
     .review-icon {
       margin-left: auto;
+
+      @media (max-width: 767px) {
+        margin: 10px 0 0 0;
+        width: 100%;
+      }
 
       span > span {
         margin-right: 5px;
@@ -185,6 +260,10 @@
   display: block;
   margin: 59px 0 40px 0;
 
+  @media (max-width: 991px) {
+    margin: 30px 0 40px 0;
+  }
+
   h4 {
     font-family: "Canela-Regular";
     display: block;
@@ -204,11 +283,19 @@
     line-height: 1.5;
     letter-spacing: -0.56px;
     color: #000000;
+
+    @media (max-width: 1199px) {
+      padding: 0;
+    }
   }
 }
 
 .profiles-boxs {
   display: block;
+
+  @media (max-width: 991px) {
+    margin: 0 0 40px;
+  }
 
   h4 {
     font-family: "Canela-Regular";

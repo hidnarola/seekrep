@@ -1,6 +1,11 @@
 .login-bg {
   .ProfilePage {
     max-width: 672px;
+
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
+
     h4 {
       font-size: 26px;
       font-weight: 400;
@@ -20,9 +25,21 @@
             min-width: 129px;
             background: #eee;
             border: 1px solid #ddd;
+
+            @media (max-width: 567px) {
+              width: 150px;
+              height: 150px;
+              min-width: 150px;
+            }
+
             img {
               width: 129px;
               height: 129px;
+
+              @media (max-width: 567px) {
+                width: 150px;
+                height: 150px;
+              }
             }
           }
           label {
@@ -33,6 +50,20 @@
             padding: 8px 8px 8px 20px;
             height: 63px;
             line-height: 45px;
+
+            @media (max-width: 567px) {
+              max-width: 100%;
+              text-align: center;
+              width: calc(100% - 160px);
+              height: 150px;
+              padding: 30px;
+            }
+            i {
+              @media (max-width: 567px) {
+                font-size: 25px;
+              }
+            }
+
             &::after {
               content: attr(data-browse);
               width: 221px;
@@ -48,6 +79,20 @@
               text-align: center;
               color: #ffffff;
               padding: 0;
+
+              @media (max-width: 567px) {
+                width: 100%;
+                text-align: center;
+                height: auto;
+                padding: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                line-height: 1;
+                color: #000;
+                position: relative;
+                background: none;
+              }
             }
           }
         }
@@ -84,6 +129,12 @@
           color: #ffffff;
           min-width: 282px;
           border-radius: 0;
+
+          @media (max-width: 767px) {
+            min-width: 100%;
+            max-width: 100%;
+          }
+
           &:hover {
             background: transparent;
             color: #000;

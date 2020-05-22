@@ -12,11 +12,18 @@ const Verifyapp = () => (
             <Col xs="12" lg="6" className="d-flex flex-wrap align-items-center">
               <div className="content">
                 <h2>Verification app</h2>
-                <p>Verify seller identity when you meet face-to-face to ensure whoever you’re meeting is who they say they are. </p>
+                <p>
+                  Verify seller identity when you meet face-to-face to ensure
+                  whoever you’re meeting is who they say they are.{" "}
+                </p>
                 <Button variant="link">Coming soon</Button>
               </div>
             </Col>
-            <Col xs="12" lg="6">
+            <Col
+              xs="12"
+              lg="6"
+              className="text-right text-md-center text-lg-left"
+            >
               <img src={VerificationImg} alt="" />
             </Col>
           </Row>

@@ -2,6 +2,7 @@ import React from "react"
 import { Button, Alert } from "react-bootstrap"
 import { getalluser, searchuser } from "../../functions"
 import StartIcon from "../../images/start.png"
+import defualtImg from "../../images/default.png"
 import "./searchpage.scss"
 import { Link } from "gatsby"
 import Pagination from "react-paginate"
@@ -118,7 +119,9 @@ export default class Search extends React.Component {
                 <div className="user-info">
                   <div className="left">
                     <div className="img">
-                      <img src={user.profileimage} />
+                      <img
+                        src={user.profileimage ? user.profileimage : defualtImg}
+                      />
                     </div>
                     <div className="content">
                       <h5>
@@ -126,8 +129,10 @@ export default class Search extends React.Component {
                           {user.firstName} {user.lastName}
                         </Link>
                       </h5>
-                      <div className="review-text">8 reviews</div>
-                      <p>London, UK</p>
+                      <div className="review-text">
+                        {user.reviews.length} reviews
+                      </div>
+                      <p>{user.countryname}</p>
                     </div>
                   </div>
                   <div className="reting-box ml-auto">

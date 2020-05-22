@@ -1,69 +1,88 @@
 .search-bg {
+  display: block;
+  padding: 70px 0 80px;
+
+  @media (max-width: 991px) {
+    padding: 30px 0;
+  }
+
+  @media (max-width: 767px) {
+    padding: 90px 0;
+  }
+
+  h1 {
     display: block;
-    padding: 70px 0 80px;
+    margin: 0 0 12px;
+    font-family: "Canela-Regular";
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.23px;
+    color: #000000;
+  }
+  p {
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.13px;
+    color: #000000;
 
-    h1 {
-        display: block;
-        margin: 0 0 12px;
-        font-family: 'Canela-Regular';
-        font-size: 36px;
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: -0.23px;
-        color: #000000;
+    @media (max-width: 767px) {
+      padding: 0px 40px;
     }
-    p {
-        display: block;
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: -0.13px;
-        color: #000000;
+  }
+
+  .search-box {
+    display: block;
+    width: 100%;
+    margin: 60px 0 0 0;
+
+    @media (max-width: 767px) {
+      margin: 40px 0 0 0;
     }
 
-    .search-box {
-        display: block;
+    label {
+      display: block;
+      line-height: 1;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.56px;
+      color: #000000;
+      text-align: left;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 24px 20px;
+      margin: 0 0 12px;
+      height: auto;
+      line-height: 1;
+      border-radius: 0;
+      border: solid 1px #c6c6c6;
+      background-color: #ffffff;
+    }
+
+    .btn {
+      padding: 21px 107px 18px 107px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.5px;
+      text-align: center;
+      color: #ffffff;
+      border: 0;
+      border-radius: 0;
+      text-transform: uppercase;
+
+      @media (max-width: 991px) {
         width: 100%;
-        margin: 60px 0 0 0;
+        padding: 21px 0;
+      }
 
-        label {
-            display: block;
-            line-height: 1;
-            font-size: 18px;
-            font-weight: 400;
-            letter-spacing: -0.56px;
-            color: #000000;
-            text-align: left;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 24px 20px;
-            margin: 0 0 12px;
-            height: auto;
-            line-height: 1;
-            border-radius: 0;
-            border: solid 1px #c6c6c6;
-            background-color: #ffffff;
-        }
-
-        .btn {
-            padding: 21px 107px 18px 107px;
-            font-size: 18px;
-            font-weight: 300;
-            line-height: 1;
-            letter-spacing: -0.5px;
-            text-align: center;
-            color: #ffffff;
-            border: 0;
-            border-radius: 0;
-            text-transform: uppercase;
-
-            &.btn-dark {
-                background-color: #000000;
-            }
-        }
-
+      &.btn-dark {
+        background-color: #000000;
+      }
     }
-
+  }
 }

@@ -23,7 +23,7 @@ export default class Header extends React.Component {
     let { token } = this.state
 
     return (
-      <Navbar expand="lg">
+      <Navbar>
         <Container>
           <Link to="/" className="navbar-brand">
             SEEKREP
@@ -48,7 +48,7 @@ export default class Header extends React.Component {
                     </Link>
                   )}
                 </li>
-                <li>
+                <li className="login-link">
                   {token ? (
                     <Dropdown>
                       <Dropdown.Toggle className="logout-profile">

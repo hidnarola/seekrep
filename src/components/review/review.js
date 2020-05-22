@@ -14,6 +14,7 @@ export default class WriteReview extends React.Component {
     transactionproof: "",
     message: "",
     showMessage: false,
+    status: "",
   }
 
   componentDidMount() {
@@ -55,11 +56,12 @@ export default class WriteReview extends React.Component {
       .then(res => {
         console.log("result....", res)
         if (res.data.status === 1) {
+          this.setState({ status: res.data.status })
           swal(res.data.message)
         }
         this.setState({
           showMessage: true,
-          message: res.data.status,
+          message: res.data.message,
         })
       })
       .catch(err => console.log(err))
@@ -77,7 +79,7 @@ export default class WriteReview extends React.Component {
           <div className="review-main">
             <h4> Review Blake Green </h4>
             <p>* Required</p>
-            {this.state.showMessage ? (
+            {this.state.status !== 1 && this.state.showMessage ? (
               <Alert variant="danger"> {this.state.message}</Alert>
             ) : null}
             <form onSubmit={this.handleSubmit}>

@@ -2,6 +2,11 @@
   padding: 100px 50px;
   margin: auto;
   text-align: center;
+
+  @media (max-width: 767px) {
+    padding: 100px 0;
+  }
+
   h4 {
     text-align: center;
     height: 43px;
@@ -41,6 +46,9 @@
     text-align: center;
     border: navajowhite;
     color: #ffffff;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 
   .alert {

@@ -99,14 +99,59 @@ body {
   display: block;
   padding: 70px 0;
 
+  @media (max-width: 567px) {
+    padding: 30px 0;
+  }
+
+  &.modal-login {
+    padding: 0;
+
+    @media (max-width: 991px) {
+      padding: 30px;
+    }
+
+    .login-boxs {
+      .nav {
+        margin: 0 0 15px 0;
+        .nav-item {
+          display: block;
+          padding: 15px 0;
+          border: 0;
+          border-bottom: solid 2px #979797;
+          text-align: center;
+          font-size: 20px;
+          font-family: "Canela-Bold";
+          font-weight: normal;
+          line-height: 1;
+          letter-spacing: 0.36px;
+          color: #000000;
+          width: 50%;
+          border-radius: 0;
+
+          &.active {
+            border-color: #000;
+          }
+        }
+      }
+    }
+  }
+
   .login-boxs {
     padding: 15px;
+
+    @media (max-width: 567px) {
+      padding: 0;
+    }
 
     .nav {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
       margin: 0 0 35px;
+
+      @media (max-width: 567px) {
+        margin: 0 0 25px;
+      }
 
       .nav-item {
         width: 50%;
@@ -135,6 +180,10 @@ body {
       display: block;
       text-align: center;
       padding: 35px 0 0 0;
+
+      @media (max-width: 567px) {
+        padding: 0;
+      }
 
       h2 {
         display: block;
