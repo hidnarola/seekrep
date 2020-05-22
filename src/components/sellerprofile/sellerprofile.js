@@ -44,10 +44,13 @@ export default class SellerProfileComp extends React.Component {
                      threestar: "",
                      fourstar: "",
                      fivestar: "",
+                     token: "",
                    }
                  }
                  componentDidMount() {
                    // console.log("show Model befor", this.state.showModel)
+                   let token = localStorage.getItem("login-token")
+                   this.setState({ token: token })
                    const path = this.props.location.location.pathname
 
                    const finalId = path.replace("/sellerprofile/", "")
@@ -125,8 +128,8 @@ export default class SellerProfileComp extends React.Component {
                  }
 
                  render() {
-                   let { userData, limit, totalPages } = this.state
-                   let token = localStorage.getItem("login-token")
+                   let { userData, limit, totalPages,token } = this.state
+                   
                    const year = moment(userData.createdAt).format("YYYY")
 
                    return (
