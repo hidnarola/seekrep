@@ -8,7 +8,11 @@ import {
   Tab,
   ProgressBar,
 } from "react-bootstrap"
-import { getDataById, getReviewsById } from "../../functions"
+import {
+  getDataById,
+  getReviewsById,
+  getReviewChartDetail,
+} from "../../functions"
 import { Link, navigate } from "gatsby"
 import displayImg from "../../images/default.png"
 import Rating from "react-rating"
@@ -33,6 +37,13 @@ export default class SellerProfileComp extends React.Component {
                      limit: "",
                      totalPages: "",
                      pageCount: "",
+                     totalreviews: "",
+                     average: "",
+                     onestar: "",
+                     twostar: "",
+                     threestar: "",
+                     fourstar: "",
+                     fivestar: "",
                    }
                  }
                  componentDidMount() {
@@ -57,11 +68,28 @@ export default class SellerProfileComp extends React.Component {
                      .then(response => {
                        console.log("response", response)
                        this.setState({
-                         reviewDetails: response.data.review.data,
+                         reviewDetails: response.data.requestData.review.data,
+                         pageCount: response.data.requestData.totalPages,
+                         limit: response.data.requestData.limit,
                        })
                      })
                      .catch(error => {
                        console.log("error", error)
+                     })
+
+                     getReviewChartDetail(finalId).then(result => {
+                       console.log("review chart detail", result)
+                       this.setState({
+                         totalreviews: result.data.reviewDetail.totalreviews,
+                         average: result.data.reviewDetail.average,
+                         onestar: result.data.reviewDetail.onestar,
+                         twostar: result.data.reviewDetail.twostar,
+                         threestar: result.data.reviewDetail.threestar,
+                         fourstar: result.data.reviewDetail.fourstar,
+                         fivestar: result.data.reviewDetail.fivestar,
+                       })
+                     }).catch(error =>{
+                       console.log("error review chart detail", error)
                      })
                  }
 
@@ -69,8 +97,21 @@ export default class SellerProfileComp extends React.Component {
                     const pageno = page.selected + 1
                     console.log("pageno", pageno)
                     const pageNo = {
-                      pageno: pageno,
+                      page: pageno,
                     }
+                    getReviewsById(this.state.finalId, pageNo)
+                      .then(response => {
+                        console.log("response", response)
+                        this.setState({
+                          reviewDetails: response.data.requestData.review.data,
+                          pageCount: response.data.requestData.totalPages,
+                          limit: response.data.requestData.limit,
+                        })
+                      })
+                      .catch(error => {
+                        console.log("error", error)
+                      })
+
                  }
                  handleClick = () => {
                    this.setState({ loading: true, showModel: true })
@@ -120,13 +161,15 @@ export default class SellerProfileComp extends React.Component {
 
                                    <span>Joined in {year} </span>
                                  </div>
-                                 <p> verifyed reviews</p>
+                                 <p> {this.state.totalreviews} verifyed reviews</p>
                                  <div className="reting-box">
-                                   {/* <img src={StartIcon} alt="" />
-                    <img src={StartIcon} alt="" />
-                    <img src={StartIcon} alt="" />
-                    <img src={StartIcon} alt="" />
-                    <img src={StartIcon} alt="" className="opacity15" /> */}
+                                   <Rating
+                                     initialRating={this.state.average
+                                     }
+                                     readonly="true"
+                                     emptySymbol="fa fa-star-o fa-2x"
+                                     fullSymbol="fa fa-star fa-2x"
+                                   />
                                  </div>
                                </div>
                              </div>
@@ -143,32 +186,42 @@ export default class SellerProfileComp extends React.Component {
                              </button>
                            </div>
                            <div className="review-chart">
-                             <h4>Reviews</h4>
+                             <h4>Reviews({this.state.totalreviews})</h4>
                              <ul>
                                <li>
                                  <div className="stare-text">5 stars</div>
-                                 <ProgressBar now={60} />
-                                 <div className="progress-text">60%</div>
+                                 <ProgressBar now={this.state.fivestar} />
+                                 <div className="progress-text">
+                                   {this.state.fivestar}%
+                                 </div>
                                </li>
                                <li>
                                  <div className="stare-text">4 stars</div>
-                                 <ProgressBar now={40} />
-                                 <div className="progress-text">40%</div>
+                                 <ProgressBar now={this.state.fourstar} />
+                                 <div className="progress-text">
+                                   {this.state.fourstar}%
+                                 </div>
                                </li>
                                <li>
                                  <div className="stare-text">3 stars</div>
-                                 <ProgressBar now={30} />
-                                 <div className="progress-text">30%</div>
+                                 <ProgressBar now={this.state.threestar} />
+                                 <div className="progress-text">
+                                   {this.state.threestar}%
+                                 </div>
                                </li>
                                <li>
                                  <div className="stare-text">2 stars</div>
-                                 <ProgressBar now={20} />
-                                 <div className="progress-text">20%</div>
+                                 <ProgressBar now={this.state.twostar} />
+                                 <div className="progress-text">
+                                   {this.state.twostar}%
+                                 </div>
                                </li>
                                <li>
                                  <div className="stare-text">1 stars</div>
-                                 <ProgressBar now={10} />
-                                 <div className="progress-text">10%</div>
+                                 <ProgressBar now={this.state.onestar} />
+                                 <div className="progress-text">
+                                   {this.state.onestar}%
+                                 </div>
                                </li>
                              </ul>
                            </div>
@@ -176,7 +229,6 @@ export default class SellerProfileComp extends React.Component {
                              this.state.reviewDetails &&
                              this.state.reviewDetails.map(reviews => (
                                <div className="readreview-box">
-                                 
                                  <div className="top">
                                    <div className="left">
                                      <img src={RectangleImg} alt="" />

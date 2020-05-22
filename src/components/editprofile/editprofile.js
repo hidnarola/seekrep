@@ -42,7 +42,6 @@ export default class EditProfile extends React.Component {
           firstname: result.data.user.data.firstName,
           lastname: result.data.user.data.lastName,
           email: result.data.user.data.email,
-          password: result.data.user.data.password,
           countryname: result.data.user.data.countryname,
           depop: result.data.user.data.depop,
           eBay: result.data.user.data.eBay,

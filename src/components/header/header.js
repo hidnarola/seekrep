@@ -51,8 +51,8 @@ export default class Header extends React.Component {
                 <li className="login-link">
                   {token ? (
                     <Dropdown>
-                      <Dropdown.Toggle className="logout-profile">
-                        <img src={profileImg} />
+                      <Dropdown.Toggle className="dropdown-box">
+                        <img src={profileImg} className="logout-profile" />
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Dropdown.Item>

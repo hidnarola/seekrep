@@ -118,6 +118,19 @@ export function getReviewsById(finalId) {
       return err
     })
 }
+export function getReviewChartDetail(id) {
+  console.log("finalId review", id)
+  console.log("in dunction review detail")
+  return axios
+    .get(`${process.env.GATSBY_SERVER_API}review/ratingdetails/${id}`)
+    .then(res => {
+      console.log("res review detail id", res)
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
 
 export function googleLogin(accessToken) {
   const tokenBlob = new Blob(

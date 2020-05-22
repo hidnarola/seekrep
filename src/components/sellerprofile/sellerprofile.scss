@@ -32,6 +32,9 @@
     .btn.btn-success {
       margin-right: 10px;
     }
+    img {
+      margin-right: 5px;
+    }
     span {
       font-size: 18px;
       letter-spacing: -0.56px;
@@ -52,9 +55,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    img {
-      width: 20px;
-      margin-right: 8px;
+    span > span {
+      margin-right: 4px;
     }
   }
 }

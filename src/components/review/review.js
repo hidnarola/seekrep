@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Alert, Form } from "react-bootstrap"
-import { reviewpost } from "../../functions"
+import { reviewpost, getDataById } from "../../functions"
 import Rating from "react-rating"
 import "./writereview.scss"
 import swal from "sweetalert"
@@ -15,10 +15,23 @@ export default class WriteReview extends React.Component {
     message: "",
     showMessage: false,
     status: "",
+    firstname: "",
+    lastname: "",
   }
 
   componentDidMount() {
     console.log("props....", this.props)
+    getDataById(this.props.location.profileID)
+      .then(res => {
+        console.log("res....", res)
+        this.setState({
+          firstname: res.data.user.data[0].firstName,
+          lastname: res.data.user.data[0].lastName,
+        })
+      })
+      .catch(err => {
+        console.log("err", err)
+      })
   }
   changehandler = e => {
     let reader = new FileReader()
@@ -77,7 +90,10 @@ export default class WriteReview extends React.Component {
       <div className="row">
         <div className="col-12 col-lg-7">
           <div className="review-main">
-            <h4> Review Blake Green </h4>
+            <h4>
+              {" "}
+              Review {this.state.firstname} {this.state.lastname}{" "}
+            </h4>
             <p>* Required</p>
             {this.state.status !== 1 && this.state.showMessage ? (
               <Alert variant="danger"> {this.state.message}</Alert>
