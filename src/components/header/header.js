@@ -9,15 +9,18 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import "./header.scss"
-import profileImg from "../../images/verify-img.png"
+import profileImg from "../../images/default.png"
 
 export default class Header extends React.Component {
   state = {
     token: "",
+    profilepic: "",
   }
   componentDidMount() {
     const loginToken = localStorage.getItem("login-token")
+    const profilepic = localStorage.getItem("profilepic")
     this.setState({ token: loginToken })
+    this.setState({ profilepic: profilepic })
   }
   render() {
     let { token } = this.state
@@ -52,7 +55,15 @@ export default class Header extends React.Component {
                   {token ? (
                     <Dropdown>
                       <Dropdown.Toggle className="dropdown-box">
-                        <img src={profileImg} className="logout-profile" />
+                        <img
+                          src={
+                            this.state.profilepic
+                              ? this.state.profilepic
+                              : profileImg
+                          }
+                          className="logout-profile"
+                        />
+                        +
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Dropdown.Item>

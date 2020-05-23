@@ -7,6 +7,7 @@ import {
   changepassworduser,
 } from "../../functions"
 import "./editprofile.scss"
+import swal from "sweetalert"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -83,26 +84,54 @@ export default class EditProfile extends React.Component {
   handleSubmit = async event => {
     event.preventDefault()
     const data = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      countryname: this.state.countryname,
-      depop: this.state.depop,
-      eBay: this.state.eBay,
-      facebook: this.state.facebook,
-      instagram: this.state.instagram,
-      grailed: this.state.grailed,
-      stockX: this.state.stockX,
-      email: this.state.email,
-      password: this.state.password,
-      profileimage: this.state.imagePreviewUrl,
-    }
-    const id = {
+      firstname: this.state.firstname ? this.state.firstname : "",
+      lastname: this.state.lastname ? this.state.lastname : "",
+      countryname: this.state.countryname ? this.state.countryname : "",
+      depop: this.state.depop ? this.state.depop : "",
+      eBay: this.state.eBay ? this.state.eBay : "",
+      facebook: this.state.facebook ? this.state.facebook : "",
+      instagram: this.state.instagram ? this.state.instagram : "",
+      grailed: this.state.grailed ? this.state.grailed : "",
+      stockX: this.state.stockX ? this.state.stockX : "",
+      profileimage: this.state.imagePreviewUrl
+        ? this.state.imagePreviewUrl
+        : "",
       id: localStorage.getItem("id"),
     }
+
     console.log("submit data", data)
-    await editprofiledata(data, id)
+    await editprofiledata(data)
       .then(result => {
         console.log("edited data result", result)
+        if (result.data.status === 1) {
+          swal(result.data.message).then(() => {
+            const userid = localStorage.getItem("id")
+            const id = {
+              userId: userid,
+            }
+            geteditprofile(id)
+              .then(result => {
+                console.log("result get prfile", result)
+                console.log("first name", result.data.user.data.firstName)
+                this.setState({
+                  firstname: result.data.user.data.firstName,
+                  lastname: result.data.user.data.lastName,
+                  email: result.data.user.data.email,
+                  countryname: result.data.user.data.countryname,
+                  depop: result.data.user.data.depop,
+                  eBay: result.data.user.data.eBay,
+                  facebook: result.data.user.data.facebook,
+                  instagram: result.data.user.data.instagram,
+                  grailed: result.data.user.data.grailed,
+                  stockX: result.data.user.data.stockX,
+                  imagePreviewUrl: result.data.user.data.profileimage,
+                })
+              })
+              .catch(err => {
+                console.log("err get profile front", err)
+              })
+          })
+        }
       })
       .catch(err => {
         console.log("err result edited", err)

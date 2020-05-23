@@ -26,6 +26,13 @@
 //   }
 // }
 
+// if (page.path.match(/^\/searchpage/)) {
+//   page.matchPath = "/searchpage/:search"
+
+//   // Update the page.
+//   createPage(page)
+// }
+
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
 
@@ -44,6 +51,7 @@ exports.onCreatePage = async ({ page, actions }) => {
     // Update the page.
     createPage(page)
   }
+
   if (page.path.match(/^\/emailverify/)) {
     page.matchPath = "/emailverify/:userId"
 

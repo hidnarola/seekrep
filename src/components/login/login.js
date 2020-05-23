@@ -44,6 +44,7 @@ export default class Login extends React.Component {
           navigate(this.navigateUrl)
           localStorage.setItem("login-token", res.data.token)
           localStorage.setItem("id", res.data.data._id)
+          localStorage.setItem("profilepic", res.data.data.profilepic)
         } else {
           this.setState({
             showMessage: true,

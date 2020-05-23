@@ -57,9 +57,9 @@ export function geteditprofile(id) {
     })
 }
 
-export function editprofiledata(data, id) {
+export function editprofiledata(data) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}users/editprofiledata`, data, id)
+    .post(`${process.env.GATSBY_SERVER_API}users/editprofiledata`, data)
     .then(res => {
       console.log("res edited data", res)
       return res
