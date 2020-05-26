@@ -13,7 +13,7 @@ export default class Login extends React.Component {
     message: "",
     status: "",
   }
-  navigateUrl = this.props.navigate ? this.props.navigate : "/searchpage"
+  navigateUrl = this.props.navigate ? this.props.navigate : "/"
   handleInputChange = event => {
     const target = event.target
     const value = target.value

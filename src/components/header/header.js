@@ -77,6 +77,26 @@ export default class Header extends React.Component {
                     </Link>
                   )}
                 </li>
+                <li className="mobile-proile">
+                  <Dropdown>
+                    <Dropdown.Toggle className="dropdown-box">
+                      <img
+                        src={
+                          this.state.profilepic
+                            ? this.state.profilepic
+                            : profileImg
+                        }
+                        className="logout-profile"
+                      />
+                      +
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item>
+                        <Link to="/logout">Logout</Link>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
               </ul>
             </Nav>
           </Navbar.Collapse>

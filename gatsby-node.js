@@ -45,6 +45,13 @@ exports.onCreatePage = async ({ page, actions }) => {
     createPage(page)
   }
 
+  if (page.path.match(/^\/searchpage/)) {
+    page.matchPath = "/searchpage/:value"
+
+    // Update the page.
+    createPage(page)
+  }
+
   if (page.path.match(/^\/writereview/)) {
     page.matchPath = "/writereview/:profileID"
 

@@ -24,6 +24,7 @@ import Login from "../login/login"
 import Signup from "../signup/signup"
 import TimeAgo from "react-timeago"
 import Pagination from "react-paginate"
+import Loader from "../spinner/spinner"
 
 export default class SellerProfileComp extends React.Component {
                  constructor(props) {
@@ -32,7 +33,7 @@ export default class SellerProfileComp extends React.Component {
                      userData: "",
                      reviewDetails: [],
                      showModel: false,
-                     loading: false,
+                    loader: false,
                      finalId: "",
                      limit: "",
                      totalPages: "",
@@ -50,7 +51,7 @@ export default class SellerProfileComp extends React.Component {
                  componentDidMount() {
                    // console.log("show Model befor", this.state.showModel)
                    let token = localStorage.getItem("login-token")
-                   this.setState({ token: token })
+                   this.setState({ token: token, loader: true })
                    const path = this.props.location.location.pathname
 
                    const finalId = path.replace("/sellerprofile/", "")
@@ -60,6 +61,7 @@ export default class SellerProfileComp extends React.Component {
                        console.log("res js", res.data.user.data)
                        this.setState({
                          userData: res.data.user.data[0],
+                         loader: false
                        })
                        console.log("this.state.userData", this.state.userData)
                      })
@@ -74,6 +76,7 @@ export default class SellerProfileComp extends React.Component {
                          reviewDetails: response.data.requestData.review.data,
                          pageCount: response.data.requestData.totalPages,
                          limit: response.data.requestData.limit,
+                         loader: false,
                        })
                      })
                      .catch(error => {
@@ -90,6 +93,7 @@ export default class SellerProfileComp extends React.Component {
                          threestar: result.data.reviewDetail.threestar,
                          fourstar: result.data.reviewDetail.fourstar,
                          fivestar: result.data.reviewDetail.fivestar,
+                         loader: false,
                        })
                      }).catch(error =>{
                        console.log("error review chart detail", error)
@@ -109,6 +113,7 @@ export default class SellerProfileComp extends React.Component {
                           reviewDetails: response.data.requestData.review.data,
                           pageCount: response.data.requestData.totalPages,
                           limit: response.data.requestData.limit,
+                          loader: false,
                         })
                       })
                       .catch(error => {
@@ -117,7 +122,7 @@ export default class SellerProfileComp extends React.Component {
 
                  }
                  handleClick = () => {
-                   this.setState({ loading: true, showModel: true })
+                   this.setState({  showModel: true })
                    console.log("show model", this.state.showModel)
                  }
                  handleNavigate = () => {
@@ -134,6 +139,8 @@ export default class SellerProfileComp extends React.Component {
 
                    return (
                      <div>
+                         {this.state.loader ? <Loader/> : 
+                         <>
                        <div className="row">
                          <div className="col-12 col-lg-8">
                            <div className="seller-profile">
@@ -164,11 +171,13 @@ export default class SellerProfileComp extends React.Component {
 
                                    <span>Joined in {year} </span>
                                  </div>
-                                 <p> {this.state.totalreviews} verifyed reviews</p>
+                                 <p>
+                                   {" "}
+                                   {this.state.totalreviews} verifyed reviews
+                                 </p>
                                  <div className="reting-box">
                                    <Rating
-                                     initialRating={this.state.average
-                                     }
+                                     initialRating={this.state.average}
                                      readonly="true"
                                      emptySymbol="fa fa-star-o fa-2x"
                                      fullSymbol="fa fa-star fa-2x"
@@ -234,7 +243,15 @@ export default class SellerProfileComp extends React.Component {
                                <div className="readreview-box">
                                  <div className="top">
                                    <div className="left">
-                                     <img src={RectangleImg} alt="" />
+                                     <img
+                                       src={
+                                         reviews.creator_details.profileimage
+                                           ? reviews.creator_details
+                                               .profileimage
+                                           : displayImg
+                                       }
+                                       alt=""
+                                     />
                                      <div className="content">
                                        <h6>
                                          {reviews.creator_details.firstName}{" "}
@@ -325,6 +342,7 @@ export default class SellerProfileComp extends React.Component {
                              </ul>
                            </div>
                          </div>
+                        
                        </div>
 
                        <Modal
@@ -350,6 +368,7 @@ export default class SellerProfileComp extends React.Component {
                            </div>
                          </div>
                        </Modal>
+                     </> }
                      </div>
                    )
                  }

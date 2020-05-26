@@ -18,7 +18,9 @@ export default class Searchbox extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    navigate("/searchpage")
+    const search = this.state.search
+    console.log("search", search)
+    navigate(`/searchpage/${search}`)
     console.log("clicked")
   }
 

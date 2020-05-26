@@ -106,10 +106,13 @@ export function resetpasswordfunc(data) {
     })
 }
 
-export function getReviewsById(finalId) {
+export function getReviewsById(finalId, page) {
   console.log("finalId", finalId)
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}review/profileReview/${finalId}`)
+    .post(
+      `${process.env.GATSBY_SERVER_API}review/profileReview/${finalId}`,
+      page
+    )
     .then(res => {
       console.log("res profile id", res)
       return res
@@ -231,7 +234,7 @@ export function getDataById(id) {
 
 export function getalluser(pageno) {
   return axios
-    .post(`${process.env.GATSBY_SERVER_API}users/alluser`, pageno)
+    .post(`${process.env.GATSBY_SERVER_API}users/alluserreview`, pageno)
     .then(res => {
       console.log("res.. all user..", res)
       return res

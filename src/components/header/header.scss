@@ -52,6 +52,13 @@ nav.navbar {
             display: none;
           }
         }
+        &.mobile-proile {
+          display: none;
+
+          @media (max-width: 567px) {
+            display: block;
+          }
+        }
 
         @media (max-width: 567px) {
           margin: 0;

@@ -148,12 +148,8 @@
         margin-top: 10px;
       }
 
-      img {
-        width: 20px;
-        margin-left: 8px;
-        &.opacity15 {
-          opacity: 0.15;
-        }
+      span > span {
+        margin-right: 3px;
       }
     }
   }
