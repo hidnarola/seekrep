@@ -1,5 +1,5 @@
 import React from "react"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import { Button, Form, Alert } from "react-bootstrap"
 import "./signup.scss"
 import { GoogleLogin } from "react-google-login"
@@ -163,7 +163,7 @@ export default class Signup extends React.Component {
             Sign up
           </Button>
           <div className="link-text text-center border-top mt-4 pt-3">
-            Already have an account? <a href="/login">Log in</a>
+            Already have an account? <Link to="/login">Log in</Link>
           </div>
         </form>
       </>

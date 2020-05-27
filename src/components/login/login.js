@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Alert } from "react-bootstrap"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import { loginuser, googleLogin, facebookLogin } from "../../functions"
 import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
@@ -143,15 +143,15 @@ export default class Login extends React.Component {
             />
           </div>
           <div className="link-text text-right mb-2">
-            <a href="/forgotpassword" className="small">
+            <Link to="/forgotpassword" className="small">
               Forgot your password?
-            </a>
+            </Link>
           </div>
           <Button type="submit" variant="dark" className="w-100">
             Log in
           </Button>
           <div className="link-text text-center border-top mt-4 pt-3">
-            Don’t have an account? <a href="/signup"> Sign up</a>
+            Don’t have an account? <Link to="/signup"> Sign up</Link>
           </div>
         </form>
       </>
