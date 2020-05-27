@@ -10,21 +10,23 @@ const Footer = () => (
         <div className="col-12 col-lg-auto">
           <ul className="footer-link">
             <li>
-              <a href="#">Privacy Policy</a>
+              <Link href="#">Privacy Policy</Link>
             </li>
             <li>
-              <a href="#">Terms & Connditions</a>
+              <Link href="#">Terms & Connditions</Link>
             </li>
             <li>
-              <a href="#">User Guidelines</a>
+              <Link href="#">User Guidelines</Link>
             </li>
           </ul>
         </div>
         <div className="col-12 col-lg-auto mr-auto">
           <p>
             © {new Date().getFullYear()},{` `}
-            <a href="https://www.gatsbyjs.org">Seekrep Ltd.</a>All rights
-            reserved.
+            <Link href="https://seekrep-frontend.herokuapp.com">
+              Seekrep Ltd.
+            </Link>
+            All rights reserved.
           </p>
         </div>
       </div>
@@ -33,11 +35,11 @@ const Footer = () => (
 )
 
 Footer.propTypes = {
-  siteTitle: PropTypes.string
+  siteTitle: PropTypes.string,
 }
 
 Footer.defaultProps = {
-  siteTitle: ``
+  siteTitle: ``,
 }
 
 export default Footer

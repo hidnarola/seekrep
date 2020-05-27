@@ -105,6 +105,7 @@ export default class Search extends React.Component {
     // }
     await searchuser({ search: this.state.search })
       .then(res => {
+        console.log("res search", res)
         this.setState({ users: res.data.users.data })
       })
       .catch(err => console.log(err))
@@ -157,7 +158,7 @@ export default class Search extends React.Component {
                           </Link>
                         </h5>
                         <div className="review-text">
-                          {user.reviewDetails.length} reviews
+                          {/* {user.reviewDetails.length} reviews */}
                         </div>
                         <p>{user.countryname}</p>
                       </div>
