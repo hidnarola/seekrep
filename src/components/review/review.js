@@ -4,7 +4,7 @@ import { reviewpost, getDataById } from "../../functions"
 import Rating from "react-rating"
 import "./writereview.scss"
 import swal from "sweetalert"
-
+import { navigate } from "gatsby"
 export default class WriteReview extends React.Component {
   state = {
     rating: 0,
@@ -70,7 +70,9 @@ export default class WriteReview extends React.Component {
         console.log("result....", res)
         if (res.data.status === 1) {
           this.setState({ status: res.data.status })
-          swal(res.data.message)
+          swal(res.data.message).then(resp => {
+            navigate(`/sellerprofile/${res.data.creator._id}`)
+          })
         }
         this.setState({
           showMessage: true,

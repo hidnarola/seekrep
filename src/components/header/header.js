@@ -11,6 +11,7 @@ import React from "react"
 import "./header.scss"
 import profileImg from "../../images/default.png"
 
+
 export default class Header extends React.Component {
   state = {
     token: "",
@@ -46,10 +47,10 @@ export default class Header extends React.Component {
                       My Profile
                     </Link>
                   ) : (
-                    <Link to="/login" className="nav-link">
-                      Login
+                      <Link to="/login" className="nav-link">
+                        Login
                     </Link>
-                  )}
+                    )}
                 </li>
                 <li className="login-link">
                   {token ? (
@@ -61,6 +62,7 @@ export default class Header extends React.Component {
                               ? this.state.profilepic
                               : profileImg
                           }
+                          alt="profile-pic"
                           className="logout-profile"
                         />
                         +
@@ -72,10 +74,10 @@ export default class Header extends React.Component {
                       </Dropdown.Menu>
                     </Dropdown>
                   ) : (
-                    <Link to="/signup" className="btn btn-dark">
-                      Sign up
+                      <Link to="/signup" className="btn btn-dark">
+                        Sign up
                     </Link>
-                  )}
+                    )}
                 </li>
                 <li className="mobile-proile">
                   <Dropdown>
@@ -86,6 +88,7 @@ export default class Header extends React.Component {
                             ? this.state.profilepic
                             : profileImg
                         }
+                        alt="profile-pic"
                         className="logout-profile"
                       />
                       +

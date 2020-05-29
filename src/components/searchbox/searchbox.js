@@ -14,13 +14,25 @@ export default class Searchbox extends React.Component {
       [e.target.name]: e.target.value,
     })
     console.log("search", this.state.search)
+    if (e.target.value !== '') {
+      document.getElementById('search_error').innerHTML = ''
+    }
+    else {
+      document.getElementById('search_error').innerHTML = 'Please enter name to search'
+    }
   }
 
   handleSubmit = e => {
     e.preventDefault()
     const search = this.state.search
     console.log("search", search)
-    navigate(`/searchpage/${search}`)
+    if (search !== '') {
+      document.getElementById('search_error').innerHTML = ''
+      navigate(`/searchpage/${search}`)
+    }
+    else {
+      document.getElementById('search_error').innerHTML = 'Please enter name to search'
+    }
     console.log("clicked")
   }
 
@@ -40,6 +52,7 @@ export default class Searchbox extends React.Component {
                   className="form-control"
                   onChange={e => this.changeHandler(e)}
                 />
+                <span style={{ 'color': 'red' }} id="search_error"></span>
                 <Button variant="dark" onClick={this.handleSubmit}>
                   Search
                 </Button>

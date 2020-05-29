@@ -5,6 +5,9 @@ import "./signup.scss"
 import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
 import { googleLogin, createuser, facebookLogin } from "../../functions"
+import jQuery from 'jquery'
+import validator from 'validator';
+
 
 export default class Signup extends React.Component {
   state = {
@@ -16,41 +19,87 @@ export default class Signup extends React.Component {
     message: "",
     status: "",
   }
-  handleInputChange = event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
-    this.setState({
-      [name]: value,
-    })
+
+  // handleInputChange = event => {
+  //   const target = event.target
+  //   const value = target.value
+  //   const name = target.name
+  //   this.setState({
+  //     [name]: value,
+  //   })
+  // }
+
+  handleInputChange = (element, value) => {
+    if (element == 'firstName') { this.setState({ firstName: value }) }
+    if (element == 'lastName') { this.setState({ lastName: value }) }
+    if (element == 'email') {
+      this.setState({ email: value })
+    }
+    if (element == 'password') { this.setState({ password: value }) }
+    if (value === '') {
+      jQuery('.' + element + '_errorMsg').html('This field is required');
+    } else {
+      jQuery('.' + element + '_errorMsg').html('');
+    }
   }
+
   handleSubmit = async event => {
     event.preventDefault()
-    const data = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password,
+    const { firstName, lastName, email, password } = this.state;
+    let isError = 0;
+    if (firstName === '') {
+      jQuery('.firstName_errorMsg').html('This field is required');
+      isError = 1;
     }
-    console.log("data....", data)
-    await createuser(data)
-      .then(res => {
-        console.log("result....", res)
-        if (res.data.status === 0) {
-          this.setState({ showMessage: true, message: res.data.message })
-        } else if (res.data.register_resp.status === 1) {
-          this.setState({
-            showMessage: true,
-            message:
-              "Successfully register and conformation email is send on your mail",
-            status: 1,
-          })
-          localStorage.setItem("registerId", res.data.register_resp.data._id)
-        } else {
-          this.setState({ showMessage: true, message: res.data.message })
-        }
-      })
-      .catch(err => console.log(err))
+    if (lastName === '') {
+      jQuery('.lastName_errorMsg').html('This field is required');
+      isError = 1;
+    }
+    if (email === '') {
+      jQuery('.email_errorMsg').html('This field is required');
+      isError = 1;
+    }
+    else if (!validator.isEmail(email)) {
+      jQuery('.email_errorMsg').html('Please enter valid email');
+      isError = 1;
+    }
+
+    if (password === '') {
+      jQuery('.password_errorMsg').html('This field is required');
+      isError = 1;
+    }
+
+
+    if (isError === 0) {
+      const data = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+      }
+      console.log("data....", data)
+      await createuser(data)
+        .then(res => {
+          console.log("result....", res)
+          if (res.data.status === 0) {
+            this.setState({ showMessage: true, message: res.data.message })
+          } else if (res.data.register_resp.status === 1) {
+            this.setState({
+              firstName: '',
+              lastName: '',
+              email: '',
+              password: '',
+              showMessage: true,
+              message: "Successfully register and conformation email is send on your mail",
+              status: 1,
+            })
+            localStorage.setItem("registerId", res.data.register_resp.data._id)
+          } else {
+            this.setState({ showMessage: true, message: res.data.message })
+          }
+        })
+        .catch(err => console.log(err))
+    }
   }
 
   googleResponse = async response => {
@@ -120,44 +169,48 @@ export default class Signup extends React.Component {
             <input
               type="text"
               name="firstName"
+              id="firstName"
               className="form-control"
               value={this.state.firstName}
-              onChange={this.handleInputChange}
-              required
+              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
             />
+            <span className="firstName_errorMsg" style={{ "color": "red" }}></span>
           </div>
           <div className="form-group">
             <label> Last name </label>
             <input
               type="text"
               name="lastName"
+              id="lastName"
               className="form-control"
               value={this.state.lastName}
-              onChange={this.handleInputChange}
-              required
+              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
             />
+            <span className="lastName_errorMsg" style={{ "color": "red" }}></span>
           </div>
           <div className="form-group">
             <label> email</label>
             <input
               type="text"
               name="email"
+              id="email"
               className="form-control"
               value={this.state.email}
-              onChange={this.handleInputChange}
-              required
+              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
             />
+            <span className="email_errorMsg" style={{ "color": "red" }}></span>
           </div>
           <div className="form-group">
             <label>password</label>
             <input
               type="password"
               name="password"
+              id="password"
               className="form-control"
               value={this.state.password}
-              onChange={this.handleInputChange}
-              required
+              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
             />
+            <span className="password_errorMsg" style={{ "color": "red" }}></span>
           </div>
           <Button type="submit" variant="dark" className="w-100">
             Sign up

@@ -84,8 +84,8 @@ export default class EditProfile extends React.Component {
   handleSubmit = async event => {
     event.preventDefault()
     const data = {
-      firstname: this.state.firstname ? this.state.firstname : "",
-      lastname: this.state.lastname ? this.state.lastname : "",
+      firstName: this.state.firstname ? this.state.firstname : "",
+      lastName: this.state.lastname ? this.state.lastname : "",
       countryname: this.state.countryname ? this.state.countryname : "",
       depop: this.state.depop ? this.state.depop : "",
       eBay: this.state.eBay ? this.state.eBay : "",
@@ -149,8 +149,10 @@ export default class EditProfile extends React.Component {
       token: localStorage.getItem("login-token"),
     }
     let resp = await changepassworduser(data)
-    if (resp.data.status === 1) {
+    console.log('C P =>', resp);
+    if (resp.data.status === 1 || resp.data.status === 0) {
       this.setState({
+        status: resp.data.status,
         message: resp.data.message,
         showUpdatePasswordAlert: true,
       })
@@ -310,6 +312,7 @@ export default class EditProfile extends React.Component {
                 className="form-control"
                 value={this.state.email}
                 onChange={this.handleInputChange}
+                readOnly
               />
             </div>
             <div className="form-group">
@@ -324,7 +327,7 @@ export default class EditProfile extends React.Component {
             </div>
             {this.state.showUpdatePasswordAlert && (
               <div className="form-group">
-                <Alert variant="success"> {this.state.message}</Alert>
+                <Alert variant={this.state.status === 1 ? 'success' : 'danger'}> {this.state.message}</Alert>
               </div>
             )}
             <div className="ButtonWrap">

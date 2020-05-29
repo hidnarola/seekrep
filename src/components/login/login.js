@@ -35,24 +35,25 @@ export default class Login extends React.Component {
         // if (res.data.data.profileimage) {
         //   profilepic = res.data.data.profileimage
         // }
-        if (res.data.status === 0) {
+        if (res.data && res.data.status === 0) {
           this.setState({
             showMessage: true,
             message: res.data.message,
           })
-        } else if (res.data.status === 1) {
+        } else if (res.data && res.data.status === 1) {
           navigate(this.navigateUrl)
           localStorage.setItem("login-token", res.data.token)
           localStorage.setItem("id", res.data.data._id)
           localStorage.setItem("profilepic", res.data.data.profilepic)
-        } else {
+        }
+        else {
           this.setState({
             showMessage: true,
             message: res.data.message,
           })
         }
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response))
   }
 
   googleResponse = async response => {
