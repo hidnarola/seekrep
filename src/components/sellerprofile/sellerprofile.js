@@ -191,7 +191,8 @@ export default class SellerProfileComp extends React.Component {
                   </div>
                 </div>
                 <div className="write-review">
-                  <p>Bought from Blake before?</p>
+                  {/* <p>Bought from Blake before?</p> */}
+                  <p>Bought from {userData ? userData.firstName + ' ' + userData.lastName : 'Blake'} before?</p>
                   <button
                     className="btn btn-light ml-md-auto"
                     onClick={
@@ -273,10 +274,10 @@ export default class SellerProfileComp extends React.Component {
                           />
                         </div>
                       </div>
-                      <div className="sub-title">
+                      {/* <div className="sub-title">
                         Purchased a Louis Vuitton bag from{" "}
                         {userData.firstName} {userData.lastName}
-                      </div>
+                      </div> */}
                       <div className="content">{reviews.review}</div>
                       <div className="week">
                         Posted <TimeAgo date={reviews.createdAt} />
@@ -325,7 +326,7 @@ export default class SellerProfileComp extends React.Component {
                   <ul className="profile-list">
                     <li>
                       <h6>Depop</h6>
-                      <p>@blakegreen{userData && userData.depop}</p>
+                      <p>{userData && userData.depop}</p>
                     </li>
                     <li>
                       <h6>eBay</h6>

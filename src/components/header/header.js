@@ -2,30 +2,43 @@ import {
   Navbar,
   Nav,
   Container,
-  Dropdown,
-  DropdownButton,
+  Dropdown
 } from "react-bootstrap"
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 import "./header.scss"
 import profileImg from "../../images/default.png"
-
+import {
+  getDataById,
+} from "../../functions"
 
 export default class Header extends React.Component {
   state = {
     token: "",
     profilepic: "",
+    userData: {}
   }
   componentDidMount() {
     const loginToken = localStorage.getItem("login-token")
-    const profilepic = localStorage.getItem("profilepic")
+    // const profilepic = localStorage.getItem("profilepic")
+    const userId = localStorage.getItem("id")
     this.setState({ token: loginToken })
-    this.setState({ profilepic: profilepic })
+    // this.setState({ profilepic: profilepic })
+    if (userId) {
+      getDataById(userId)
+        .then(res => {
+          this.setState({
+            userData: res.data.user.data[0],
+          })
+        })
+        .catch(err => {
+          console.log("error", err)
+        })
+    }
+
   }
   render() {
     let { token } = this.state
-
     return (
       <Navbar>
         <Container>
@@ -58,8 +71,8 @@ export default class Header extends React.Component {
                       <Dropdown.Toggle className="dropdown-box">
                         <img
                           src={
-                            this.state.profilepic
-                              ? this.state.profilepic
+                            this.state.userData && this.state.userData.profileimage
+                              ? this.state.userData.profileimage
                               : profileImg
                           }
                           alt="profile-pic"

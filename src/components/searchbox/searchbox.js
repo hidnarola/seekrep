@@ -45,14 +45,16 @@ export default class Searchbox extends React.Component {
               <h1>Behind every seller is a story that matters</h1>
               <p>Read reviews. Write reviews. Get peace of mind.</p>
               <form className="search-box" onSubmit={this.handleSubmit}>
-                <label>Search for a full name or username</label>
-                <input
-                  type="text"
-                  name="search"
-                  className="form-control"
-                  onChange={e => this.changeHandler(e)}
-                />
-                <span style={{ 'color': 'red' }} id="search_error"></span>
+                <div>
+                  <label>Search for a full name or username</label>
+                  <input
+                    type="text"
+                    name="search"
+                    className="form-control"
+                    onChange={e => this.changeHandler(e)}
+                  />
+                  <span style={{ 'color': 'red' }} id="search_error"></span>
+                </div>
                 <Button variant="dark" onClick={this.handleSubmit}>
                   Search
                 </Button>
