@@ -4,6 +4,7 @@ import { navigate, Link } from "gatsby"
 import { loginuser, googleLogin, facebookLogin } from "../../functions"
 import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
+import Spinner from "../spinner/spinner"
 
 export default class Login extends React.Component {
   state = {
@@ -12,6 +13,7 @@ export default class Login extends React.Component {
     showMessage: false,
     message: "",
     status: "",
+    loader: false,
   }
   navigateUrl = this.props.navigate ? this.props.navigate : "/"
   handleInputChange = event => {
@@ -23,6 +25,7 @@ export default class Login extends React.Component {
     })
   }
   handleSubmit = async event => {
+    this.setState({ loader: true })
     event.preventDefault()
     const data = {
       email: this.state.email,
@@ -39,17 +42,18 @@ export default class Login extends React.Component {
           this.setState({
             showMessage: true,
             message: res.data.message,
+            loader: false,
           })
         } else if (res.data && res.data.status === 1) {
+          this.setState({ loader: false })
           navigate(this.navigateUrl)
           localStorage.setItem("login-token", res.data.token)
           localStorage.setItem("id", res.data.data._id)
-          localStorage.setItem("profilepic", res.data.data.profilepic)
-        }
-        else {
+        } else {
           this.setState({
             showMessage: true,
             message: res.data.message,
+            loader: false,
           })
         }
       })
@@ -148,8 +152,13 @@ export default class Login extends React.Component {
               Forgot your password?
             </Link>
           </div>
-          <Button type="submit" variant="dark" className="w-100">
-            Log in
+          <Button
+            type="submit"
+            variant="dark"
+            className="w-100"
+            disabled={!(this.state.email && this.state.password)}
+          >
+            {this.state.loader ? <Spinner /> : "Log in"}
           </Button>
           <div className="link-text text-center border-top mt-4 pt-3">
             Don’t have an account? <Link to="/signup"> Sign up</Link>

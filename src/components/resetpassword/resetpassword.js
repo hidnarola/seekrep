@@ -1,6 +1,7 @@
 import React from "react"
 import { Button, Alert } from "react-bootstrap"
 import { resetpasswordfunc } from "../../functions"
+import Spinner from "../spinner/spinner"
 
 export default class Resetpassword extends React.Component {
   state = {
@@ -8,6 +9,8 @@ export default class Resetpassword extends React.Component {
     confirmpassword: "",
     showMessage: false,
     message: "",
+    status: "",
+    loader: false,
   }
   componentDidMount() {
     console.log("props", this.props)
@@ -21,9 +24,14 @@ export default class Resetpassword extends React.Component {
     })
   }
   handleSubmit = async event => {
+    this.setState({ loader: true })
     event.preventDefault()
     if (this.state.password !== this.state.confirmpassword) {
-      this.setState({ showMessage: true, message: "password must be same" })
+      this.setState({
+        showMessage: true,
+        message: "password must be same",
+        loader: false,
+      })
     } else {
       const token = this.props.props.token
       const data = {
@@ -33,8 +41,21 @@ export default class Resetpassword extends React.Component {
       console.log("data....", data)
       await resetpasswordfunc(data)
         .then(res => {
-          console.log("result....", res)
-          this.setState({ showMessage: true, message: res.data.message })
+          if (res.data.status === 1) {
+            this.setState({
+              showMessage: true,
+              message: res.data.message,
+              status: 1,
+              loader: false,
+            })
+          } else if (res.data.status === 0) {
+            this.setState({
+              showMessage: true,
+              message: res.data.message,
+              status: 0,
+              loader: false,
+            })
+          }
         })
         .catch(err => console.log(err))
     }
@@ -44,7 +65,9 @@ export default class Resetpassword extends React.Component {
     return (
       <>
         {this.state.showMessage ? (
-          <Alert variant="danger">{this.state.message}</Alert>
+          <Alert variant={this.state.status === 1 ? "success" : "danger"}>
+            {this.state.message}
+          </Alert>
         ) : null}
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -68,7 +91,7 @@ export default class Resetpassword extends React.Component {
             />
           </div>
           <Button type="submit" variant="dark" className="w-100">
-            Reset Password
+            {this.state.loader ? <Spinner /> : "Reset Password"}
           </Button>
         </form>
       </>

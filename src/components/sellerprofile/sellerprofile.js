@@ -62,7 +62,7 @@ export default class SellerProfileComp extends React.Component {
         console.log("res js", res.data.user.data)
         this.setState({
           userData: res.data.user.data[0],
-          loader: false
+          loader: false,
         })
         console.log("this.state.userData", this.state.userData)
       })
@@ -85,24 +85,26 @@ export default class SellerProfileComp extends React.Component {
         console.log("error", error)
       })
 
-    getReviewChartDetail(finalId).then(result => {
-      console.log("review chart detail", result)
-      this.setState({
-        totalreviews: result.data.reviewDetail.totalreviews,
-        average: result.data.reviewDetail.average,
-        onestar: result.data.reviewDetail.onestar,
-        twostar: result.data.reviewDetail.twostar,
-        threestar: result.data.reviewDetail.threestar,
-        fourstar: result.data.reviewDetail.fourstar,
-        fivestar: result.data.reviewDetail.fivestar,
-        loader: false,
+    getReviewChartDetail(finalId)
+      .then(result => {
+        console.log("review chart detail", result)
+        this.setState({
+          totalreviews: result.data.reviewDetail.totalreviews,
+          average: result.data.reviewDetail.average,
+          onestar: result.data.reviewDetail.onestar,
+          twostar: result.data.reviewDetail.twostar,
+          threestar: result.data.reviewDetail.threestar,
+          fourstar: result.data.reviewDetail.fourstar,
+          fivestar: result.data.reviewDetail.fivestar,
+          loader: false,
+        })
       })
-    }).catch(error => {
-      console.log("error review chart detail", error)
-    })
+      .catch(error => {
+        console.log("error review chart detail", error)
+      })
   }
 
-  handlePageClick = (page) => {
+  handlePageClick = page => {
     const pageno = page.selected + 1
     console.log("pageno", pageno)
     const pageNo = {
@@ -122,7 +124,6 @@ export default class SellerProfileComp extends React.Component {
       .catch(error => {
         console.log("error", error)
       })
-
   }
   handleClick = () => {
     this.setState({ showModel: true })
@@ -137,13 +138,15 @@ export default class SellerProfileComp extends React.Component {
 
   render() {
     let { userData, limit, totalPages, token } = this.state
-    console.log('totalPages =>', totalPages)
+    console.log("totalPages =>", totalPages)
 
     const year = moment(userData.createdAt).format("YYYY")
 
     return (
       <div>
-        {this.state.loader ? <Loader /> :
+        {this.state.loader ? (
+          <Loader />
+        ) : (
           <>
             <div className="row">
               <div className="col-12 col-lg-8">
@@ -166,19 +169,24 @@ export default class SellerProfileComp extends React.Component {
                         {userData && userData.lastName}
                       </h4>
                       <div className="verified-boxs">
-                        <Button variant="success">
+                        <Button
+                          variant={
+                            userData.profileVerified ? "success" : "danger"
+                          }
+                        >
                           <img src={CheckmarkIcon} alt="" />
-                          {userData && userData.emailVerified
+                          {console.log(
+                            "userData.profileVerified",
+                            userData.profileVerified
+                          )}
+                          {userData && userData.profileVerified
                             ? "Verified"
                             : "Not Verified"}
                         </Button>
 
                         <span>Joined in {year} </span>
                       </div>
-                      <p>
-                        {" "}
-                        {this.state.totalreviews} verifyed reviews
-                                 </p>
+                      <p> {this.state.totalreviews} verified reviews</p>
                       <div className="reting-box">
                         <Rating
                           initialRating={this.state.average}
@@ -192,15 +200,19 @@ export default class SellerProfileComp extends React.Component {
                 </div>
                 <div className="write-review">
                   {/* <p>Bought from Blake before?</p> */}
-                  <p>Bought from {userData ? userData.firstName + ' ' + userData.lastName : 'Blake'} before?</p>
+                  <p>
+                    Bought from{" "}
+                    {userData
+                      ? userData.firstName + " " + userData.lastName
+                      : "Blake"}{" "}
+                    before?
+                  </p>
                   <button
                     className="btn btn-light ml-md-auto"
-                    onClick={
-                      token ? this.handleNavigate : this.handleClick
-                    }
+                    onClick={token ? this.handleNavigate : this.handleClick}
                   >
                     Write a review
-                             </button>
+                  </button>
                 </div>
                 <div className="review-chart">
                   <h4>Reviews({this.state.totalreviews})</h4>
@@ -210,35 +222,31 @@ export default class SellerProfileComp extends React.Component {
                       <ProgressBar now={this.state.fivestar} />
                       <div className="progress-text">
                         {this.state.fivestar}%
-                                 </div>
+                      </div>
                     </li>
                     <li>
                       <div className="stare-text">4 stars</div>
                       <ProgressBar now={this.state.fourstar} />
                       <div className="progress-text">
                         {this.state.fourstar}%
-                                 </div>
+                      </div>
                     </li>
                     <li>
                       <div className="stare-text">3 stars</div>
                       <ProgressBar now={this.state.threestar} />
                       <div className="progress-text">
                         {this.state.threestar}%
-                                 </div>
+                      </div>
                     </li>
                     <li>
                       <div className="stare-text">2 stars</div>
                       <ProgressBar now={this.state.twostar} />
-                      <div className="progress-text">
-                        {this.state.twostar}%
-                                 </div>
+                      <div className="progress-text">{this.state.twostar}%</div>
                     </li>
                     <li>
                       <div className="stare-text">1 stars</div>
                       <ProgressBar now={this.state.onestar} />
-                      <div className="progress-text">
-                        {this.state.onestar}%
-                                 </div>
+                      <div className="progress-text">{this.state.onestar}%</div>
                     </li>
                   </ul>
                 </div>
@@ -251,8 +259,7 @@ export default class SellerProfileComp extends React.Component {
                           <img
                             src={
                               reviews.creator_details.profileimage
-                                ? reviews.creator_details
-                                  .profileimage
+                                ? reviews.creator_details.profileimage
                                 : displayImg
                             }
                             alt=""
@@ -285,8 +292,8 @@ export default class SellerProfileComp extends React.Component {
                     </div>
                   ))
                 ) : (
-                    <h4>No Reviews</h4>
-                  )}
+                  <h4>No Reviews</h4>
+                )}
                 {this.state.reviewDetails && this.state.totalRecord > 10 ? (
                   <div className="pagination-box">
                     <Pagination
@@ -317,9 +324,9 @@ export default class SellerProfileComp extends React.Component {
                 <div className="seekrep-detalis">
                   <h4>What is Seekrep?</h4>
                   <p>
-                    Buying and selling online? Use Seekrep to ensure
-                    that whoever you’re dealing with can be trusted.
-                             </p>
+                    Buying and selling online? Use Seekrep to ensure that
+                    whoever you’re dealing with can be trusted.
+                  </p>
                 </div>
                 <div className="profiles-boxs">
                   <h4>Profiles</h4>
@@ -347,24 +354,15 @@ export default class SellerProfileComp extends React.Component {
                   </ul>
                 </div>
               </div>
-
             </div>
 
-            <Modal
-              show={this.state.showModel}
-              onHide={this.handleClose}
-            >
+            <Modal show={this.state.showModel} onHide={this.handleClose}>
               <Modal.Header closeButton></Modal.Header>
               <div className="login-bg modal-login">
                 <div className="login-boxs">
-                  <Tabs
-                    defaultActiveKey="login"
-                    id="uncontrolled-tab-example"
-                  >
+                  <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
                     <Tab eventKey="login" title="Login">
-                      <Login
-                        navigate={`/writereview/${this.state.finalId}`}
-                      />
+                      <Login navigate={`/writereview/${this.state.finalId}`} />
                     </Tab>
                     <Tab eventKey="signup" title="Signup">
                       <Signup />
@@ -373,7 +371,8 @@ export default class SellerProfileComp extends React.Component {
                 </div>
               </div>
             </Modal>
-          </>}
+          </>
+        )}
       </div>
     )
   }

@@ -270,3 +270,139 @@ export function reviewpost(data) {
       return err
     })
 }
+
+export function adminLogin(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/login`, data)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function adminForgotPassword(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/forgot_password`, data)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function adminResetPassword(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/reset_password`, data)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function allUserSellers(pageNo, serach) {
+  return axios
+    .post(
+      `${process.env.GATSBY_SERVER_API}admin/allusersellers`,
+      pageNo,
+      serach
+    )
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function adminAddUser(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/adminadduser`, data)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function getProfileDetail(id) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/profiledata`, id)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function getUserById(id) {
+  return axios
+    .get(`${process.env.GATSBY_SERVER_API}admin/edituser/${id}`)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function editUseData(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/edituserdata`, data)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function deleteUseData(id) {
+  return axios
+    .delete(`${process.env.GATSBY_SERVER_API}admin/deleteuser/${id}`)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function allReviewsAdmin(pageNo) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/allreviews`, pageNo)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function ReviewDetailsById(id) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/profileReview/${id}`)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}
+
+export function ProfileApproveReject(data) {
+  return axios
+    .post(`${process.env.GATSBY_SERVER_API}admin/profile_verify`, data)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
+}

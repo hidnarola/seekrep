@@ -5,9 +5,9 @@ import "./signup.scss"
 import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
 import { googleLogin, createuser, facebookLogin } from "../../functions"
-import jQuery from 'jquery'
-import validator from 'validator';
-
+import jQuery from "jquery"
+import validator from "validator"
+import Spinner from "../spinner/spinner"
 
 export default class Signup extends React.Component {
   state = {
@@ -18,6 +18,7 @@ export default class Signup extends React.Component {
     showMessage: false,
     message: "",
     status: "",
+    loader: "",
   }
 
   // handleInputChange = event => {
@@ -30,45 +31,50 @@ export default class Signup extends React.Component {
   // }
 
   handleInputChange = (element, value) => {
-    if (element == 'firstName') { this.setState({ firstName: value }) }
-    if (element == 'lastName') { this.setState({ lastName: value }) }
-    if (element == 'email') {
+    if (element == "firstName") {
+      this.setState({ firstName: value })
+    }
+    if (element == "lastName") {
+      this.setState({ lastName: value })
+    }
+    if (element == "email") {
       this.setState({ email: value })
     }
-    if (element == 'password') { this.setState({ password: value }) }
-    if (value === '') {
-      jQuery('.' + element + '_errorMsg').html('This field is required');
+    if (element == "password") {
+      this.setState({ password: value })
+    }
+    if (value === "") {
+      jQuery("." + element + "_errorMsg").html("This field is required")
     } else {
-      jQuery('.' + element + '_errorMsg').html('');
+      jQuery("." + element + "_errorMsg").html("")
     }
   }
 
   handleSubmit = async event => {
+    this.setState({ loader: true })
     event.preventDefault()
-    const { firstName, lastName, email, password } = this.state;
-    let isError = 0;
-    if (firstName === '') {
-      jQuery('.firstName_errorMsg').html('This field is required');
-      isError = 1;
+    const { firstName, lastName, email, password } = this.state
+    let isError = 0
+    if (firstName === "") {
+      jQuery(".firstName_errorMsg").html("This field is required")
+      isError = 1
     }
-    if (lastName === '') {
-      jQuery('.lastName_errorMsg').html('This field is required');
-      isError = 1;
+    if (lastName === "") {
+      jQuery(".lastName_errorMsg").html("This field is required")
+      isError = 1
     }
-    if (email === '') {
-      jQuery('.email_errorMsg').html('This field is required');
-      isError = 1;
-    }
-    else if (!validator.isEmail(email)) {
-      jQuery('.email_errorMsg').html('Please enter valid email');
-      isError = 1;
-    }
-
-    if (password === '') {
-      jQuery('.password_errorMsg').html('This field is required');
-      isError = 1;
+    if (email === "") {
+      jQuery(".email_errorMsg").html("This field is required")
+      isError = 1
+    } else if (!validator.isEmail(email)) {
+      jQuery(".email_errorMsg").html("Please enter valid email")
+      isError = 1
     }
 
+    if (password === "") {
+      jQuery(".password_errorMsg").html("This field is required")
+      isError = 1
+    }
 
     if (isError === 0) {
       const data = {
@@ -82,20 +88,31 @@ export default class Signup extends React.Component {
         .then(res => {
           console.log("result....", res)
           if (res.data.status === 0) {
-            this.setState({ showMessage: true, message: res.data.message })
+            this.setState({
+              showMessage: true,
+              message: res.data.message,
+              loader: false,
+            })
           } else if (res.data.register_resp.status === 1) {
             this.setState({
-              firstName: '',
-              lastName: '',
-              email: '',
-              password: '',
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
               showMessage: true,
-              message: "Successfully register and conformation email is send on your mail",
+              message:
+                "Successfully register and conformation email is send on your mail",
               status: 1,
+              loader: false,
             })
             localStorage.setItem("registerId", res.data.register_resp.data._id)
+            // navigate("/editprofile")
           } else {
-            this.setState({ showMessage: true, message: res.data.message })
+            this.setState({
+              showMessage: true,
+              message: res.data.message,
+              loader: false,
+            })
           }
         })
         .catch(err => console.log(err))
@@ -109,7 +126,7 @@ export default class Signup extends React.Component {
     try {
       const res = await googleLogin(token)
       if (res.status === 1) {
-        navigate("/searchpage")
+        navigate(this.navigateUrl)
         localStorage.setItem("login-token", res.token)
         localStorage.setItem("id", res.data._id)
       }
@@ -123,7 +140,12 @@ export default class Signup extends React.Component {
     const token = response.accessToken
     console.log("token", token)
     try {
-      const response = await facebookLogin(token)
+      const res = await facebookLogin(token)
+      if (res.status === 1) {
+        navigate(this.navigateUrl)
+        localStorage.setItem("login-token", res.token)
+        localStorage.setItem("id", res.data._id)
+      }
     } catch (error) {
       console.log("err functon", error)
     }
@@ -172,9 +194,14 @@ export default class Signup extends React.Component {
               id="firstName"
               className="form-control"
               value={this.state.firstName}
-              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
+              onChange={input =>
+                this.handleInputChange(input.target.name, input.target.value)
+              }
             />
-            <span className="firstName_errorMsg" style={{ "color": "red" }}></span>
+            <span
+              className="firstName_errorMsg"
+              style={{ color: "red" }}
+            ></span>
           </div>
           <div className="form-group">
             <label> Last name </label>
@@ -184,9 +211,11 @@ export default class Signup extends React.Component {
               id="lastName"
               className="form-control"
               value={this.state.lastName}
-              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
+              onChange={input =>
+                this.handleInputChange(input.target.name, input.target.value)
+              }
             />
-            <span className="lastName_errorMsg" style={{ "color": "red" }}></span>
+            <span className="lastName_errorMsg" style={{ color: "red" }}></span>
           </div>
           <div className="form-group">
             <label> email</label>
@@ -196,9 +225,11 @@ export default class Signup extends React.Component {
               id="email"
               className="form-control"
               value={this.state.email}
-              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
+              onChange={input =>
+                this.handleInputChange(input.target.name, input.target.value)
+              }
             />
-            <span className="email_errorMsg" style={{ "color": "red" }}></span>
+            <span className="email_errorMsg" style={{ color: "red" }}></span>
           </div>
           <div className="form-group">
             <label>password</label>
@@ -208,12 +239,26 @@ export default class Signup extends React.Component {
               id="password"
               className="form-control"
               value={this.state.password}
-              onChange={(input) => this.handleInputChange(input.target.name, input.target.value)}
+              onChange={input =>
+                this.handleInputChange(input.target.name, input.target.value)
+              }
             />
-            <span className="password_errorMsg" style={{ "color": "red" }}></span>
+            <span className="password_errorMsg" style={{ color: "red" }}></span>
           </div>
-          <Button type="submit" variant="dark" className="w-100">
-            Sign up
+          <Button
+            type="submit"
+            variant="dark"
+            className="w-100"
+            disabled={
+              !(
+                this.state.email &&
+                this.state.password &&
+                this.state.firstName &&
+                this.state.lastName
+              )
+            }
+          >
+            {this.state.loader ? <Spinner /> : "Sign up"}
           </Button>
           <div className="link-text text-center border-top mt-4 pt-3">
             Already have an account? <Link to="/login">Log in</Link>

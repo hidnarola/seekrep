@@ -1,38 +1,3 @@
-// // exports.onCreatePage = ({ page, actions }) => {
-// // createPage({
-// //   path: `/sellerprofile/${id}`,
-// //   component: path.resolve("./src/pages/sellerprofile.js"),
-// // })
-
-// //   const { createPage, deletePage } = actions
-// //   if (page.path.match(/^\/sellerprofile/)) {
-// //     page.matchPath = `/sellerprofile/*`
-
-// //     createPage(page)
-// //   }
-// // }
-
-// exports.onCreatePage = ({ page, actions }) => {
-//   const { createPage, deletePage } = actions
-//   console.log("page ===>", page)
-//   console.log("page path ===>", page.path)
-
-//   if (page.path.match(/^\/sellerprofile/)) {
-//     createPage({
-//       path: "/sellerprofile/*",
-//       matchPath: "/sellerprofile/:id",
-//       component: path.resolve(`./src/pages/sellerprofile.js`),
-//     })
-//   }
-// }
-
-// if (page.path.match(/^\/searchpage/)) {
-//   page.matchPath = "/searchpage/:search"
-
-//   // Update the page.
-//   createPage(page)
-// }
-
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
 
@@ -68,6 +33,39 @@ exports.onCreatePage = async ({ page, actions }) => {
 
   if (page.path.match(/^\/resetpassword/)) {
     page.matchPath = "/resetpassword/:token"
+
+    // Update the page.
+    createPage(page)
+  }
+
+  if (page.path.match(/^\/admin\/edituser/)) {
+    page.matchPath = "/admin/edituser/:id"
+
+    // Update the page.
+    createPage(page)
+  }
+  if (page.path.match(/^\/admin\/userdetail/)) {
+    page.matchPath = "/admin/userdetail/:id"
+
+    // Update the page.
+    createPage(page)
+  }
+
+  if (page.path.match(/^\/admin\/deleteuser/)) {
+    page.matchPath = "/admin/deleteuser/:id"
+
+    // Update the page.
+    createPage(page)
+  }
+
+  if (page.path.match(/^\/admin\/reviewdetails/)) {
+    page.matchPath = "/admin/reviewdetails/:id"
+
+    // Update the page.
+    createPage(page)
+  }
+  if (page.path.match(/^\/admin\/resetpassword/)) {
+    page.matchPath = "/admin/resetpassword/:token"
 
     // Update the page.
     createPage(page)

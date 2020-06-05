@@ -1,0 +1,16 @@
+.details-box {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  .displayimg {
+    padding: 10px 0px;
+    margin-bottom: 20px;
+
+    img {
+      height: 100px;
+      width: 100px;
+      border: 1px solid #ccc;
+      background-color: #ccc;
+    }
+  }
+}

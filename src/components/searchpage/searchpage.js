@@ -27,7 +27,7 @@ export default class Search extends React.Component {
     // DM
     const data = {
       page: 1,
-      searchText: this.props.props.value
+      searchText: this.props.props.value,
     }
 
     getalluser(data)
@@ -66,7 +66,7 @@ export default class Search extends React.Component {
     // Dm
     const data = {
       page: pageno,
-      searchText: this.state.search // DM
+      searchText: this.state.search, // DM
     }
     // getalluser(pageNo)
     getalluser(data)
@@ -102,11 +102,11 @@ export default class Search extends React.Component {
     })
 
     console.log("ssi event==>", event.target.value)
-    if (event.target.value !== '') {
-      document.getElementById('search2_error').innerHTML = ''
-    }
-    else {
-      document.getElementById('search2_error').innerHTML = 'Please enter name to search'
+    if (event.target.value !== "") {
+      document.getElementById("search2_error").innerHTML = ""
+    } else {
+      document.getElementById("search2_error").innerHTML =
+        "Please enter name to search"
     }
     //   await searchuser(event.target.value)
     //     .then(res => {
@@ -128,16 +128,15 @@ export default class Search extends React.Component {
     //   })
     //   .catch(err => console.log(err))
 
-
     // Dm
-    if (this.state.search === '') {
-      document.getElementById('search2_error').innerHTML = 'Please enter name to search'
-    }
-    else {
-      document.getElementById('search2_error').innerHTML = ''
+    if (this.state.search === "") {
+      document.getElementById("search2_error").innerHTML =
+        "Please enter name to search"
+    } else {
+      document.getElementById("search2_error").innerHTML = ""
       const data = {
         page: 1,
-        searchText: this.state.search // DM
+        searchText: this.state.search, // DM
       }
       getalluser(data)
         .then(result => {
@@ -173,93 +172,93 @@ export default class Search extends React.Component {
         {loader ? (
           <Loader />
         ) : (
-            <div className="col-12 col-lg-7">
-              <div className="searchbox">
-                <h4>Search results for "{this.state.search}"</h4>
-                <form className="search-box" onSubmit={this.handleSubmit}>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="search"
-                      className="form-control"
-                      onChange={this.handleInputChange}
-                      value={this.state.search}
-                    />
-                  </div>
-                  <span style={{ 'color': 'red' }} id="search2_error"></span>
-                  <Button type="submit" variant="dark">
-                    Search
+          <div className="col-12 col-lg-7">
+            <div className="searchbox">
+              <h4>Search results for "{this.state.search}"</h4>
+              <form className="search-box" onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="search"
+                    className="form-control"
+                    onChange={this.handleInputChange}
+                    value={this.state.search}
+                  />
+                </div>
+                <span style={{ color: "red" }} id="search2_error"></span>
+                <Button type="submit" variant="dark">
+                  Search
                 </Button>
-                </form>
-              </div>
-              <div class="userlist">
-                {console.log("userdetails", this.state.users)}
-                {this.state.users && this.state.users.length > 0 ?
-                  this.state.users.map(user => (
-                    <div className="user-info">
-                      <div className="left">
-                        <div className="img">
-                          <img
-                            src={
-                              user.profileimage ? user.profileimage : defualtImg
-                            }
-                          />
-                        </div>
-                        <div className="content">
-                          <h5>
-                            <Link to={`/sellerprofile/${user._id}`}>
-                              {user.firstName}
-                              {user.lastName}
-                            </Link>
-                          </h5>
-                          <div className="review-text">
-                            {/* {user.reviewDetails.length} reviews */}
-                          </div>
-                          <p>{user.countryname}</p>
-                        </div>
-                      </div>
-                      <div className="reting-box ml-auto">
-                        <Rating
-                          initialRating={Math.round(user.avgRating)}
-                          readonly="true"
-                          emptySymbol="fa fa-star-o fa-2x"
-                          fullSymbol="fa fa-star fa-2x"
+              </form>
+            </div>
+            <div class="userlist">
+              {console.log("userdetails", this.state.users)}
+              {this.state.users && this.state.users.length > 0 ? (
+                this.state.users.map(user => (
+                  <div className="user-info">
+                    <div className="left">
+                      <div className="img">
+                        <img
+                          src={
+                            user.profileimage ? user.profileimage : defualtImg
+                          }
                         />
                       </div>
+                      <div className="content">
+                        <h5>
+                          <Link to={`/sellerprofile/${user._id}`}>
+                            {user.firstName}
+                            {user.lastName}
+                          </Link>
+                        </h5>
+                        <div className="review-text">
+                          {user.reviewDetails.length} reviews
+                        </div>
+                        <p>{user.countryname}</p>
+                      </div>
                     </div>
-                  ))
-                  :
-                  <p>No record available</p>
-                }
-              </div>
-              {this.state.totalRecord > 10 ?
-                <div className="pagination-box">
-                  <Pagination
-                    initialPage={0}
-                    previousLabel={"previous"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"page-item"}
-                    breakLinkClassName={"page-link"}
-                    pageClassName={"page-item"}
-                    previousClassName={"page-item"}
-                    pageLinkClassName={"page-link"}
-                    nextClassName={"page-item"}
-                    previousLinkClassName={"page-link"}
-                    nextLinkClassName={"page-link"}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={totalPages}
-                    pageRangeDisplayed={perPageLimit}
-                    onPageChange={this.handlePageClick}
-                    // onPageChange={() => this.handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={""}
-                    activeClassName={"active"}
-                  />
-                </div> : null
-              }
+                    <div className="reting-box ml-auto">
+                      <Rating
+                        initialRating={Math.round(user.avgRating)}
+                        readonly="true"
+                        emptySymbol="fa fa-star-o fa-2x"
+                        fullSymbol="fa fa-star fa-2x"
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No record available</p>
+              )}
             </div>
-          )}
+            {this.state.totalRecord > 10 ? (
+              <div className="pagination-box">
+                <Pagination
+                  initialPage={0}
+                  previousLabel={"previous"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"page-item"}
+                  breakLinkClassName={"page-link"}
+                  pageClassName={"page-item"}
+                  previousClassName={"page-item"}
+                  pageLinkClassName={"page-link"}
+                  nextClassName={"page-item"}
+                  previousLinkClassName={"page-link"}
+                  nextLinkClassName={"page-link"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={totalPages}
+                  pageRangeDisplayed={perPageLimit}
+                  onPageChange={this.handlePageClick}
+                  // onPageChange={() => this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={""}
+                  activeClassName={"active"}
+                />
+              </div>
+            ) : null}
+          </div>
+        )}
       </div>
     )
   }

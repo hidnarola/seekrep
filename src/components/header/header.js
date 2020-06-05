@@ -1,22 +1,15 @@
-import {
-  Navbar,
-  Nav,
-  Container,
-  Dropdown
-} from "react-bootstrap"
+import { Navbar, Nav, Container, Dropdown } from "react-bootstrap"
 import { Link } from "gatsby"
 import React from "react"
 import "./header.scss"
 import profileImg from "../../images/default.png"
-import {
-  getDataById,
-} from "../../functions"
+import { getDataById } from "../../functions"
 
 export default class Header extends React.Component {
   state = {
     token: "",
     profilepic: "",
-    userData: {}
+    userData: {},
   }
   componentDidMount() {
     const loginToken = localStorage.getItem("login-token")
@@ -35,7 +28,6 @@ export default class Header extends React.Component {
           console.log("error", err)
         })
     }
-
   }
   render() {
     let { token } = this.state
@@ -60,10 +52,10 @@ export default class Header extends React.Component {
                       My Profile
                     </Link>
                   ) : (
-                      <Link to="/login" className="nav-link">
-                        Login
+                    <Link to="/login" className="nav-link">
+                      Login
                     </Link>
-                    )}
+                  )}
                 </li>
                 <li className="login-link">
                   {token ? (
@@ -71,7 +63,8 @@ export default class Header extends React.Component {
                       <Dropdown.Toggle className="dropdown-box">
                         <img
                           src={
-                            this.state.userData && this.state.userData.profileimage
+                            this.state.userData &&
+                            this.state.userData.profileimage
                               ? this.state.userData.profileimage
                               : profileImg
                           }
@@ -87,10 +80,10 @@ export default class Header extends React.Component {
                       </Dropdown.Menu>
                     </Dropdown>
                   ) : (
-                      <Link to="/signup" className="btn btn-dark">
-                        Sign up
+                    <Link to="/signup" className="btn btn-dark">
+                      Sign up
                     </Link>
-                    )}
+                  )}
                 </li>
                 <li className="mobile-proile">
                   <Dropdown>

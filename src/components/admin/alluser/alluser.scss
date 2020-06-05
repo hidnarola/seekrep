@@ -1,0 +1,27 @@
+form.serchform {
+  margin: 20px 0;
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+  }
+  button {
+    float: left;
+    margin-left: 10px;
+  }
+  input.form-control {
+    width: 30%;
+    float: left;
+  }
+}
+table {
+  td button.btn.btn-secondary {
+    margin-right: 5px;
+  }
+  td span {
+    margin: 0 4px;
+    i {
+      color: black;
+    }
+  }
+}

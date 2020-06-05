@@ -10,28 +10,44 @@ export default class Searchbox extends React.Component {
 
   changeHandler = e => {
     e.preventDefault()
+
     this.setState({
       [e.target.name]: e.target.value,
     })
     console.log("search", this.state.search)
-    if (e.target.value !== '') {
-      document.getElementById('search_error').innerHTML = ''
+    if (e.target.value !== "") {
+      document.getElementById("search_error").innerHTML = ""
+    } else {
+      document.getElementById("search_error").innerHTML =
+        "Please enter name to search"
     }
-    else {
-      document.getElementById('search_error').innerHTML = 'Please enter name to search'
-    }
+    // e.value = e.value.replace(/(^\s*)|(\s*$)/gi, "")
+    //   .replace(/[ ]{2,}/gi, " ")
+    //   .replace(/\n +/, "\n")
+    // return
+  }
+  keyDownHandler = e => {
+    // // if (e.which === 32 && e.target.selectionStart === 0) {
+    // //   return false
+    // // }
+    // // $("body").on("keydown", "#test", function (e) {
+    // console.log(this.value)
+    // if (e.which === 32 && e.target.selectionStart === 0) {
+    //   return false
+    // }
+    // // })
   }
 
   handleSubmit = e => {
     e.preventDefault()
     const search = this.state.search
     console.log("search", search)
-    if (search !== '') {
-      document.getElementById('search_error').innerHTML = ''
+    if (search !== "") {
+      document.getElementById("search_error").innerHTML = ""
       navigate(`/searchpage/${search}`)
-    }
-    else {
-      document.getElementById('search_error').innerHTML = 'Please enter name to search'
+    } else {
+      document.getElementById("search_error").innerHTML =
+        "Please enter name to search"
     }
     console.log("clicked")
   }
@@ -51,9 +67,11 @@ export default class Searchbox extends React.Component {
                     type="text"
                     name="search"
                     className="form-control"
+                    id="test"
                     onChange={e => this.changeHandler(e)}
+                    onKeyDown={e => this.keyDownHandler(e)}
                   />
-                  <span style={{ 'color': 'red' }} id="search_error"></span>
+                  <span style={{ color: "red" }} id="search_error"></span>
                 </div>
                 <Button variant="dark" onClick={this.handleSubmit}>
                   Search
