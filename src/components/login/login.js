@@ -94,7 +94,7 @@ export default class Login extends React.Component {
 
   onFailure = error => {
     console.log("error login", error)
-    alert(error)
+    // alert(error)
   }
 
   render() {

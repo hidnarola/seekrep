@@ -8,7 +8,7 @@ const Searchpage = props => (
   <div>
     <Layout>
       {console.log("props ==> ", props)}
-      <section>
+      <section className="searchpage-bg">
         <Container>
           {/* <Router> */}
           <Search props={props} />

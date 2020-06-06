@@ -25,11 +25,11 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div className="layout-wrap">
       <Header />
       {children}
       <Footer />
-    </>
+    </div>
   )
 }
 
