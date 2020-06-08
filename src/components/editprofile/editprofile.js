@@ -8,6 +8,7 @@ import {
 } from "../../functions"
 import "./editprofile.scss"
 import swal from "sweetalert"
+import { navigate } from "@reach/router"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -136,31 +137,32 @@ export default class EditProfile extends React.Component {
         console.log("edited data result", result)
         if (result.data.status === 1) {
           swal(result.data.message).then(() => {
-            const userid = localStorage.getItem("id")
-            const id = {
-              userId: userid,
-            }
-            geteditprofile(id)
-              .then(result => {
-                console.log("result get prfile", result)
-                console.log("first name", result.data.user.data.firstName)
-                this.setState({
-                  firstname: result.data.user.data.firstName,
-                  lastname: result.data.user.data.lastName,
-                  email: result.data.user.data.email,
-                  countryname: result.data.user.data.countryname,
-                  depop: result.data.user.data.depop,
-                  eBay: result.data.user.data.eBay,
-                  facebook: result.data.user.data.facebook,
-                  instagram: result.data.user.data.instagram,
-                  grailed: result.data.user.data.grailed,
-                  stockX: result.data.user.data.stockX,
-                  imagePreviewUrl: result.data.user.data.profileimage,
-                })
-              })
-              .catch(err => {
-                console.log("err get profile front", err)
-              })
+            navigate("/editprofile")
+            // const userid = localStorage.getItem("id")
+            // const id = {
+            //   userId: userid,
+            // }
+            // geteditprofile(id)
+            //   .then(result => {
+            //     console.log("result get prfile", result)
+            //     console.log("first name", result.data.user.data.firstName)
+            //     this.setState({
+            //       firstname: result.data.user.data.firstName,
+            //       lastname: result.data.user.data.lastName,
+            //       email: result.data.user.data.email,
+            //       countryname: result.data.user.data.countryname,
+            //       depop: result.data.user.data.depop,
+            //       eBay: result.data.user.data.eBay,
+            //       facebook: result.data.user.data.facebook,
+            //       instagram: result.data.user.data.instagram,
+            //       grailed: result.data.user.data.grailed,
+            //       stockX: result.data.user.data.stockX,
+            //       imagePreviewUrl: result.data.user.data.profileimage,
+            //     })
+            //   })
+            //   .catch(err => {
+            //     console.log("err get profile front", err)
+            //   })
           })
         }
       })
@@ -217,7 +219,10 @@ export default class EditProfile extends React.Component {
               </div> */}
               <Form.File id="formcheck-api-custom" className="d-flex" custom>
                 <div className="ProfilePictureDIV">{$imagePreview}</div>
-                <Form.File.Input onChange={e => this.changehandler(e)} />
+                <Form.File.Input
+                  onChange={e => this.changehandler(e)}
+                  accept="image/x-png,image/jpg,image/jpeg"
+                />
                 <Form.File.Label data-browse="UPLOAD">
                   <i className="fa fa-upload"></i>
                 </Form.File.Label>

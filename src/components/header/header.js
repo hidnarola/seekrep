@@ -12,6 +12,7 @@ export default class Header extends React.Component {
     userData: {},
   }
   componentDidMount() {
+    console.log("page refresh")
     const loginToken = localStorage.getItem("login-token")
     // const profilepic = localStorage.getItem("profilepic")
     const userId = localStorage.getItem("id")
@@ -20,6 +21,7 @@ export default class Header extends React.Component {
     if (userId) {
       getDataById(userId)
         .then(res => {
+          console.log("header res", res)
           this.setState({
             userData: res.data.user.data[0],
           })

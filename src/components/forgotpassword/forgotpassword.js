@@ -22,29 +22,38 @@ export default class Forgotpassword extends React.Component {
   handleSubmit = async event => {
     this.setState({ loader: true })
     event.preventDefault()
-    const data = {
-      email: this.state.email,
-    }
-    console.log("data....", data)
-    await forgotpassworduser(data)
-      .then(res => {
-        if (res.data.status === 1) {
-          this.setState({
-            showMessage: true,
-            message: res.data.message,
-            status: 1,
-            loader: false,
-          })
-        } else if (res.data.status === 0) {
-          this.setState({
-            showMessage: true,
-            message: res.data.message,
-            loader: false,
-            status: 0,
-          })
-        }
+    if (this.state.email === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Your Email",
+        status: 0,
+        loader: false,
       })
-      .catch(err => console.log(err))
+    } else {
+      const data = {
+        email: this.state.email,
+      }
+      console.log("data....", data)
+      await forgotpassworduser(data)
+        .then(res => {
+          if (res.data.status === 1) {
+            this.setState({
+              showMessage: true,
+              message: res.data.message,
+              status: 1,
+              loader: false,
+            })
+          } else if (res.data.status === 0) {
+            this.setState({
+              showMessage: true,
+              message: res.data.message,
+              loader: false,
+              status: 0,
+            })
+          }
+        })
+        .catch(err => console.log(err))
+    }
   }
 
   render() {
@@ -55,7 +64,7 @@ export default class Forgotpassword extends React.Component {
             {this.state.message}
           </Alert>
         ) : null}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="login-form">
           <div className="form-group">
             <label> email</label>
             <input
@@ -66,7 +75,11 @@ export default class Forgotpassword extends React.Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <Button type="submit" variant="dark" className="w-100">
+          <Button
+            type="submit"
+            variant="dark"
+            className={this.state.loader ? "withspinner w-100" : "w-100"}
+          >
             {this.state.loader ? <Spinner /> : "Reset Password"}
           </Button>
         </form>

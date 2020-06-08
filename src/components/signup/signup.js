@@ -248,7 +248,7 @@ export default class Signup extends React.Component {
           <Button
             type="submit"
             variant="dark"
-            className="w-100"
+            className={this.state.loader ? "withspinner w-100" : "w-100"}
             disabled={
               !(
                 this.state.email &&

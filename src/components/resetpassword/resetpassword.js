@@ -90,7 +90,11 @@ export default class Resetpassword extends React.Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <Button type="submit" variant="dark" className="w-100">
+          <Button
+            type="submit"
+            variant="dark"
+            className={this.state.loader ? "withspinner w-100" : "w-100"}
+          >
             {this.state.loader ? <Spinner /> : "Reset Password"}
           </Button>
         </form>

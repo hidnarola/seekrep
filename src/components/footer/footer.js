@@ -10,13 +10,13 @@ const Footer = () => (
         <div className="col-12 col-lg-auto">
           <ul className="footer-link">
             <li>
-              <Link href="#">Privacy Policy</Link>
+              <Link to="/privacypolicy">Privacy Policy</Link>
             </li>
             <li>
-              <Link href="#">Terms & Connditions</Link>
+              <Link to="/terms&connditions">Terms & Connditions</Link>
             </li>
             <li>
-              <Link href="#">User Guidelines</Link>
+              <Link to="/userguidelines">User Guidelines</Link>
             </li>
           </ul>
         </div>

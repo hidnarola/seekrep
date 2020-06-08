@@ -21,7 +21,8 @@ export default class Searchbox extends React.Component {
       document.getElementById("search_error").innerHTML =
         "Please enter name to search"
     }
-    // e.value = e.value.replace(/(^\s*)|(\s*$)/gi, "")
+    // e.value = e.value
+    //   .replace(/(^\s*)|(\s*$)/gi, "")
     //   .replace(/[ ]{2,}/gi, " ")
     //   .replace(/\n +/, "\n")
     // return
