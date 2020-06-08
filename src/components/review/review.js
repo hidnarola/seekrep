@@ -153,9 +153,11 @@ export default class WriteReview extends React.Component {
                 <select
                   id="places"
                   name="place"
-                  required
                   onChange={event => this.handleInputChange(event)}
                 >
+                  <option value="" disabled selected>
+                    Select your option
+                  </option>
                   <option value="Depop">Depop</option>
                   <option value="StockX">StockX</option>
                   <option value="eBay">eBay</option>
@@ -177,7 +179,6 @@ export default class WriteReview extends React.Component {
                 <textarea
                   type="textarea"
                   name="review"
-                  required
                   className="form-control"
                   value={this.state.review}
                   onChange={this.handleInputChange}

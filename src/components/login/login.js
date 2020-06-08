@@ -124,9 +124,9 @@ export default class Login extends React.Component {
         {this.state.showMessage ? (
           <Alert variant="danger"> {this.state.message}</Alert>
         ) : null}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="login-form">
           <div className="form-group">
-            <label> email</label>
+            <label>E-mail</label>
             <input
               type="text"
               name="email"
@@ -137,7 +137,7 @@ export default class Login extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label>password</label>
+            <label>Password</label>
             <input
               type="password"
               name="password"

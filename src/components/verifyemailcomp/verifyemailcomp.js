@@ -18,6 +18,8 @@ export default class VerifyEmailComp extends React.Component {
     verifymailid(id)
       .then(result => {
         console.log("result", result)
+        localStorage.setItem("login-token", result.data.token)
+        localStorage.setItem("id", result.data.id)
         this.setState({
           message: result.data.message,
           status: result.data.status,
@@ -41,7 +43,7 @@ export default class VerifyEmailComp extends React.Component {
           </Alert>
         ) : null}
         {this.state.status === 1 ? (
-          <Link to="/login">Login to your account</Link>
+          <Link to="/editprofile">Login to your account</Link>
         ) : null}
       </div>
     )

@@ -207,8 +207,7 @@ export default class Search extends React.Component {
                       <div className="content">
                         <h5>
                           <Link to={`/sellerprofile/${user._id}`}>
-                            {user.firstName}
-                            {user.lastName}
+                            {user.firstName} {user.lastName}
                           </Link>
                         </h5>
                         <div className="review-text">

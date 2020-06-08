@@ -13,8 +13,11 @@ const Verifyapp = () => (
               <div className="content">
                 <h2>Verification app</h2>
                 <p>
-                  Verify seller identity when you meet face-to-face to ensure
-                  whoever you’re meeting is who they say they are.{" "}
+                  Verify seller identity when you meet
+                  <br />
+                  face-to-face to ensure whoever you’re
+                  <br />
+                  meeting is who they say they are.{" "}
                 </p>
                 <Button variant="link">Coming soon</Button>
               </div>

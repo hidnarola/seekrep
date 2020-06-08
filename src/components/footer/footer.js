@@ -25,7 +25,7 @@ const Footer = () => (
             © {new Date().getFullYear()},{` `}
             <Link href="https://seekrep-frontend.herokuapp.com">
               Seekrep Ltd.
-            </Link>
+            </Link>{" "}
             All rights reserved.
           </p>
         </div>

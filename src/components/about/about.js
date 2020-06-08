@@ -1,18 +1,23 @@
 import { Container, Row, Col, Button } from "react-bootstrap"
 import React from "react"
-import RectangleImg from '../../images/rectangle.jpg'
-import StartIcon from '../../images/start.png'
-import VerifyImg from '../../images/verify-img.png'
-import Checkmark from '../../images/checkmark.png'
+import RectangleImg from "../../images/rectangle.jpg"
+import StartIcon from "../../images/start.png"
+import VerifyImg from "../../images/verify-img.png"
+import Checkmark from "../../images/checkmark.png"
 import "./about.scss"
 
 const About = () => (
   <section className="about-bg">
     <Container>
       <Row>
-        <Col xs="12" lg="6" className="mx-auto text-center">
+        <Col xs="12" lg="7" className="mx-auto text-center">
           <h1>About</h1>
-          <p>Buying and selling luxury items online? Use Seekrep to ensure that whoever you’re dealing with can be trusted.{" "}</p>
+          <p>
+            Buying and selling luxury items online?
+            <br />
+            Use Seekrep to ensure that whoever you’re dealing with can be
+            trusted.{" "}
+          </p>
         </Col>
       </Row>
     </Container>
@@ -42,7 +47,9 @@ const About = () => (
                 Purchased a Louis Vuitton bag from Blake Green
               </div>
               <div className="content">
-                Very straight forward transaction and easy to deal with. I would definitely buy from Jacob again.
+                Very straight forward transaction and easy to deal
+                <br />
+                with. I would definitely buy from Jacob again.
               </div>
               <div className="week">Posted 1 week ago</div>
             </div>
@@ -92,7 +99,6 @@ const About = () => (
         </Col>
       </Row>
     </div>
-
   </section>
 )
 

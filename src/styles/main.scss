@@ -71,6 +71,19 @@ body {
   font-size: 14px;
   background: #ffffff;
 }
+.swal-button {
+  background-color: black;
+  // &:hover {
+  //   background-color: black;
+  // }
+  &:not([disabled]):hover {
+    background-color: black;
+  }
+}
+
+.login-form .loding-boxs {
+  min-height: 30px;
+}
 
 .form-group {
   display: block;
@@ -86,6 +99,7 @@ body {
     line-height: 1;
     letter-spacing: -0.56px;
     color: #000000;
+    font-family: "Canela-Regular";
   }
 
   .form-control {

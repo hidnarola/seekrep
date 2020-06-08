@@ -15,12 +15,12 @@ const Signuppage = () => (
               <Nav defaultActiveKey="/signup">
                 <Nav.Item>
                   <Link to="/signup" className="nav-link active">
-                    Signup
+                    Sign up
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Link to="/login" className="nav-link">
-                    Login
+                    Log in
                   </Link>
                 </Nav.Item>
               </Nav>

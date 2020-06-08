@@ -12,7 +12,7 @@
       letter-spacing: -0.81px;
       color: #000000;
       margin: 0 0 27px;
-      font-family: "Canela";
+      font-family: "Canela-Regular";
     }
     form {
       .ProfilePicture {
@@ -59,9 +59,7 @@
               padding: 30px;
             }
             i {
-              @media (max-width: 567px) {
-                font-size: 25px;
-              }
+              font-size: 25px;
             }
 
             &::after {
@@ -72,12 +70,11 @@
               top: 8px;
               right: 8px;
               border-radius: 0;
-              font-family: "Canela";
-              font-weight: 600;
+              font-family: "Neue Haas Unica W06 Regular";
               line-height: 45px;
               letter-spacing: -0.56px;
               text-align: center;
-              color: #ffffff;
+              color: #fff;
               padding: 0;
 
               @media (max-width: 567px) {
@@ -101,7 +98,7 @@
         margin: 0 0 16px 0;
         label {
           display: block;
-          font-family: "Canela";
+          font-family: "Canela-Regular";
           font-size: 18px;
           font-weight: 400;
           line-height: 22px;

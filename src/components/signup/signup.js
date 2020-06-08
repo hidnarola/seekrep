@@ -185,9 +185,12 @@ export default class Signup extends React.Component {
             {this.state.message}
           </Alert>
         ) : null}
-        <form onSubmit={event => this.handleSubmit(event)}>
+        <form
+          onSubmit={event => this.handleSubmit(event)}
+          className="login-form"
+        >
           <div className="form-group">
-            <label> First name</label>
+            <label>First name</label>
             <input
               type="text"
               name="firstName"
@@ -204,7 +207,7 @@ export default class Signup extends React.Component {
             ></span>
           </div>
           <div className="form-group">
-            <label> Last name </label>
+            <label>Last name </label>
             <input
               type="text"
               name="lastName"
@@ -218,7 +221,7 @@ export default class Signup extends React.Component {
             <span className="lastName_errorMsg" style={{ color: "red" }}></span>
           </div>
           <div className="form-group">
-            <label> email</label>
+            <label>E-mail</label>
             <input
               type="text"
               name="email"
@@ -232,7 +235,8 @@ export default class Signup extends React.Component {
             <span className="email_errorMsg" style={{ color: "red" }}></span>
           </div>
           <div className="form-group">
-            <label>password</label>
+            <label>Password</label>
+            <div className="view-icon"></div>
             <input
               type="password"
               name="password"
