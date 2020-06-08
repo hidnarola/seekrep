@@ -196,7 +196,6 @@ export default class Signup extends React.Component {
               name="firstName"
               id="firstName"
               className="form-control"
-              value={this.state.firstName}
               onChange={input =>
                 this.handleInputChange(input.target.name, input.target.value)
               }
@@ -213,7 +212,6 @@ export default class Signup extends React.Component {
               name="lastName"
               id="lastName"
               className="form-control"
-              value={this.state.lastName}
               onChange={input =>
                 this.handleInputChange(input.target.name, input.target.value)
               }
@@ -227,7 +225,6 @@ export default class Signup extends React.Component {
               name="email"
               id="email"
               className="form-control"
-              value={this.state.email}
               onChange={input =>
                 this.handleInputChange(input.target.name, input.target.value)
               }
@@ -242,7 +239,6 @@ export default class Signup extends React.Component {
               name="password"
               id="password"
               className="form-control"
-              value={this.state.password}
               onChange={input =>
                 this.handleInputChange(input.target.name, input.target.value)
               }

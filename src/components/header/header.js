@@ -53,7 +53,7 @@ export default class Header extends React.Component {
                     </Link>
                   ) : (
                     <Link to="/login" className="nav-link">
-                      Login
+                      Log in
                     </Link>
                   )}
                 </li>
@@ -75,7 +75,7 @@ export default class Header extends React.Component {
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Dropdown.Item>
-                          <Link to="/logout">Logout</Link>
+                          <Link to="/logout">Log out</Link>
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>

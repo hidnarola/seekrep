@@ -131,7 +131,6 @@ export default class Login extends React.Component {
               type="text"
               name="email"
               className="form-control"
-              value={this.state.email}
               onChange={this.handleInputChange}
               required
             />
@@ -142,7 +141,6 @@ export default class Login extends React.Component {
               type="password"
               name="password"
               className="form-control"
-              value={this.state.password}
               onChange={this.handleInputChange}
               required
             />
