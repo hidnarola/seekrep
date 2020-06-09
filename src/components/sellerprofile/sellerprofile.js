@@ -165,7 +165,7 @@ export default class SellerProfileComp extends React.Component {
                     </div>
                     <div className="col-9">
                       <h4>
-                        {userData && userData.firstName}
+                        {userData && userData.firstName}{" "}
                         {userData && userData.lastName}
                       </h4>
                       <div className="verified-boxs">

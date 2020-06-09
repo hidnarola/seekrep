@@ -71,6 +71,12 @@ body {
   font-size: 14px;
   background: #ffffff;
 }
+.section-hg {
+  min-height: 500px;
+}
+button:disabled {
+  cursor: not-allowed;
+}
 .swal-button {
   background-color: black;
   // &:hover {

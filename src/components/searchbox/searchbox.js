@@ -21,25 +21,18 @@ export default class Searchbox extends React.Component {
       document.getElementById("search_error").innerHTML =
         "Please enter name to search"
     }
-    // e.value = e.value
-    //   .replace(/(^\s*)|(\s*$)/gi, "")
-    //   .replace(/[ ]{2,}/gi, " ")
-    //   .replace(/\n +/, "\n")
-    // return
   }
   keyDownHandler = e => {
-    // // if (e.which === 32 && e.target.selectionStart === 0) {
-    // //   return false
-    // // }
-    // // $("body").on("keydown", "#test", function (e) {
-    // console.log(this.value)
-    // if (e.which === 32 && e.target.selectionStart === 0) {
-    //   return false
-    // }
-    // // })
+    var field = document.querySelector('[name="search"]')
+
+    field.onkeypress = e => {
+      if (e.which === 32 && !e.target.value.length) e.preventDefault()
+    }
   }
 
   handleSubmit = e => {
+    console.log("clicked")
+
     e.preventDefault()
     const search = this.state.search
     console.log("search", search)
@@ -50,7 +43,7 @@ export default class Searchbox extends React.Component {
       document.getElementById("search_error").innerHTML =
         "Please enter name to search"
     }
-    console.log("clicked")
+    // console.log("clicked")
   }
 
   render() {
