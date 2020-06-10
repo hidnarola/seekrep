@@ -119,6 +119,8 @@ export default class Signup extends React.Component {
     }
   }
 
+  navigateUrl = this.props.navigate ? this.props.navigate : "/"
+
   googleResponse = async response => {
     console.log({ googleResponse: response })
     const token = response.accessToken

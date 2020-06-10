@@ -5,13 +5,7 @@ import EditProfile from "../components/editprofile/editprofile"
 
 const EditProfilepage = () => (
   <div>
-    <Layout>
-      <section className="login-bg">
-        <Container>
-          <EditProfile />
-        </Container>
-      </section>
-    </Layout>
+    <EditProfile />
   </div>
 )
 

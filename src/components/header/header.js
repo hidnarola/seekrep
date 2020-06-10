@@ -65,9 +65,12 @@ export default class Header extends React.Component {
                       <Dropdown.Toggle className="dropdown-box">
                         <img
                           src={
-                            this.state.userData &&
-                            this.state.userData.profileimage
-                              ? this.state.userData.profileimage
+                            (this.state.userData &&
+                              this.state.userData.profileimage) ||
+                            this.props.profilepic
+                              ? this.props.profilepic
+                                ? this.props.profilepic
+                                : this.state.userData.profileimage
                               : profileImg
                           }
                           alt="profile-pic"
