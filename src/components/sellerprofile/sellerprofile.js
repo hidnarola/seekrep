@@ -174,7 +174,10 @@ export default class SellerProfileComp extends React.Component {
                             userData.profileVerified ? "success" : "danger"
                           }
                         >
-                          <img src={CheckmarkIcon} alt="" />
+                          {userData.profileVerified ? (
+                            <img src={CheckmarkIcon} alt="" />
+                          ) : null}
+
                           {console.log(
                             "userData.profileVerified",
                             userData.profileVerified
