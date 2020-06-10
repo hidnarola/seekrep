@@ -170,7 +170,7 @@ export default class Signup extends React.Component {
             onFailure={this.onFailure}
           />
           <FacebookLogin
-            appId="785477658920451"
+            appId="2831009733683828"
             autoLoad={false}
             fields="name,email,picture"
             callback={this.facebookResponse}
