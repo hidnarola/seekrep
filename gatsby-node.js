@@ -25,7 +25,7 @@ exports.onCreatePage = async ({ page, actions }) => {
   }
 
   if (page.path.match(/^\/emailverify/)) {
-    page.matchPath = "*/emailverify/:userId"
+    page.matchPath = "/emailverify/:userId"
 
     // Update the page.
     createPage(page)
