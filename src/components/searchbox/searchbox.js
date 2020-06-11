@@ -14,7 +14,7 @@ export default class Searchbox extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     })
-    console.log("search", this.state.search)
+
     if (e.target.value !== "") {
       document.getElementById("search_error").innerHTML = ""
     } else {
@@ -31,11 +31,9 @@ export default class Searchbox extends React.Component {
   }
 
   handleSubmit = e => {
-    console.log("clicked")
-
     e.preventDefault()
     const search = this.state.search
-    console.log("search", search)
+
     if (search !== "") {
       document.getElementById("search_error").innerHTML = ""
       navigate(`/searchpage/${search}`)
@@ -43,7 +41,6 @@ export default class Searchbox extends React.Component {
       document.getElementById("search_error").innerHTML =
         "Please enter name to search"
     }
-    // console.log("clicked")
   }
 
   render() {

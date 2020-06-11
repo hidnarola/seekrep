@@ -42,8 +42,6 @@ export default class EditProfile extends React.Component {
     }
     geteditprofile(id)
       .then(result => {
-        console.log("result get prfile", result)
-        console.log("first name", result.data.user.data.firstName)
         this.setState({
           firstname: result.data.user.data.firstName,
           lastname: result.data.user.data.lastName,
@@ -96,7 +94,6 @@ export default class EditProfile extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault()
-    console.log("State data =>", this.state)
 
     const data = {
       firstName: this.state.firstname ? this.state.firstname : "",
@@ -114,16 +111,13 @@ export default class EditProfile extends React.Component {
       id: localStorage.getItem("id"),
     }
 
-    console.log("submit data", data)
     await editprofiledata(data)
       .then(result => {
-        console.log("edited data result", result)
         if (result.data.status === 1) {
           swal(result.data.message).then(() => {
             const userid = localStorage.getItem("id")
             getDataById(userid)
               .then(res => {
-                console.log("header res", res)
                 this.setState({
                   userData: res.data.user.data[0],
                 })
@@ -138,8 +132,6 @@ export default class EditProfile extends React.Component {
             }
             geteditprofile(id)
               .then(result => {
-                console.log("result get prfile", result)
-                console.log("first name", result.data.user.data.firstName)
                 this.setState({
                   firstname: result.data.user.data.firstName,
                   lastname: result.data.user.data.lastName,
@@ -176,7 +168,6 @@ export default class EditProfile extends React.Component {
       token: localStorage.getItem("login-token"),
     }
     let resp = await changepassworduser(data)
-    console.log("C P =>", resp)
     if (resp.data.status === 1 || resp.data.status === 0) {
       this.setState({
         status: resp.data.status,

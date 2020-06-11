@@ -33,7 +33,7 @@ export default class Forgotpassword extends React.Component {
       const data = {
         email: this.state.email,
       }
-      console.log("data....", data)
+
       await forgotpassworduser(data)
         .then(res => {
           if (res.data.status === 1) {

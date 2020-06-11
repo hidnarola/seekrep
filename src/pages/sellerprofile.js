@@ -9,7 +9,6 @@ const SellerProfile = props => (
     <section>
       <Container>
         {/* <Router> */}
-        {console.log("props===>", props)}
         <SellerProfileComp location={props} />
         {/* <GetSellerProfile path="/sellerprofile/:id" /> */}
         {/* </Router> */}

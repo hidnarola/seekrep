@@ -12,9 +12,7 @@ export default class Resetpassword extends React.Component {
     status: "",
     loader: false,
   }
-  componentDidMount() {
-    console.log("props", this.props)
-  }
+  componentDidMount() {}
   handleInputChange = event => {
     const target = event.target
     const value = target.value
@@ -38,7 +36,7 @@ export default class Resetpassword extends React.Component {
         password: this.state.password,
         token: token,
       }
-      console.log("data....", data)
+
       await resetpasswordfunc(data)
         .then(res => {
           if (res.data.status === 1) {

@@ -21,7 +21,6 @@ export default class Search extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Search DM", this.props.props.value)
     this.setState({ loader: true })
 
     // DM
@@ -32,7 +31,6 @@ export default class Search extends React.Component {
 
     getalluser(data)
       .then(result => {
-        console.log("gat all user result", result)
         this.setState({
           users: result.data.requestData.alluser.data,
           perPageLimit: result.data.requestData.limit,
@@ -58,7 +56,7 @@ export default class Search extends React.Component {
 
   handlePageClick = page => {
     const pageno = page.selected + 1
-    console.log("pageno", pageno)
+
     // const pageNo = {
     //   pageno: pageno,
     // }
@@ -71,7 +69,6 @@ export default class Search extends React.Component {
     // getalluser(pageNo)
     getalluser(data)
       .then(result => {
-        console.log("gat all user result", result)
         this.setState({
           users: result.data.requestData.alluser.data,
           perPageLimit: result.data.requestData.limit,
@@ -101,7 +98,6 @@ export default class Search extends React.Component {
       [event.target.name]: event.target.value,
     })
 
-    console.log("ssi event==>", event.target.value)
     if (event.target.value !== "") {
       document.getElementById("search2_error").innerHTML = ""
     } else {
@@ -119,7 +115,6 @@ export default class Search extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault()
-    console.log("submit serach value", this.state.search)
 
     // await searchuser({ search: this.state.search })
     //   .then(res => {
@@ -192,7 +187,6 @@ export default class Search extends React.Component {
               </form>
             </div>
             <div class="userlist">
-              {console.log("userdetails", this.state.users)}
               {this.state.users && this.state.users.length > 0 ? (
                 this.state.users.map(user => (
                   <div className="user-info">

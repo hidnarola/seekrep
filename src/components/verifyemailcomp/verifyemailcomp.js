@@ -12,12 +12,10 @@ export default class VerifyEmailComp extends React.Component {
 
   componentDidMount() {}
   verifyHandler = () => {
-    console.log("props", this.props)
     const id = this.props.props.userId
-    console.log("user id", id)
+
     verifymailid(id)
       .then(result => {
-        console.log("result", result)
         localStorage.setItem("login-token", result.data.token)
         localStorage.setItem("id", result.data.id)
         this.setState({

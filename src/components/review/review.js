@@ -22,10 +22,8 @@ export default class WriteReview extends React.Component {
   }
 
   componentDidMount() {
-    console.log("props....", this.props)
     getDataById(this.props.location.profileID)
       .then(res => {
-        console.log("res....", res)
         this.setState({
           firstname: res.data.user.data[0].firstName,
           lastname: res.data.user.data[0].lastName,
@@ -82,10 +80,9 @@ export default class WriteReview extends React.Component {
         creator: localStorage.getItem("id"),
         profileReview: this.props.location.profileID,
       }
-      console.log("data....", data)
+
       await reviewpost(data)
         .then(res => {
-          console.log("result....", res)
           if (res.data.status === 1) {
             this.setState({ status: res.data.status })
             swal(res.data.message).then(resp => {

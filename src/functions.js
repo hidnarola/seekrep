@@ -37,7 +37,6 @@ export function loginuser(login_data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}login`, login_data)
     .then(res => {
-      console.log("res.....", res)
       return res
     })
     .catch(err => {
@@ -49,11 +48,10 @@ export function geteditprofile(id) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}users/editprofile`, id)
     .then(res => {
-      console.log("res get edit profile", res)
       return res
     })
     .catch(err => {
-      console.log("err get profile", err)
+      return err
     })
 }
 
@@ -61,11 +59,9 @@ export function editprofiledata(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}users/editprofiledata`, data)
     .then(res => {
-      console.log("res edited data", res)
       return res
     })
     .catch(err => {
-      console.log("err edited data", err)
       return err
     })
 }
@@ -74,11 +70,10 @@ export function forgotpassworduser(email) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}forgot_password`, email)
     .then(res => {
-      console.log("res...", res)
       return res
     })
     .catch(err => {
-      console.log("errorrrr", err)
+      return err
     })
 }
 
@@ -86,11 +81,10 @@ export function changepassworduser(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}change_password`, data)
     .then(res => {
-      console.log("res...", res)
       return res
     })
     .catch(err => {
-      console.log("errorrrr", err)
+      return err
     })
 }
 
@@ -98,23 +92,20 @@ export function resetpasswordfunc(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}reset_password`, data)
     .then(res => {
-      console.log("res...reset pass", res)
       return res
     })
     .catch(err => {
-      console.log("errr", err)
+      return err
     })
 }
 
 export function getReviewsById(finalId, page) {
-  console.log("finalId", finalId)
   return axios
     .post(
       `${process.env.GATSBY_SERVER_API}review/profileReview/${finalId}`,
       page
     )
     .then(res => {
-      console.log("res profile id", res)
       return res
     })
     .catch(err => {
@@ -122,12 +113,9 @@ export function getReviewsById(finalId, page) {
     })
 }
 export function getReviewChartDetail(id) {
-  console.log("finalId review", id)
-  console.log("in dunction review detail")
   return axios
     .get(`${process.env.GATSBY_SERVER_API}review/ratingdetails/${id}`)
     .then(res => {
-      console.log("res review detail id", res)
       return res
     })
     .catch(err => {
@@ -140,7 +128,7 @@ export function googleLogin(accessToken) {
     [JSON.stringify({ access_token: accessToken }, null, 2)],
     { type: "application/json" }
   )
-  console.log("g tokenBolb", tokenBlob)
+
   const options = {
     method: "POST",
     body: tokenBlob,
@@ -149,7 +137,6 @@ export function googleLogin(accessToken) {
   }
   return fetch(`${process.env.GATSBY_SERVER_API}auth/google`, options).then(
     r => {
-      console.log("r google", r)
       // console.log("token google front", token)
       // r.json().then(user => {
       //   console.log("user google", user)
@@ -173,7 +160,7 @@ export function facebookLogin(accessToken) {
     [JSON.stringify({ access_token: accessToken }, null, 2)],
     { type: "application/json" }
   )
-  console.log("token blob", tokenBlob)
+
   // const tokenBlob = { access_token: accessToken }
   const options = {
     method: "POST",
@@ -183,7 +170,6 @@ export function facebookLogin(accessToken) {
   }
   return fetch(`${process.env.GATSBY_SERVER_API}auth/facebook`, options).then(
     r => {
-      console.log("fb r", r)
       // const token = r.headers.get("x-auth-token")
       // r.json()
       //   .then(user => {
@@ -210,24 +196,20 @@ export function profileDetail() {
   return axios
     .get(`${process.env.GATSBY_SERVER_API}users/editprofile/:id`)
     .then(res => {
-      console.log("res...", res)
       return res
     })
     .catch(err => {
-      console.log("errorrrr", err)
+      return err
     })
 }
 
 export function getDataById(id) {
-  console.log("id", id)
   return axios
     .get(`${process.env.GATSBY_SERVER_API}users/sellerprofile/${id}`)
     .then(res => {
-      console.log("res....", res)
       return res
     })
     .catch(err => {
-      console.log("err..", err)
       return err
     })
 }
@@ -236,11 +218,9 @@ export function getalluser(pageno) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}users/alluserreview`, pageno)
     .then(res => {
-      console.log("res.. all user..", res)
       return res
     })
     .catch(err => {
-      console.log("err...all user", err)
       return err
     })
 }
@@ -249,11 +229,9 @@ export function searchuser(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}users/search`, data)
     .then(res => {
-      console.log("res.. all user..", res)
       return res
     })
     .catch(err => {
-      console.log("err...all user", err)
       return err
     })
 }
@@ -262,11 +240,9 @@ export function reviewpost(data) {
   return axios
     .post(`${process.env.GATSBY_SERVER_API}review/addreview`, data)
     .then(res => {
-      console.log("res review post", res)
       return res
     })
     .catch(err => {
-      console.log("err review post", err)
       return err
     })
 }

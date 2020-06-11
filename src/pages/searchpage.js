@@ -7,7 +7,6 @@ import { Router } from "@reach/router"
 const Searchpage = props => (
   <div>
     <Layout>
-      {console.log("props ==> ", props)}
       <section className="searchpage-bg">
         <Container>
           {/* <Router> */}

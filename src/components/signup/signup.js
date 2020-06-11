@@ -83,10 +83,9 @@ export default class Signup extends React.Component {
         email: this.state.email,
         password: this.state.password,
       }
-      console.log("data....", data)
+
       await createuser(data)
         .then(res => {
-          console.log("result....", res)
           if (res.data.status === 0) {
             this.setState({
               showMessage: true,
@@ -122,9 +121,7 @@ export default class Signup extends React.Component {
   navigateUrl = this.props.navigate ? this.props.navigate : "/"
 
   googleResponse = async response => {
-    console.log({ googleResponse: response })
     const token = response.accessToken
-    console.log({ token })
     try {
       const res = await googleLogin(token)
       if (res.status === 1) {
@@ -138,9 +135,7 @@ export default class Signup extends React.Component {
   }
 
   facebookResponse = async response => {
-    // console.log({ facebookResponse: response })
     const token = response.accessToken
-    console.log("token", token)
     try {
       const res = await facebookLogin(token)
       if (res.status === 1) {

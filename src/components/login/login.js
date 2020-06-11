@@ -31,10 +31,9 @@ export default class Login extends React.Component {
       email: this.state.email,
       password: this.state.password,
     }
-    console.log("data....", data)
+
     await loginuser(data)
       .then(res => {
-        console.log("result....", res)
         // if (res.data.data.profileimage) {
         //   profilepic = res.data.data.profileimage
         // }
@@ -61,9 +60,7 @@ export default class Login extends React.Component {
   }
 
   googleResponse = async response => {
-    console.log({ googleResponse: response })
     const token = response.accessToken
-    console.log({ token })
     try {
       const res = await googleLogin(token)
       if (res.status === 1) {
@@ -77,9 +74,7 @@ export default class Login extends React.Component {
   }
 
   facebookResponse = async response => {
-    console.log({ facebookResponse: response })
     const token = response.accessToken
-    console.log("token", token)
     try {
       const res = await facebookLogin(token)
       if (res.status === 1) {
