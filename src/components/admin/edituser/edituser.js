@@ -107,7 +107,7 @@ export default class EditUser extends React.Component {
   render() {
     return (
       <div>
-        <h4>Edit user</h4>
+        <h4 className="admin-title">Edit User</h4>
         <Form onSubmit={e => this.handleSubmit(e)}>
           <Row>
             <Col md={6} className="profileimgbox">

@@ -138,6 +138,7 @@ export default class AllUserSeller extends React.Component {
     let { limit, totalPages } = this.state
     return (
       <div>
+        <h4 className="admin-title">All Users</h4>
         <div className="searchbox">
           <Form onSubmit={e => this.searchhandler(e)} className="serchform">
             <Input

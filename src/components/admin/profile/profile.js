@@ -32,7 +32,7 @@ export default class Profile extends React.Component {
     let { user } = this.state
     return (
       <div>
-        <h4>Profile Details</h4>
+        <h4 className="admin-title">Profile Details</h4>
         {console.log("user state", user)}
         <div className="details-box">
           <div className="displayimg">

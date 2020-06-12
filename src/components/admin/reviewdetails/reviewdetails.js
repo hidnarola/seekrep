@@ -35,7 +35,7 @@ export default class Reviewdetail extends React.Component {
   render() {
     return (
       <div>
-        <h4>Reviews details</h4>
+        <h4 className="admin-title">Reviews Details</h4>
         {this.state.reviewDetails ? (
           this.state.reviewDetails &&
           this.state.reviewDetails.map(reviews => (

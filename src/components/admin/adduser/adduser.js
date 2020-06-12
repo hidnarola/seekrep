@@ -82,7 +82,7 @@ export default class AddUser extends React.Component {
   render() {
     return (
       <div>
-        <h4>add user</h4>
+        <h4 className="admin-title">Add User</h4>
         <Form onSubmit={e => this.handleSubmit(e)}>
           <Row form>
             <Col md={6}>

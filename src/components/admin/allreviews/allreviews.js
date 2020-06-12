@@ -60,6 +60,7 @@ export default class AllReviews extends React.Component {
     let { limit, totalPages } = this.state
     return (
       <div>
+        <h4 className="admin-title">All Reviews</h4>
         <Table>
           <thead>
             <tr>
