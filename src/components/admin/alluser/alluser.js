@@ -81,8 +81,9 @@ export default class AllUserSeller extends React.Component {
     const pageno = page.selected + 1
     console.log("pageno", pageno)
     const pageNo = {
-      pageno: page.selected + 1,
+      page: page.selected + 1,
     }
+
     allUserSellers(pageNo)
       .then(result => {
         console.log("result all users", result)

@@ -15,12 +15,15 @@
   .nav-item {
     position: relative;
     min-width: 50px;
-    margin: 0;
+    margin-right: 20px;
     text-align: center;
   }
   .dropdown-menu {
     padding-bottom: 0;
     line-height: 1.5;
+  }
+  .show {
+    display: block;
   }
 
   .navbar-brand {
@@ -48,6 +51,9 @@
       float: none;
       position: absolute;
     }
+    .show {
+      display: block;
+    }
   }
   .dropdown-menu {
     position: absolute;
@@ -67,9 +73,19 @@
     background-clip: padding-box;
     border: 1px solid #c8ced3;
     border-radius: 0.25rem;
+    .dropdown-header {
+      border-bottom: 1px solid #ccc;
+    }
+    .dropdown-item {
+      a {
+        color: #212529;
+      }
+    }
   }
-
-  .ml-auto,
+  .show {
+    display: block;
+  }
+  .dropdown-menu .ml-auto,
   .mx-auto {
     margin-left: auto !important;
   }

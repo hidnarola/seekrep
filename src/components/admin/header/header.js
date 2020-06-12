@@ -18,6 +18,10 @@ export default class Header extends React.Component {
     localStorage.clear()
     navigate("/admin/login")
   }
+
+  profileHandler = () => {
+    navigate("/admin/profile")
+  }
   render() {
     return (
       <header className="app-header navbar">
@@ -25,30 +29,19 @@ export default class Header extends React.Component {
           Seekrep admin
         </Link>
         <Nav className="ml-auto" navbar>
-          <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link">
-              <i className="icon-list"></i>
-            </NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link">
-              <i className="icon-location-pin"></i>
-            </NavLink>
-          </NavItem>
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle nav>
-              <p>Admin</p>
+              <h6>Admin</h6>
             </DropdownToggle>
-            <DropdownMenu left>
+            <DropdownMenu>
               <DropdownItem header tag="div" className="text-center">
                 <strong>Account</strong>
               </DropdownItem>
-              <DropdownItem>
-                <i className="fa fa-user"></i>{" "}
-                <Link to="/admin/profile">Profile</Link>
+              <DropdownItem onClick={e => this.profileHandler(e)}>
+                Profile
               </DropdownItem>
               <DropdownItem onClick={e => this.onLogout(e)}>
-                <i className="fa fa-lock"></i> Logout
+                Logout
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
