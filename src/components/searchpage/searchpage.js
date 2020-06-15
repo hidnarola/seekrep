@@ -1,7 +1,6 @@
 import React from "react"
-import { Button, Alert } from "react-bootstrap"
-import { getalluser, searchuser } from "../../functions"
-import StartIcon from "../../images/start.png"
+import { Button } from "react-bootstrap"
+import { getalluser } from "../../functions"
 import defualtImg from "../../images/default.png"
 import "./searchpage.scss"
 import { Link } from "gatsby"
@@ -104,24 +103,10 @@ export default class Search extends React.Component {
       document.getElementById("search2_error").innerHTML =
         "Please enter name to search"
     }
-    //   await searchuser(event.target.value)
-    //     .then(res => {
-    //       console.log("ssi result....", res.data.users.data)
-    //       console.log("ssi result res ....", res)
-    //       this.setState({ users: res.data.users.data })
-    //     })
-    //     .catch(err => console.log(err))
   }
 
   handleSubmit = async event => {
     event.preventDefault()
-
-    // await searchuser({ search: this.state.search })
-    //   .then(res => {
-    //     console.log("res search", res)
-    //     this.setState({ users: res.data.users.data })
-    //   })
-    //   .catch(err => console.log(err))
 
     // Dm
     if (this.state.search === "") {

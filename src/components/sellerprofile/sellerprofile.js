@@ -50,7 +50,6 @@ export default class SellerProfileComp extends React.Component {
     }
   }
   componentDidMount() {
-    // console.log("show Model befor", this.state.showModel)
     let token = localStorage.getItem("login-token")
     this.setState({ token: token, loader: true })
     const path = this.props.location.location.pathname
@@ -59,12 +58,10 @@ export default class SellerProfileComp extends React.Component {
     this.setState({ finalId: finalId })
     getDataById(finalId)
       .then(res => {
-        console.log("res js", res.data.user.data)
         this.setState({
           userData: res.data.user.data[0],
           loader: false,
         })
-        console.log("this.state.userData", this.state.userData)
       })
       .catch(err => {
         console.log("error", err)
@@ -72,7 +69,6 @@ export default class SellerProfileComp extends React.Component {
 
     getReviewsById(finalId)
       .then(response => {
-        console.log("response", response)
         this.setState({
           reviewDetails: response.data.requestData.review.data,
           pageCount: response.data.requestData.totalPages,
@@ -87,7 +83,6 @@ export default class SellerProfileComp extends React.Component {
 
     getReviewChartDetail(finalId)
       .then(result => {
-        console.log("review chart detail", result)
         this.setState({
           totalreviews: result.data.reviewDetail.totalreviews,
           average: result.data.reviewDetail.average,
@@ -106,13 +101,12 @@ export default class SellerProfileComp extends React.Component {
 
   handlePageClick = page => {
     const pageno = page.selected + 1
-    console.log("pageno", pageno)
+
     const pageNo = {
       page: pageno,
     }
     getReviewsById(this.state.finalId, pageNo)
       .then(response => {
-        console.log("response", response)
         this.setState({
           reviewDetails: response.data.requestData.review.data,
           pageCount: response.data.requestData.totalPages,
@@ -127,7 +121,6 @@ export default class SellerProfileComp extends React.Component {
   }
   handleClick = () => {
     this.setState({ showModel: true })
-    console.log("show model", this.state.showModel)
   }
   handleNavigate = () => {
     navigate(`/writereview/${this.state.finalId}`)
@@ -138,7 +131,6 @@ export default class SellerProfileComp extends React.Component {
 
   render() {
     let { userData, limit, totalPages, token } = this.state
-    console.log("totalPages =>", totalPages)
 
     const year = moment(userData.createdAt).format("YYYY")
 
@@ -178,10 +170,6 @@ export default class SellerProfileComp extends React.Component {
                             <img src={CheckmarkIcon} alt="" />
                           ) : null}
 
-                          {console.log(
-                            "userData.profileVerified",
-                            userData.profileVerified
-                          )}
                           {userData && userData.profileVerified
                             ? "Verified"
                             : "Not Verified"}

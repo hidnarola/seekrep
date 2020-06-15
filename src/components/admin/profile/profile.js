@@ -15,10 +15,8 @@ export default class Profile extends React.Component {
     const id = localStorage.getItem("id")
     getProfileDetail({ id: id })
       .then(result => {
-        console.log("result", result)
         if (result.data.user.status === 1) {
           this.setState({ user: result.data.user.data })
-          console.log("this.state.user", this.state.user)
         } else if (result.data.status === 0) {
           this.setState({ user: null })
         }
@@ -33,7 +31,7 @@ export default class Profile extends React.Component {
     return (
       <div>
         <h4 className="admin-title">Profile Details</h4>
-        {console.log("user state", user)}
+
         <div className="details-box">
           <div className="displayimg">
             <img src="" />

@@ -1,6 +1,5 @@
 import React from "react"
 import { Button, Alert, Form, Container } from "react-bootstrap"
-import { profileImg } from "../../images/verify-img.png"
 import {
   geteditprofile,
   editprofiledata,
@@ -11,7 +10,6 @@ import "./editprofile.scss"
 import swal from "sweetalert"
 import Header from "../../components/header/header"
 import Footer from "../../components/footer/footer"
-import { navigate } from "@reach/router"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -159,9 +157,7 @@ export default class EditProfile extends React.Component {
 
   handleSubmitAccount = async event => {
     event.preventDefault()
-    console.info("--------------------------")
-    console.info("handkeAccount Submit call =>")
-    console.info("--------------------------")
+
     const data = {
       email: this.state.email,
       password: this.state.password,
@@ -175,9 +171,6 @@ export default class EditProfile extends React.Component {
         showUpdatePasswordAlert: true,
       })
     }
-    console.info("--------------------------")
-    console.info("resp =>", resp)
-    console.info("--------------------------")
   }
 
   render() {

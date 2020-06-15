@@ -24,9 +24,7 @@ export default class ForgotPassword extends React.Component {
     passSucc: "",
   }
 
-  componentDidMount() {
-    console.log("token", this.props.props.token)
-  }
+  componentDidMount() {}
   changeHandler = event => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -60,7 +58,6 @@ export default class ForgotPassword extends React.Component {
       }
       adminResetPassword(data)
         .then(result => {
-          console.log("result submit", result)
           if (result.data.status === 1) {
             this.setState({ passSucc: result.data.message })
             navigate("/admin/login")

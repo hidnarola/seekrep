@@ -13,10 +13,10 @@ export default class Header extends React.Component {
   }
   componentDidMount() {
     const loginToken = localStorage.getItem("login-token")
-    // const profilepic = localStorage.getItem("profilepic")
+
     const userId = localStorage.getItem("id")
     this.setState({ token: loginToken })
-    // this.setState({ profilepic: profilepic })
+
     if (userId) {
       getDataById(userId)
         .then(res => {

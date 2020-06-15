@@ -65,10 +65,9 @@ export default class Login extends React.Component {
         email: this.state.email,
         password: this.state.password,
       }
-      console.log("data", data)
+
       adminLogin(data)
         .then(result => {
-          console.log("result submit", result)
           if (result.data.status === 1) {
             localStorage.setItem("admintoken", result.data.token)
             localStorage.setItem("id", result.data.data._id)

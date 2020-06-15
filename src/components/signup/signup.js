@@ -21,15 +21,6 @@ export default class Signup extends React.Component {
     loader: "",
   }
 
-  // handleInputChange = event => {
-  //   const target = event.target
-  //   const value = target.value
-  //   const name = target.name
-  //   this.setState({
-  //     [name]: value,
-  //   })
-  // }
-
   handleInputChange = (element, value) => {
     if (element == "firstName") {
       this.setState({ firstName: value })

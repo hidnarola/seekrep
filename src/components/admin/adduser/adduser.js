@@ -62,10 +62,9 @@ export default class AddUser extends React.Component {
       grailed: this.state.grailed,
       stockX: this.state.stockX,
     }
-    console.log("data", data)
+
     adminAddUser(data)
       .then(result => {
-        console.log("result submit", result)
         if (result.data.register_resp.status === 1) {
           swal(result.data.register_resp.message).then(() => {
             navigate("/admin/allusers")

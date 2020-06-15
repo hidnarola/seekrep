@@ -4,19 +4,14 @@ import {
   Button,
   Card,
   CardBody,
-  CardGroup,
   Col,
   Container,
   Form,
   Input,
   InputGroup,
-  InputGroupAddon,
-  InputGroupText,
   Row,
   Alert,
-  FormFeedback,
 } from "reactstrap"
-import { navigate } from "gatsby"
 
 export default class ForgotPassword extends React.Component {
   state = {
@@ -54,25 +49,21 @@ export default class ForgotPassword extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    // const isValid = this.validate()
-    // console.log("isValid", isValid)
+
     if (this.state.email === "") {
-      console.log("!this.state.email", this.state.email)
       this.setState({
         showMessage: true,
         message: "Email Cannot Be Blank",
       })
-      console.log("status", this.state.status)
     } else if (this.state.email && !this.state.email.includes("@")) {
       this.setState({ showMessage: true, message: "invalid email", status: 0 })
     } else {
       const data = {
         email: this.state.email,
       }
-      console.log("data", data)
+
       adminForgotPassword(data)
         .then(result => {
-          console.log("result submit", result)
           if (result.data.status === 1) {
             this.setState({
               showMessage: true,

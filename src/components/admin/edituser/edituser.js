@@ -5,6 +5,7 @@ import { navigate } from "gatsby"
 import swal from "sweetalert"
 import defaultImg from "../../../images/default.png"
 import "./edituser.scss"
+import Spinner from "../../spinner/spinner"
 
 export default class EditUser extends React.Component {
   state = {
@@ -21,17 +22,17 @@ export default class EditUser extends React.Component {
     instagram: "",
     grailed: "",
     stockX: "",
+    loader: false,
   }
   componentDidMount() {
     if (!localStorage.getItem("admintoken")) {
       navigate("/admin/login")
     }
+    this.setState({ loader: true })
 
-    console.log("props", this.props)
     const id = this.props.props.id
     getUserById(id)
       .then(result => {
-        console.log("result all users", result)
         this.setState({
           email: result.data.user.data.email,
           countryname: result.data.user.data.countryname,
@@ -45,6 +46,7 @@ export default class EditUser extends React.Component {
           instagram: result.data.user.data.instagram,
           grailed: result.data.user.data.grailed,
           stockX: result.data.user.data.stockX,
+          loader: false,
         })
       })
       .catch(err => {
@@ -87,10 +89,9 @@ export default class EditUser extends React.Component {
       grailed: this.state.grailed,
       stockX: this.state.stockX,
     }
-    console.log("data", data)
+
     editUseData(data)
       .then(result => {
-        console.log("result submit", result)
         if (result.data.status === 1) {
           swal(result.data.message).then(() => {
             navigate("/admin/allusers")
@@ -107,161 +108,169 @@ export default class EditUser extends React.Component {
   render() {
     return (
       <div>
-        <h4 className="admin-title">Edit User</h4>
-        <Form onSubmit={e => this.handleSubmit(e)}>
-          <Row>
-            <Col md={6} className="profileimgbox">
-              <img
-                src={
-                  this.state.profileimage ? this.state.profileimage : defaultImg
-                }
-              />
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="">Profile Image</Label>
-                <Input
-                  type="file"
-                  name="profileimage"
-                  placeholder="Enter Profile Image"
-                  onChange={e => this.filechangehandler(e)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="exampleEmail"
-                  placeholder="with a placeholder"
-                  value={this.state.email}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="">Country Name</Label>
-                <Input
-                  type="text"
-                  name="countryname"
-                  placeholder="countryname "
-                  value={this.state.countryname}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="">First Name</Label>
-                <Input
-                  type="text"
-                  name="firstName"
-                  placeholder="enter frist name"
-                  value={this.state.firstName}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="">Last Name</Label>
-                <Input
-                  type="text"
-                  name="lastname"
-                  placeholder="Enter Last name"
-                  value={this.state.lastname}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="">Depop</Label>
-                <Input
-                  type="text"
-                  name="depop"
-                  placeholder="enter Depop"
-                  value={this.state.depop}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="">eBay</Label>
-                <Input
-                  type="text"
-                  name="eBay"
-                  placeholder="Enter Last name"
-                  value={this.state.eBay}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="exampleEmail">Facebook</Label>
-                <Input
-                  type="text"
-                  name="facebook"
-                  placeholder="enter Facebook"
-                  value={this.state.facebook}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="examplePassword">Instagram</Label>
-                <Input
-                  type="text"
-                  name="instagram"
-                  placeholder="Enter Instagram"
-                  value={this.state.instagram}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="exampleEmail">Grailed</Label>
-                <Input
-                  type="text"
-                  name="grailed"
-                  placeholder="enter Grailed"
-                  value={this.state.grailed}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="examplePassword">StockX</Label>
-                <Input
-                  type="text"
-                  name="stockX"
-                  placeholder="Enter StockX"
-                  value={this.state.stockX}
-                  onChange={event => this.handleChange(event)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Button>Edit User</Button>
-        </Form>
+        {this.state.loader ? (
+          <Spinner />
+        ) : (
+          <>
+            <h4 className="admin-title">Edit User</h4>
+            <Form onSubmit={e => this.handleSubmit(e)}>
+              <Row>
+                <Col md={6} className="profileimgbox">
+                  <img
+                    src={
+                      this.state.profileimage
+                        ? this.state.profileimage
+                        : defaultImg
+                    }
+                  />
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="">Profile Image</Label>
+                    <Input
+                      type="file"
+                      name="profileimage"
+                      placeholder="Enter Profile Image"
+                      onChange={e => this.filechangehandler(e)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="exampleEmail">Email</Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      id="exampleEmail"
+                      placeholder="with a placeholder"
+                      value={this.state.email}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="">Country Name</Label>
+                    <Input
+                      type="text"
+                      name="countryname"
+                      placeholder="countryname "
+                      value={this.state.countryname}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="">First Name</Label>
+                    <Input
+                      type="text"
+                      name="firstName"
+                      placeholder="enter frist name"
+                      value={this.state.firstName}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="">Last Name</Label>
+                    <Input
+                      type="text"
+                      name="lastname"
+                      placeholder="Enter Last name"
+                      value={this.state.lastname}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="">Depop</Label>
+                    <Input
+                      type="text"
+                      name="depop"
+                      placeholder="enter Depop"
+                      value={this.state.depop}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="">eBay</Label>
+                    <Input
+                      type="text"
+                      name="eBay"
+                      placeholder="Enter Last name"
+                      value={this.state.eBay}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="exampleEmail">Facebook</Label>
+                    <Input
+                      type="text"
+                      name="facebook"
+                      placeholder="enter Facebook"
+                      value={this.state.facebook}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="examplePassword">Instagram</Label>
+                    <Input
+                      type="text"
+                      name="instagram"
+                      placeholder="Enter Instagram"
+                      value={this.state.instagram}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="exampleEmail">Grailed</Label>
+                    <Input
+                      type="text"
+                      name="grailed"
+                      placeholder="enter Grailed"
+                      value={this.state.grailed}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="examplePassword">StockX</Label>
+                    <Input
+                      type="text"
+                      name="stockX"
+                      placeholder="Enter StockX"
+                      value={this.state.stockX}
+                      onChange={event => this.handleChange(event)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Button>Edit User</Button>
+            </Form>
+          </>
+        )}
       </div>
     )
   }
