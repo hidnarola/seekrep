@@ -31,7 +31,7 @@ export default class VerifyEmailComp extends React.Component {
   render() {
     return (
       <div className="verifyemail-box">
-        <h4>Verifty Email</h4>
+        <h4>Verify Email</h4>
         <p> Click here for verify your account </p>
         <button onClick={this.verifyHandler}>Verify Your Email</button>
         {this.state.message ? (
