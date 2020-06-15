@@ -23,6 +23,9 @@ export default class ForgotPassword extends React.Component {
     email: "",
     emailError: "",
     emailSucc: "",
+    showMessage: "",
+    message: "",
+    status: 0,
   }
 
   validate = () => {
@@ -30,13 +33,13 @@ export default class ForgotPassword extends React.Component {
 
     if (!this.state.email) {
       emailError = "Email Cannot Be Blank"
-      this.setState({ emailError })
+      this.setState({ showMessage: emailError, status: 0 })
       return false
     }
 
     if (this.state.email && !this.state.email.includes("@")) {
       emailError = "invalid email"
-      this.setState({ emailError })
+      this.setState({ showMessage: emailError, status: 0 })
       return false
     }
 
@@ -51,8 +54,18 @@ export default class ForgotPassword extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const isValid = this.validate()
-    if (isValid) {
+    // const isValid = this.validate()
+    // console.log("isValid", isValid)
+    if (this.state.email === "") {
+      console.log("!this.state.email", this.state.email)
+      this.setState({
+        showMessage: true,
+        message: "Email Cannot Be Blank",
+      })
+      console.log("status", this.state.status)
+    } else if (this.state.email && !this.state.email.includes("@")) {
+      this.setState({ showMessage: true, message: "invalid email", status: 0 })
+    } else {
       const data = {
         email: this.state.email,
       }
@@ -60,13 +73,19 @@ export default class ForgotPassword extends React.Component {
       adminForgotPassword(data)
         .then(result => {
           console.log("result submit", result)
-          // if (result.data.register_resp.status === 1) {
-          //   swal(result.data.register_resp.message).then(() => {
-          //     navigate("/admin/allusers")
-          //   })
-          // } else if (result.data.register_resp.status === 0) {
-          //   swal(result.data.message)
-          // }
+          if (result.data.status === 1) {
+            this.setState({
+              showMessage: true,
+              message: result.data.message,
+              status: 1,
+            })
+          } else if (result.data.status === 0) {
+            this.setState({
+              showMessage: true,
+              message: result.data.message,
+              status: 0,
+            })
+          }
         })
         .catch(err => {
           console.log("err", err)
@@ -85,12 +104,19 @@ export default class ForgotPassword extends React.Component {
                   <Form onSubmit={e => this.handleSubmit(e)}>
                     <h1>Forgot Password</h1>
                     <p className="text-muted">Reset your password</p>
-                    {this.state.emailError ? (
+                    {this.state.showMessage ? (
+                      <Alert
+                        color={this.state.status === 0 ? "danger" : "success"}
+                      >
+                        {this.state.message}
+                      </Alert>
+                    ) : null}
+                    {/* {this.state.emailError ? (
                       <Alert color="danger">{this.state.emailError}</Alert>
                     ) : null}
                     {this.state.emailSucc ? (
                       <Alert color="success">{this.state.emailError}</Alert>
-                    ) : null}
+                    ) : null} */}
                     <InputGroup className="mb-3">
                       <Input
                         type="text"
