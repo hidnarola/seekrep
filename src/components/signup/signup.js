@@ -8,6 +8,7 @@ import { googleLogin, createuser, facebookLogin } from "../../functions"
 import jQuery from "jquery"
 import validator from "validator"
 import Spinner from "../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class Signup extends React.Component {
   state = {
@@ -147,6 +148,10 @@ export default class Signup extends React.Component {
   render() {
     return (
       <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Sign Up</title>
+        </Helmet>
         <div className="seekrep-box">
           <h2>
             Sign up to <span>SEEKREP</span>

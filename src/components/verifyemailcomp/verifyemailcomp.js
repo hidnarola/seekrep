@@ -3,6 +3,7 @@ import { verifymailid } from "../../functions"
 import { Link } from "gatsby"
 import "./verifyemail.scss"
 import { Alert } from "react-bootstrap"
+import { Helmet } from "react-helmet"
 
 export default class VerifyEmailComp extends React.Component {
   state = {
@@ -31,6 +32,10 @@ export default class VerifyEmailComp extends React.Component {
   render() {
     return (
       <div className="verifyemail-box">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Verify Email</title>
+        </Helmet>
         <h4>Verify Email</h4>
         <p> Click here for verify your account </p>
         <button onClick={this.verifyHandler}>Verify Your Email</button>

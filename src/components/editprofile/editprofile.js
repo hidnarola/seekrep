@@ -10,6 +10,7 @@ import "./editprofile.scss"
 import swal from "sweetalert"
 import Header from "../../components/header/header"
 import Footer from "../../components/footer/footer"
+import { Helmet } from "react-helmet"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -181,6 +182,10 @@ export default class EditProfile extends React.Component {
     }
     return (
       <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Edit Profile</title>
+        </Helmet>
         <Header profilepic={this.state.userData.profileimage} />
         <section className="login-bg">
           <Container>

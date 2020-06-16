@@ -2,6 +2,7 @@ import React from "react"
 import { Button, Alert } from "react-bootstrap"
 import { forgotpassworduser } from "../../functions"
 import Spinner from "../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class Forgotpassword extends React.Component {
   state = {
@@ -59,6 +60,10 @@ export default class Forgotpassword extends React.Component {
   render() {
     return (
       <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Forgot Password</title>
+        </Helmet>
         {this.state.showMessage ? (
           <Alert variant={this.state.status === 1 ? "success" : "danger"}>
             {this.state.message}

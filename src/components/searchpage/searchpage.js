@@ -7,6 +7,7 @@ import { Link } from "gatsby"
 import Pagination from "react-paginate"
 import Loader from "../spinner/spinner"
 import Rating from "react-rating"
+import { Helmet } from "react-helmet"
 
 export default class Search extends React.Component {
   state = {
@@ -149,6 +150,10 @@ export default class Search extends React.Component {
     let { perPageLimit, totalPages, loader } = this.state
     return (
       <div className="row">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Search Page</title>
+        </Helmet>
         {loader ? (
           <Loader />
         ) : (

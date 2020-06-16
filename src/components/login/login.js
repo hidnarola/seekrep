@@ -5,6 +5,7 @@ import { loginuser, googleLogin, facebookLogin } from "../../functions"
 import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
 import Spinner from "../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class Login extends React.Component {
   state = {
@@ -95,6 +96,10 @@ export default class Login extends React.Component {
   render() {
     return (
       <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Login</title>
+        </Helmet>
         <div className="seekrep-box">
           <h2>
             Sign up to <span>SEEKREP</span>

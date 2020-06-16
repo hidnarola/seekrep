@@ -25,6 +25,7 @@ import Signup from "../signup/signup"
 import TimeAgo from "react-timeago"
 import Pagination from "react-paginate"
 import Loader from "../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class SellerProfileComp extends React.Component {
   constructor(props) {
@@ -136,6 +137,10 @@ export default class SellerProfileComp extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Seller Profile</title>
+        </Helmet>
         {this.state.loader ? (
           <Loader />
         ) : (

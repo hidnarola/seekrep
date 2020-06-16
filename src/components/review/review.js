@@ -7,6 +7,7 @@ import swal from "sweetalert"
 import { navigate } from "gatsby"
 import jQuery from "jquery"
 import validator from "validator"
+import { Helmet } from "react-helmet"
 export default class WriteReview extends React.Component {
   state = {
     rating: 0,
@@ -106,6 +107,10 @@ export default class WriteReview extends React.Component {
     }
     return (
       <div className="row">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Write a Review</title>
+        </Helmet>
         <div className="col-12 col-lg-7">
           <div className="review-main">
             <h4>
