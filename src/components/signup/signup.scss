@@ -1,0 +1,20 @@
+.form-group.passwordinput {
+  position: relative;
+  button.showpassword {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 25%;
+    left: auto;
+    bottom: 0;
+    margin: auto;
+    right: 10px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    img {
+      height: 22px;
+      width: 30px;
+    }
+  }
+}
