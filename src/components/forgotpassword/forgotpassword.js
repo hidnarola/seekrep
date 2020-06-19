@@ -30,6 +30,13 @@ export default class Forgotpassword extends React.Component {
         status: 0,
         loader: false,
       })
+    } else if (this.state.email && !this.state.email.includes("@")) {
+      this.setState({
+        showMessage: true,
+        message: "invalid email",
+        status: 0,
+        loader: false,
+      })
     } else {
       const data = {
         email: this.state.email,
@@ -71,7 +78,7 @@ export default class Forgotpassword extends React.Component {
         ) : null}
         <form onSubmit={this.handleSubmit} className="login-form">
           <div className="form-group">
-            <label> email</label>
+            <label>E-mail</label>
             <input
               type="text"
               name="email"

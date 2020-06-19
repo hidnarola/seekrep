@@ -6,6 +6,7 @@ import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
 import Spinner from "../spinner/spinner"
 import { Helmet } from "react-helmet"
+import { Redirect } from "@reach/router"
 
 export default class Login extends React.Component {
   state = {
@@ -13,7 +14,7 @@ export default class Login extends React.Component {
     password: "",
     showMessage: false,
     message: "",
-    status: "",
+    status: 0,
     loader: false,
   }
   navigateUrl = this.props.navigate ? this.props.navigate : "/"
@@ -43,10 +44,19 @@ export default class Login extends React.Component {
             showMessage: true,
             message: res.data.message,
             loader: false,
+            status: 0,
           })
         } else if (res.data && res.data.status === 1) {
-          this.setState({ loader: false })
-          navigate(this.navigateUrl)
+          this.setState({
+            loader: false,
+            showMessage: true,
+            message: res.data.message,
+            status: 1,
+          })
+          setTimeout(() => {
+            navigate(this.navigateUrl)
+          }, 3000)
+          // navigate(this.navigateUrl)
           localStorage.setItem("login-token", res.data.token)
           localStorage.setItem("id", res.data.data._id)
         } else {
@@ -54,6 +64,7 @@ export default class Login extends React.Component {
             showMessage: true,
             message: res.data.message,
             loader: false,
+            status: 0,
           })
         }
       })
@@ -122,7 +133,10 @@ export default class Login extends React.Component {
           </div>
         </div>
         {this.state.showMessage ? (
-          <Alert variant="danger"> {this.state.message}</Alert>
+          <Alert variant={this.state.status === 1 ? "success" : "danger"}>
+            {" "}
+            {this.state.message}
+          </Alert>
         ) : null}
         <form onSubmit={this.handleSubmit} className="login-form">
           <div className="form-group">

@@ -11,6 +11,7 @@ import swal from "sweetalert"
 import Header from "../../components/header/header"
 import Footer from "../../components/footer/footer"
 import { Helmet } from "react-helmet"
+import Spinner from "../spinner/spinner"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -32,9 +33,11 @@ export default class EditProfile extends React.Component {
       showUpdatePasswordAlert: false,
       message: "",
       userData: "",
+      loader: false,
     }
   }
   componentDidMount() {
+    this.setState({ loader: true })
     const userid = localStorage.getItem("id")
     const id = {
       userId: userid,
@@ -53,6 +56,7 @@ export default class EditProfile extends React.Component {
           grailed: result.data.user.data.grailed,
           stockX: result.data.user.data.stockX,
           imagePreviewUrl: result.data.user.data.profileimage,
+          loader: false,
         })
       })
       .catch(err => {
@@ -72,13 +76,17 @@ export default class EditProfile extends React.Component {
 
     let reader = new FileReader()
     let file = e.target.files[0]
+    var FileUploadPath = file.name
+    var Extension = FileUploadPath.substring(
+      FileUploadPath.lastIndexOf(".") + 1
+    ).toLowerCase()
+    console.log("Extention", Extension)
 
-    const allowExtension = ["image/jpg", "image/jpeg", "image/png"]
-    const fileType = file.type
-    if (!allowExtension.includes(fileType)) {
-      document.getElementById("file_type_error").innerHTML =
-        "Invalid file type (Only jpg, jpeg and png file are allowed)"
-    } else {
+    // const allowExtension = ["image/jpg", "image/jpeg", "image/png"]
+    // const fileType = file.type
+
+    // if (!allowExtension.includes(fileType)) {
+    if (Extension == "png" || Extension == "jpeg" || Extension == "jpg") {
       document.getElementById("file_type_error").innerHTML = ""
       reader.onloadend = () => {
         this.setState({
@@ -88,10 +96,14 @@ export default class EditProfile extends React.Component {
       }
 
       reader.readAsDataURL(file)
+    } else {
+      document.getElementById("file_type_error").innerHTML =
+        "Invalid file type (Only jpg, jpeg and png file are allowed)"
     }
   }
 
   handleSubmit = async event => {
+    this.setState({ loader: true })
     event.preventDefault()
 
     const data = {
@@ -113,6 +125,7 @@ export default class EditProfile extends React.Component {
     await editprofiledata(data)
       .then(result => {
         if (result.data.status === 1) {
+          this.setState({ loader: false })
           swal(result.data.message).then(() => {
             const userid = localStorage.getItem("id")
             getDataById(userid)
@@ -189,11 +202,14 @@ export default class EditProfile extends React.Component {
         <Header profilepic={this.state.userData.profileimage} />
         <section className="login-bg">
           <Container>
-            <div className="ProfilePage">
-              <h4>Profile picture</h4>
-              <Form onSubmit={event => this.handleSubmit(event)}>
-                <div className="ProfilePicture">
-                  {/* <div className="form-group d-flex">
+            {this.state.loader ? (
+              <Spinner />
+            ) : (
+              <div className="ProfilePage">
+                <h4>Profile picture</h4>
+                <Form onSubmit={event => this.handleSubmit(event)}>
+                  <div className="ProfilePicture">
+                    {/* <div className="form-group d-flex">
                 {$imagePreview}
                 <input
                   type="file"
@@ -203,172 +219,173 @@ export default class EditProfile extends React.Component {
                   id="image"
                 />
               </div> */}
-                  <Form.File
-                    id="formcheck-api-custom"
-                    className="d-flex"
-                    custom
-                  >
-                    <div className="ProfilePictureDIV">{$imagePreview}</div>
-                    <Form.File.Input
-                      onChange={e => this.changehandler(e)}
-                      accept="image/x-png,image/jpg,image/jpeg"
-                    />
-                    <Form.File.Label data-browse="UPLOAD">
-                      <i className="fa fa-upload"></i>
-                    </Form.File.Label>
-                  </Form.File>
-                  <span style={{ color: "red" }} id="file_type_error"></span>
-                  {/* <Button type="submit" variant="dark">
+                    <Form.File
+                      id="formcheck-api-custom"
+                      className="d-flex"
+                      custom
+                    >
+                      <div className="ProfilePictureDIV">{$imagePreview}</div>
+                      <Form.File.Input
+                        onChange={e => this.changehandler(e)}
+                        accept="image/x-png,image/jpg,image/jpeg"
+                      />
+                      <Form.File.Label data-browse="UPLOAD">
+                        <i className="fa fa-upload"></i>
+                      </Form.File.Label>
+                    </Form.File>
+                    <span style={{ color: "red" }} id="file_type_error"></span>
+                    {/* <Button type="submit" variant="dark">
                 Upload
               </Button> */}
-                </div>
-              </Form>
-              <h4>Personal details</h4>
-              <form onSubmit={event => this.handleSubmit(event)}>
-                <div className="form-group">
-                  <label>First Name</label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    className="form-control"
-                    value={this.state.firstname}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Last Name</label>
-                  <input
-                    type="text"
-                    name="lastname"
-                    className="form-control"
-                    value={this.state.lastname}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Country Name</label>
-                  <input
-                    type="text"
-                    name="countryname"
-                    className="form-control"
-                    value={this.state.countryname}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="ButtonWrap">
-                  <Button type="submit" variant="dark">
-                    Save
-                  </Button>
-                </div>
-              </form>
-              <h4>Profiles</h4>
-              <form onSubmit={event => this.handleSubmit(event)}>
-                <div className="form-group">
-                  <label>Depop</label>
-                  <input
-                    type="text"
-                    name="depop"
-                    className="form-control"
-                    value={this.state.depop}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>eBay</label>
-                  <input
-                    type="text"
-                    name="eBay"
-                    className="form-control"
-                    value={this.state.eBay}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Facebook</label>
-                  <input
-                    type="text"
-                    name="facebook"
-                    className="form-control"
-                    value={this.state.facebook}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Instagram</label>
-                  <input
-                    type="text"
-                    name="instagram"
-                    className="form-control"
-                    value={this.state.instagram}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Grailed</label>
-                  <input
-                    type="text"
-                    name="grailed"
-                    className="form-control"
-                    value={this.state.grailed}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>StockX</label>
-                  <input
-                    type="text"
-                    name="stockX"
-                    className="form-control"
-                    value={this.state.stockX}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="ButtonWrap">
-                  <Button type="submit" variant="dark">
-                    Save
-                  </Button>
-                </div>
-              </form>
-              <h4>Account</h4>
-              <form onSubmit={event => this.handleSubmitAccount(event)}>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    className="form-control"
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    readOnly
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                {this.state.showUpdatePasswordAlert && (
-                  <div className="form-group">
-                    <Alert
-                      variant={this.state.status === 1 ? "success" : "danger"}
-                    >
-                      {" "}
-                      {this.state.message}
-                    </Alert>
                   </div>
-                )}
-                <div className="ButtonWrap">
-                  <Button type="submit" variant="dark">
-                    Save
-                  </Button>
-                </div>
-              </form>
-            </div>
+                </Form>
+                <h4>Personal details</h4>
+                <form onSubmit={event => this.handleSubmit(event)}>
+                  <div className="form-group">
+                    <label>First Name</label>
+                    <input
+                      type="text"
+                      name="firstname"
+                      className="form-control"
+                      value={this.state.firstname}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Last Name</label>
+                    <input
+                      type="text"
+                      name="lastname"
+                      className="form-control"
+                      value={this.state.lastname}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Country Name</label>
+                    <input
+                      type="text"
+                      name="countryname"
+                      className="form-control"
+                      value={this.state.countryname}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="ButtonWrap">
+                    <Button type="submit" variant="dark">
+                      Save
+                    </Button>
+                  </div>
+                </form>
+                <h4>Profiles</h4>
+                <form onSubmit={event => this.handleSubmit(event)}>
+                  <div className="form-group">
+                    <label>Depop</label>
+                    <input
+                      type="text"
+                      name="depop"
+                      className="form-control"
+                      value={this.state.depop}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>eBay</label>
+                    <input
+                      type="text"
+                      name="eBay"
+                      className="form-control"
+                      value={this.state.eBay}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Facebook</label>
+                    <input
+                      type="text"
+                      name="facebook"
+                      className="form-control"
+                      value={this.state.facebook}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Instagram</label>
+                    <input
+                      type="text"
+                      name="instagram"
+                      className="form-control"
+                      value={this.state.instagram}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Grailed</label>
+                    <input
+                      type="text"
+                      name="grailed"
+                      className="form-control"
+                      value={this.state.grailed}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>StockX</label>
+                    <input
+                      type="text"
+                      name="stockX"
+                      className="form-control"
+                      value={this.state.stockX}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className="ButtonWrap">
+                    <Button type="submit" variant="dark">
+                      Save
+                    </Button>
+                  </div>
+                </form>
+                <h4>Account</h4>
+                <form onSubmit={event => this.handleSubmitAccount(event)}>
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input
+                      type="text"
+                      name="email"
+                      className="form-control"
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                      readOnly
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  {this.state.showUpdatePasswordAlert && (
+                    <div className="form-group">
+                      <Alert
+                        variant={this.state.status === 1 ? "success" : "danger"}
+                      >
+                        {" "}
+                        {this.state.message}
+                      </Alert>
+                    </div>
+                  )}
+                  <div className="ButtonWrap">
+                    <Button type="submit" variant="dark">
+                      Save
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            )}
           </Container>
         </section>
         <Footer />
