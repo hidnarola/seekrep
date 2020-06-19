@@ -55,7 +55,7 @@ export default class Login extends React.Component {
           })
           setTimeout(() => {
             navigate(this.navigateUrl)
-          }, 3000)
+          }, 2000)
           // navigate(this.navigateUrl)
           localStorage.setItem("login-token", res.data.token)
           localStorage.setItem("id", res.data.data._id)

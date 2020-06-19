@@ -33,7 +33,7 @@ export default class Forgotpassword extends React.Component {
     } else if (this.state.email && !this.state.email.includes("@")) {
       this.setState({
         showMessage: true,
-        message: "invalid email",
+        message: "Please Enter Valid Email",
         status: 0,
         loader: false,
       })
