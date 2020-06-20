@@ -120,6 +120,7 @@ export default class Login extends React.Component {
             buttonText="Countinue with Google"
             onSuccess={this.googleResponse}
             onFailure={this.onFailure}
+            cookiePolicy={"single_host_origin"}
           />
           <FacebookLogin
             appId="2831009733683828"

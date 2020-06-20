@@ -27,6 +27,14 @@ export default class Searchbox extends React.Component {
 
     field.onkeypress = e => {
       if (e.which === 32 && !e.target.value.length) e.preventDefault()
+      if (
+        e.which < 48 ||
+        (e.which > 57 && e.which < 65) ||
+        (e.which > 90 && e.which < 97) ||
+        e.which > 122
+      ) {
+        e.preventDefault()
+      }
     }
   }
 

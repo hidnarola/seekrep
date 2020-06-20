@@ -84,6 +84,9 @@ body {
 button:disabled {
   cursor: not-allowed;
 }
+.logout-content {
+  min-height: 500px;
+}
 .swal-button {
   background-color: black;
   // &:hover {
