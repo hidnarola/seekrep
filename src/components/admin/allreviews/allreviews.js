@@ -49,6 +49,7 @@ export default class AllReviews extends React.Component {
           totalRecord: result.data.requestData.totalRecord,
           pageCount: result.data.requestData.totalPages,
           limit: result.data.requestData.limit,
+          loader: false,
         })
       })
       .catch(err => {

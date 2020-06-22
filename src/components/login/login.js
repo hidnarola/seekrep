@@ -6,7 +6,6 @@ import { GoogleLogin } from "react-google-login"
 import FacebookLogin from "react-facebook-login"
 import Spinner from "../spinner/spinner"
 import { Helmet } from "react-helmet"
-import { Redirect } from "@reach/router"
 
 export default class Login extends React.Component {
   state = {
