@@ -23,6 +23,7 @@ export default class AllReviews extends React.Component {
     this.setState({ loader: true })
     allReviewsAdmin()
       .then(result => {
+        console.log("compo result", result)
         this.setState({
           reviews: result.data.requestData.review,
           totalRecord: result.data.requestData.totalRecord,
@@ -42,8 +43,10 @@ export default class AllReviews extends React.Component {
     const pageNo = {
       page: pageno,
     }
+    // this.setState({ loader: true })
     allReviewsAdmin(pageNo)
       .then(result => {
+        console.log("page result", result)
         this.setState({
           reviews: result.data.requestData.review,
           totalRecord: result.data.requestData.totalRecord,
