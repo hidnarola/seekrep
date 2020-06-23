@@ -35,10 +35,48 @@ nav.navbar {
           min-width: 8rem;
           a {
             color: black;
+
+            button {
+              background-color: transparent !important;
+              display: inline-block !important;
+              align-items: center;
+              color: rgba(0, 0, 0, 0.54);
+              box-shadow: none !important;
+              padding: 0px !important;
+              border-radius: 0px !important;
+              border: 1px solid transparent;
+              font-size: 14px;
+              font-weight: 400;
+              font-family: Roboto, sans-serif;
+
+              div {
+                display: none;
+              }
+              span {
+                padding: 0px !important;
+                font-weight: 400;
+                font-size: 15px;
+                color: black;
+                text-transform: uppercase;
+              }
+            }
           }
           a.active,
           a:active {
             background-color: #f8f9fa;
+          }
+          a:hover {
+            background-color: black;
+            color: #fff;
+            a {
+              color: #fff;
+              text-decoration: none;
+            }
+            button {
+              span {
+                color: #fff;
+              }
+            }
           }
         }
 

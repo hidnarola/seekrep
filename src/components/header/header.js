@@ -1,9 +1,10 @@
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import React from "react"
 import "./header.scss"
 import profileImg from "../../images/default.png"
 import { getDataById } from "../../functions"
+import { GoogleLogout } from "react-google-login"
 
 export default class Header extends React.Component {
   state = {
@@ -28,6 +29,13 @@ export default class Header extends React.Component {
           console.log("error", err)
         })
     }
+  }
+
+  logout = () => {
+    navigate("/logout")
+  }
+  handleLogoutFailure = () => {
+    alert("Failed to log out")
   }
   render() {
     let { token } = this.state
@@ -77,9 +85,26 @@ export default class Header extends React.Component {
                         +
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item>
-                          <Link to="/logout">Log out</Link>
-                        </Dropdown.Item>
+                        {console.log(
+                          "google login",
+                          localStorage.getItem("googlelogin")
+                        )}
+                        {localStorage.getItem("googlelogin") === "yes" ? (
+                          <Dropdown.Item>
+                            {/* <Link to="/logout">Log out</Link> */}
+                            <GoogleLogout
+                              clientId="577694009182-enfv1fenk9j81u7cjc4e6897u1l4gmhl.apps.googleusercontent.com"
+                              onLogoutSuccess={() => this.logout()}
+                              onFailure={() => this.handleLogoutFailure()}
+                            >
+                              Log out
+                            </GoogleLogout>
+                          </Dropdown.Item>
+                        ) : (
+                          <Dropdown.Item>
+                            <Link to="/logout">Log out</Link>
+                          </Dropdown.Item>
+                        )}
                       </Dropdown.Menu>
                     </Dropdown>
                   ) : (

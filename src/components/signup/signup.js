@@ -126,6 +126,7 @@ export default class Signup extends React.Component {
                    try {
                      const res = await googleLogin(token)
                      if (res.status === 1) {
+                       localStorage.setItem("googlelogin", "yes")
                        navigate(this.navigateUrl)
                        localStorage.setItem("login-token", res.token)
                        localStorage.setItem("id", res.data._id)
