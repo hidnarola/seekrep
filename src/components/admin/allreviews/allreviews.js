@@ -15,6 +15,7 @@ export default class AllReviews extends React.Component {
     pageCount: "",
     totalRecord: 0,
     loader: false,
+    skiprec: "",
   }
   componentDidMount() {
     if (!localStorage.getItem("admintoken")) {
@@ -39,6 +40,8 @@ export default class AllReviews extends React.Component {
 
   handlePageClick = page => {
     const pageno = page.selected + 1
+    const skiprec = (pageno - 1) * this.state.limit
+    this.setState({ skiprec: skiprec })
 
     const pageNo = {
       page: pageno,
@@ -83,7 +86,7 @@ export default class AllReviews extends React.Component {
                 {this.state.reviews &&
                   this.state.reviews.map((review, key) => (
                     <tr>
-                      <td>{key + 1}</td>
+                      <td>{this.state.skiprec + key + 1}</td>
                       <td>
                         <Link
                           to={`/admin/reviewdetails/${review.reviews_details._id}`}

@@ -16,7 +16,9 @@ export default class AllUserSeller extends React.Component {
     pageCount: "",
     totalRecord: 0,
     loader: false,
+    skiprec: "",
   }
+
   componentDidMount() {
     this.setState({ loader: true })
     if (!localStorage.getItem("admintoken")) {
@@ -78,7 +80,8 @@ export default class AllUserSeller extends React.Component {
   }
 
   handlePageClick = page => {
-    const pageno = page.selected + 1
+    const skiprec = (page.selected + 1 - 1) * this.state.limit
+    this.setState({ skiprec: skiprec })
 
     const pageNo = {
       page: page.selected + 1,
@@ -170,7 +173,7 @@ export default class AllUserSeller extends React.Component {
                   this.state.users &&
                   this.state.users.map((user, key) => (
                     <tr>
-                      <td>{key + 1}</td>
+                      <td>{this.state.skiprec + key + 1}</td>
                       <td>{user.firstName}</td>
                       <td>{user.lastName}</td>
                       <td>{user.email}</td>
