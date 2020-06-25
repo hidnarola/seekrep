@@ -20,8 +20,9 @@ export default class ForgotPassword extends React.Component {
   state = {
     password: "",
     confirmpassword: "",
-    passError: "",
-    passSucc: "",
+    showMessage: false,
+    message: "",
+    status: "",
   }
 
   componentDidMount() {}
@@ -31,26 +32,39 @@ export default class ForgotPassword extends React.Component {
     })
   }
 
-  validate = () => {
-    let passError = ""
-
-    if (!this.state.password) {
-      passError = "Password Cannot Be Blank"
-      this.setState({ passError })
-      return false
-    }
-    if (!this.state.confirmPassword) {
-      passError = "Confirm Password Cannot Be Blank"
-      this.setState({ passError })
-      return false
-    }
-    return true
-  }
-
   submitHandler = e => {
     e.preventDefault()
+    if (this.state.password === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Password",
+        loader: false,
+        status: 0,
+      })
+    }
+    if (this.state.confirmpassword === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Confirm Password",
+        loader: false,
+        status: 0,
+      })
+    }
+    if (this.state.password === "" && this.state.confirmpassword === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Password",
+        loader: false,
+        status: 0,
+      })
+    }
     if (this.state.password !== this.state.confirmpassword) {
-      this.setState({ passError: "Password should be same" })
+      this.setState({
+        showMessage: true,
+        message: "password must be same",
+        loader: false,
+        status: 0,
+      })
     } else {
       const data = {
         password: this.state.password,
@@ -59,14 +73,31 @@ export default class ForgotPassword extends React.Component {
       adminResetPassword(data)
         .then(result => {
           if (result.data.status === 1) {
-            this.setState({ passSucc: result.data.message })
-            navigate("/admin/login")
+            this.setState({
+              showMessage: true,
+              message: result.data.message,
+              status: 1,
+              loader: false,
+            })
+            setTimeout(() => {
+              navigate("/admin/login")
+            }, 2000)
           } else if (result.data.status === 0) {
-            this.setState({ passError: result.data.message })
+            this.setState({
+              showMessage: true,
+              message: result.data.message,
+              status: 0,
+              loader: false,
+            })
           }
         })
         .catch(err => {
-          this.setState({ passError: err })
+          // this.setState({
+          //   showMessage: true,
+          //   message: err,
+          //   status: 0,
+          //   loader: false,
+          // })
           console.log("err", err)
         })
     }
@@ -83,11 +114,12 @@ export default class ForgotPassword extends React.Component {
                   <Form onSubmit={e => this.submitHandler(e)}>
                     <h1>Reset Password</h1>
                     <p className="text-muted">Reset your password</p>
-                    {this.state.passError ? (
-                      <Alert color="danger">{this.state.passError}</Alert>
-                    ) : null}
-                    {this.state.passSucc ? (
-                      <Alert color="success">{this.state.passSucc}</Alert>
+                    {this.state.showMessage ? (
+                      <Alert
+                        color={this.state.status === 1 ? "success" : "danger"}
+                      >
+                        {this.state.message}
+                      </Alert>
                     ) : null}
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend"></InputGroupAddon>

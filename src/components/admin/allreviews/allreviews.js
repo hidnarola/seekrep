@@ -6,6 +6,7 @@ import Rating from "react-rating"
 import { Link, navigate } from "gatsby"
 import Pagination from "react-paginate"
 import Spinner from "../../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class AllReviews extends React.Component {
   state = {
@@ -67,6 +68,10 @@ export default class AllReviews extends React.Component {
     let { limit, totalPages } = this.state
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>All Reviews</title>
+        </Helmet>
         {this.state.loader ? (
           <Spinner />
         ) : (

@@ -184,6 +184,7 @@ export default class WriteReview extends React.Component {
                   className="form-control"
                   value={this.state.review}
                   onChange={this.handleInputChange}
+                  maxlength="200"
                 ></textarea>
                 <span
                   className="review_errorMsg"

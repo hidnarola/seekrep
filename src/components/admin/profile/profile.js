@@ -2,7 +2,7 @@ import React from "react"
 import { getProfileDetail } from "../../../functions"
 import "./profile.scss"
 import { navigate } from "gatsby"
-
+import { Helmet } from "react-helmet"
 export default class Profile extends React.Component {
   state = {
     user: "",
@@ -29,40 +29,56 @@ export default class Profile extends React.Component {
   render() {
     let { user } = this.state
     return (
-      <div>
+      <div className="profile-box">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Profile</title>
+        </Helmet>
         <h4 className="admin-title">Profile Details</h4>
 
         <div className="details-box">
-          <div className="displayimg">
-            <img src="" />
+          <div className="row">
+            <div className="col-sm-4">
+              <div className="displayimg">
+                <img src={user.profileimage ? user.profileimage : null} />
+              </div>
+            </div>
+            <div className="col-sm-8">
+              <div className="name-details">
+                <p>
+                  <b>First Name:</b>
+                  <span>{user.firstName ? user.firstName : "-"}</span>
+                </p>
+                <p>
+                  <b>Last Name:</b>{" "}
+                  <span>{user.lastName ? user.lastName : "-"}</span>
+                </p>
+                <p>
+                  <b>Email:</b> <span>{user.email ? user.email : "-"}</span>
+                </p>
+              </div>
+            </div>
           </div>
           <div className="details">
             <p>
-              First Name: <span>{user.firstName ? user.firstName : "-"}</span>
+              <b>Depop:</b> <span>{user.depop ? user.depop : "-"}</span>
             </p>
             <p>
-              Last Name: <span>{user.lastName ? user.lastName : "-"}</span>
+              <b>eBay:</b> <span>{user.eBay ? user.eBay : "-"}</span>
             </p>
             <p>
-              Email: <span>{user.email ? user.email : "-"}</span>
+              <b>Facebook:</b>{" "}
+              <span>{user.facebook ? user.facebook : "-"}</span>
             </p>
             <p>
-              Depop: <span>{user.depop ? user.depop : "-"}</span>
+              <b>Instagram:</b>{" "}
+              <span>{user.instagram ? user.instagram : "-"}</span>
             </p>
             <p>
-              eBay: <span>{user.eBay ? user.eBay : "-"}</span>
+              <b>Grailed:</b> <span>{user.grailed ? user.grailed : "-"}</span>
             </p>
             <p>
-              Facebook: <span>{user.facebook ? user.facebook : "-"}</span>
-            </p>
-            <p>
-              Instagram: <span>{user.instagram ? user.instagram : "-"}</span>
-            </p>
-            <p>
-              Grailed: <span>{user.grailed ? user.grailed : "-"}</span>
-            </p>
-            <p>
-              StockX: <span>{user.stockX ? user.stockX : "-"}</span>
+              <b>StockX:</b> <span>{user.stockX ? user.stockX : "-"}</span>
             </p>
           </div>
         </div>

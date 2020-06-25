@@ -1,16 +1,26 @@
-.details-box {
-  text-align: center;
-  width: 60%;
-  margin: auto;
-  .displayimg {
-    padding: 10px 0px;
-    margin-bottom: 20px;
+.profile-box {
+  .details-box {
+    text-align: left;
+    width: 60%;
+    margin: auto;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    .displayimg {
+      padding: 10px 0px;
 
-    img {
-      height: 100px;
-      width: 100px;
-      border: 1px solid #ccc;
-      background-color: #ccc;
+      img {
+        height: 170px;
+        width: 170px;
+        text-align: center;
+        border: 1px solid #ccc;
+        background-color: #ccc;
+      }
+    }
+    .name-details {
+      padding: 50px 0;
+    }
+    p span {
+      margin-left: 5px;
     }
   }
 }

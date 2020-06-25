@@ -3,6 +3,7 @@ import { getUserById } from "../../../functions"
 import "./userdetails.scss"
 import { navigate } from "gatsby"
 import Spinner from "../../spinner/spinner"
+import { Helmet } from "react-helmet"
 export default class UserDetails extends React.Component {
   state = {
     user: "",
@@ -32,6 +33,10 @@ export default class UserDetails extends React.Component {
     let { user } = this.state
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>User Details</title>
+        </Helmet>
         {this.state.loader ? (
           <Spinner />
         ) : (

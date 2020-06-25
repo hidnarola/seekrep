@@ -6,6 +6,7 @@ import swal from "sweetalert"
 import defaultImg from "../../../images/default.png"
 import "./edituser.scss"
 import Spinner from "../../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class EditUser extends React.Component {
   state = {
@@ -108,6 +109,10 @@ export default class EditUser extends React.Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Edit User</title>
+        </Helmet>
         {this.state.loader ? (
           <Spinner />
         ) : (

@@ -7,6 +7,7 @@ import { Button, Form, Input } from "reactstrap"
 import "./alluser.scss"
 import swal from "sweetalert"
 import Spinner from "../../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class AllUserSeller extends React.Component {
   state = {
@@ -138,6 +139,10 @@ export default class AllUserSeller extends React.Component {
     let { limit, totalPages, loader } = this.state
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>All Users</title>
+        </Helmet>
         {loader ? (
           <Spinner />
         ) : (

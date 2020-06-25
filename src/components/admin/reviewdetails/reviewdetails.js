@@ -5,6 +5,7 @@ import displayImg from "../../../images/default.png"
 import "./reviewdetails.scss"
 import { navigate } from "gatsby"
 import Spinner from "../../spinner/spinner"
+import { Helmet } from "react-helmet"
 
 export default class Reviewdetail extends React.Component {
   state = {
@@ -39,11 +40,15 @@ export default class Reviewdetail extends React.Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Review Details</title>
+        </Helmet>
         {this.state.loader ? (
           <Spinner />
         ) : (
           <>
-            <h4 className="admin-title">Reviews Details</h4>
+            <h4 className="admin-title">Review Details</h4>
             {this.state.reviewDetails ? (
               this.state.reviewDetails &&
               this.state.reviewDetails.map(reviews => (

@@ -25,11 +25,36 @@ export default class Resetpassword extends React.Component {
   handleSubmit = async event => {
     this.setState({ loader: true })
     event.preventDefault()
+    if (this.state.password === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Password",
+        loader: false,
+        status: 0,
+      })
+    }
+    if (this.state.confirmpassword === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Confirm Password",
+        loader: false,
+        status: 0,
+      })
+    }
+    if (this.state.password === "" && this.state.confirmpassword === "") {
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Password",
+        loader: false,
+        status: 0,
+      })
+    }
     if (this.state.password !== this.state.confirmpassword) {
       this.setState({
         showMessage: true,
         message: "password must be same",
         loader: false,
+        status: 0,
       })
     } else {
       const token = this.props.props.token
