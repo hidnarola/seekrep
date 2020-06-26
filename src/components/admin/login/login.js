@@ -1,21 +1,23 @@
 import React from "react"
 import { adminLogin } from "../../../functions"
-import {
-  Button,
-  Card,
-  CardBody,
-  CardGroup,
-  Col,
-  Container,
-  Form,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Row,
-  Alert,
-  FormFeedback,
-} from "reactstrap"
+// import {
+//   Button,
+//   Card,
+//   CardBody,
+//   CardGroup,
+//   Col,
+//   Container,
+//   Form,
+//   Input,
+//   InputGroup,
+//   InputGroupAddon,
+//   InputGroupText,
+//   Row,
+//   Alert,
+//   FormFeedback,
+// } from "reactstrap"
+import { Button, Alert, Container, Col, Row } from "react-bootstrap"
+import Spinner from "../../spinner/spinner"
 import { navigate, Link } from "gatsby"
 
 export default class Login extends React.Component {
@@ -23,9 +25,9 @@ export default class Login extends React.Component {
     users: [],
     email: "",
     password: "",
-    emailError: "",
-    passError: "",
-    errorDisplay: false,
+    showMessage: "",
+    message: "",
+    status: 0,
   }
   validate = () => {
     let passError = ""
@@ -59,36 +61,49 @@ export default class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const isValid = this.validate()
-    if (isValid) {
-      const data = {
-        email: this.state.email,
-        password: this.state.password,
-      }
-
-      adminLogin(data)
-        .then(result => {
-          if (result.data.status === 1) {
-            localStorage.setItem("admintoken", result.data.token)
-            localStorage.setItem("id", result.data.data._id)
-            navigate("/admin")
-          } else if (result.data.status === 0) {
-            this.setState({ errorDisplay: true })
-          }
-        })
-        .catch(err => {
-          console.log("err", err)
-        })
+    // const isValid = this.validate()
+    // if (isValid) {
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
     }
+
+    adminLogin(data)
+      .then(result => {
+        if (result.data.status === 1) {
+          localStorage.setItem("admintoken", result.data.token)
+          localStorage.setItem("id", result.data.data._id)
+          this.setState({
+            showMessage: true,
+            message: result.data.message,
+            loader: false,
+            status: 1,
+          })
+          setTimeout(() => {
+            navigate("/admin")
+          }, 2000)
+        } else if (result.data.status === 0) {
+          this.setState({
+            showMessage: true,
+            message: result.data.message,
+            loader: false,
+            status: 0,
+          })
+        }
+      })
+      .catch(err => {
+        console.log("err", err)
+      })
+    // }
   }
 
   render() {
     return (
-      <div className="app flex-row align-items-center">
+      <div className="app flex-row align-items-center adminlogin-box">
         <Container>
           <Row className="justify-content-center">
-            <Col md="6">
-              <CardGroup>
+            <Col md="5">
+              {/* <CardGroup>
                 <Card className="p-4">
                   <CardBody>
                     <Form onSubmit={this.handleSubmit}>
@@ -101,11 +116,6 @@ export default class Login extends React.Component {
                       ) : null}
 
                       <InputGroup className="mb-3">
-                        {/* <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="icon-user"></i>
-                          </InputGroupText>
-                        </InputGroupAddon> */}
                         <Input
                           type="text"
                           placeholder="Email"
@@ -119,11 +129,6 @@ export default class Login extends React.Component {
                         ) : null}
                       </InputGroup>
                       <InputGroup className="mb-4">
-                        {/* <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="icon-lock"></i>
-                          </InputGroupText>
-                        </InputGroupAddon> */}
                         <Input
                           type="password"
                           placeholder="Password"
@@ -154,7 +159,59 @@ export default class Login extends React.Component {
                     </Form>
                   </CardBody>
                 </Card>
-              </CardGroup>
+              </CardGroup> */}
+              <div className="login-bg">
+                <div className="login-boxs admin-loing">
+                  <div className="seekrep-box">
+                    <h2>Login</h2>
+                  </div>
+                  {this.state.showMessage ? (
+                    <Alert
+                      variant={this.state.status === 1 ? "success" : "danger"}
+                    >
+                      {" "}
+                      {this.state.message}
+                    </Alert>
+                  ) : null}
+                  <form onSubmit={this.handleSubmit} className="login-form">
+                    <div className="form-group">
+                      <label>E-mail</label>
+                      <input
+                        type="text"
+                        name="email"
+                        className="form-control"
+                        onChange={this.handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Password</label>
+                      <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        onChange={this.handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="link-text text-right mb-2">
+                      <Link to="/admin/forgotpassword" className="small">
+                        Forgot your password?
+                      </Link>
+                    </div>
+                    <Button
+                      type="submit"
+                      variant="dark"
+                      className={
+                        this.state.loader ? "withspinner w-100" : "w-100"
+                      }
+                      disabled={!(this.state.email && this.state.password)}
+                    >
+                      {this.state.loader ? <Spinner /> : "Log in"}
+                    </Button>
+                  </form>
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>

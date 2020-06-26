@@ -18,7 +18,8 @@
     }
   },
   "routes": {
-    "/emailverify/**": "emailverify/index.html"
+    "/emailverify/**": "emailverify/index.html",
+    "/sellerprofile/**": "sellerprofile/index.html"
   },
   "https_only": true,
   "error_page": "404.html"

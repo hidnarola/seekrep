@@ -1,17 +1,19 @@
 import React from "react"
 import { adminForgotPassword } from "../../../functions"
-import {
-  Button,
-  Card,
-  CardBody,
-  Col,
-  Container,
-  Form,
-  Input,
-  InputGroup,
-  Row,
-  Alert,
-} from "reactstrap"
+// import {
+//   Button,
+//   Card,
+//   CardBody,
+//   Col,
+//   Container,
+//   Form,
+//   Input,
+//   InputGroup,
+//   Row,
+//   Alert,
+// } from "reactstrap"
+import { Button, Alert, Container, Col, Row } from "react-bootstrap"
+import Spinner from "../../spinner/spinner"
 
 export default class ForgotPassword extends React.Component {
   state = {
@@ -53,10 +55,15 @@ export default class ForgotPassword extends React.Component {
     if (this.state.email === "") {
       this.setState({
         showMessage: true,
-        message: "Email Cannot Be Blank",
+        message: "Please Enter Your Email",
+        status: 0,
       })
     } else if (this.state.email && !this.state.email.includes("@")) {
-      this.setState({ showMessage: true, message: "invalid email", status: 0 })
+      this.setState({
+        showMessage: true,
+        message: "Please Enter Valid Email",
+        status: 0,
+      })
     } else {
       const data = {
         email: this.state.email,
@@ -90,11 +97,14 @@ export default class ForgotPassword extends React.Component {
         <Container>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
-              <Card className="mx-4">
+              {/* <Card className="mx-4">
                 <CardBody className="p-4">
                   <Form onSubmit={e => this.handleSubmit(e)}>
                     <h1>Forgot Password</h1>
-                    <p className="text-muted">Reset your password</p>
+                    <p className="text-muted">
+                      Please enter your email address below. We will send you
+                      instructions in email to reset your password.
+                    </p>
                     {this.state.showMessage ? (
                       <Alert
                         color={this.state.status === 0 ? "danger" : "success"}
@@ -102,12 +112,6 @@ export default class ForgotPassword extends React.Component {
                         {this.state.message}
                       </Alert>
                     ) : null}
-                    {/* {this.state.emailError ? (
-                      <Alert color="danger">{this.state.emailError}</Alert>
-                    ) : null}
-                    {this.state.emailSucc ? (
-                      <Alert color="success">{this.state.emailError}</Alert>
-                    ) : null} */}
                     <InputGroup className="mb-3">
                       <Input
                         type="text"
@@ -122,7 +126,43 @@ export default class ForgotPassword extends React.Component {
                     </Button>
                   </Form>
                 </CardBody>
-              </Card>
+              
+              </Card> */}
+              <div className="login-bg">
+                <div className="login-boxs admin-loing">
+                  <div className="seekrep-box">
+                    <h2>Forgot Password</h2>
+                  </div>
+                  {this.state.showMessage ? (
+                    <Alert
+                      variant={this.state.status === 1 ? "success" : "danger"}
+                    >
+                      {this.state.message}
+                    </Alert>
+                  ) : null}
+                  <form onSubmit={this.handleSubmit} className="login-form">
+                    <div className="form-group">
+                      <label>E-mail</label>
+                      <input
+                        type="text"
+                        name="email"
+                        className="form-control"
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      variant="dark"
+                      className={
+                        this.state.loader ? "withspinner w-100" : "w-100"
+                      }
+                    >
+                      {this.state.loader ? <Spinner /> : "Reset Password"}
+                    </Button>
+                  </form>
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>

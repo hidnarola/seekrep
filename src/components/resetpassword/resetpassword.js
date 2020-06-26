@@ -52,7 +52,7 @@ export default class Resetpassword extends React.Component {
     if (this.state.password !== this.state.confirmpassword) {
       this.setState({
         showMessage: true,
-        message: "password must be same",
+        message: "Your password and confirmation password do not match.",
         loader: false,
         status: 0,
       })
@@ -71,6 +71,8 @@ export default class Resetpassword extends React.Component {
               message: res.data.message,
               status: 1,
               loader: false,
+              password: "",
+              confirmpassword: "",
             })
           } else if (res.data.status === 0) {
             this.setState({
@@ -97,7 +99,7 @@ export default class Resetpassword extends React.Component {
             {this.state.message}
           </Alert>
         ) : null}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="login-form">
           <div className="form-group">
             <label> Password</label>
             <input

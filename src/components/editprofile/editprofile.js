@@ -98,7 +98,7 @@ export default class EditProfile extends React.Component {
       reader.readAsDataURL(file)
     } else {
       document.getElementById("file_type_error").innerHTML =
-        "Invalid file type (Only jpg, jpeg and png file are allowed)"
+        "Invalid file type (Only flle with following extention are allowed: png , jpg , jpeg)"
     }
   }
 
