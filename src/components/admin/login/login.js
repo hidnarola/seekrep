@@ -53,7 +53,7 @@ export default class Login extends React.Component {
     return true
   }
 
-  changeHandler = event => {
+  handleInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value,
     })
