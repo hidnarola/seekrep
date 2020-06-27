@@ -28,6 +28,7 @@ export default class Login extends React.Component {
     showMessage: "",
     message: "",
     status: 0,
+    loader: false,
   }
   validate = () => {
     let passError = ""
@@ -61,6 +62,7 @@ export default class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    this.setState({ loader: true })
     // const isValid = this.validate()
     // if (isValid) {
     const data = {
