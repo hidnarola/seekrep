@@ -17,7 +17,7 @@ export default class AllUserSeller extends React.Component {
     pageCount: "",
     totalRecord: 0,
     loader: false,
-    skiprec: "",
+    skiprec: 0,
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ export default class AllUserSeller extends React.Component {
         this.setState({
           users: result.data.requestData.alluser.data,
           pageCount: result.data.requestData.totalPages,
-          totalRecord: result.data.requestData.alluser.totalrecods,
+          totalRecord: result.data.requestData.totalrecods,
           limit: result.data.requestData.limit,
           loader: false,
         })
@@ -44,15 +44,16 @@ export default class AllUserSeller extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     })
+
     const serach = {
-      searchText: this.state.search,
+      searchText: e.target.value,
     }
     allUserSellers(serach)
       .then(result => {
         this.setState({
           users: result.data.requestData.alluser.data,
           pageCount: result.data.requestData.totalPages,
-          totalRecord: result.data.requestData.alluser.totalrecods,
+          totalRecord: result.data.requestData.totalrecods,
           limit: result.data.requestData.limit,
         })
       })
@@ -71,7 +72,7 @@ export default class AllUserSeller extends React.Component {
         this.setState({
           users: result.data.requestData.alluser.data,
           pageCount: result.data.requestData.totalPages,
-          totalRecord: result.data.requestData.alluser.totalrecods,
+          totalRecord: result.data.requestData.totalrecods,
           limit: result.data.requestData.limit,
         })
       })
@@ -82,7 +83,9 @@ export default class AllUserSeller extends React.Component {
 
   handlePageClick = page => {
     const skiprec = (page.selected + 1 - 1) * this.state.limit
-    this.setState({ skiprec: skiprec })
+    if (this.state.totalRecord > 10) {
+      this.setState({ skiprec: skiprec })
+    }
 
     const pageNo = {
       page: page.selected + 1,
@@ -93,7 +96,7 @@ export default class AllUserSeller extends React.Component {
         this.setState({
           users: result.data.requestData.alluser.data,
           pageCount: result.data.requestData.totalPages,
-          totalRecord: result.data.requestData.alluser.totalrecods,
+          totalRecord: result.data.requestData.totalrecods,
           limit: result.data.requestData.limit,
         })
       })
@@ -121,7 +124,7 @@ export default class AllUserSeller extends React.Component {
                 this.setState({
                   users: result.data.requestData.alluser.data,
                   pageCount: result.data.requestData.totalPages,
-                  totalRecord: result.data.requestData.alluser.totalrecods,
+                  totalRecord: result.data.requestData.totalrecods,
                   limit: result.data.requestData.limit,
                 })
               })
@@ -136,6 +139,7 @@ export default class AllUserSeller extends React.Component {
       })
   }
   render() {
+    console.log("total recod", this.state.totalRecord)
     let { limit, totalPages, loader } = this.state
     return (
       <div>
@@ -174,7 +178,10 @@ export default class AllUserSeller extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.users ? (
+                {console.log("users", this.state.users)}
+                {this.state.users.length === 0 ? (
+                  <h2>No records found</h2>
+                ) : (
                   this.state.users &&
                   this.state.users.map((user, key) => (
                     <tr>
@@ -220,34 +227,34 @@ export default class AllUserSeller extends React.Component {
                       </td>
                     </tr>
                   ))
-                ) : (
-                  <p>No records found</p>
                 )}
               </tbody>
             </Table>
-            <div className="pagination-box">
-              <Pagination
-                initialPage={0}
-                previousLabel={"previous"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                breakClassName={"page-item"}
-                breakLinkClassName={"page-link"}
-                pageClassName={"page-item"}
-                previousClassName={"page-item"}
-                pageLinkClassName={"page-link"}
-                nextClassName={"page-item"}
-                previousLinkClassName={"page-link"}
-                nextLinkClassName={"page-link"}
-                pageCount={this.state.pageCount}
-                marginPagesDisplayed={totalPages}
-                pageRangeDisplayed={limit}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={""}
-                activeClassName={"active"}
-              />
-            </div>
+            {this.state.users && this.state.totalRecord > 10 ? (
+              <div className="pagination-box">
+                <Pagination
+                  initialPage={0}
+                  previousLabel={"previous"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"page-item"}
+                  breakLinkClassName={"page-link"}
+                  pageClassName={"page-item"}
+                  previousClassName={"page-item"}
+                  pageLinkClassName={"page-link"}
+                  nextClassName={"page-item"}
+                  previousLinkClassName={"page-link"}
+                  nextLinkClassName={"page-link"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={totalPages}
+                  pageRangeDisplayed={limit}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={""}
+                  activeClassName={"active"}
+                />
+              </div>
+            ) : null}
           </>
         )}
       </div>

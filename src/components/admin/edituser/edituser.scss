@@ -1,8 +1,14 @@
 .profileimgbox.col-md-6 {
-  text-align: center;
+  text-align: left;
+  margin-bottom: 15px;
 
   img {
     height: 100px;
     width: 100px;
   }
+}
+
+.edituserform {
+  padding: 10px;
+  margin-bottom: 20px;
 }
