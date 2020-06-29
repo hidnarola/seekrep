@@ -10,6 +10,7 @@ import validator from "validator"
 import Spinner from "../spinner/spinner"
 import { Helmet } from "react-helmet"
 import showPass from "../../images/eye.png";
+import hidePass from "../../images/eyeclose.jpg";
 
 export default class Signup extends React.Component {
                  state = {
@@ -282,7 +283,7 @@ export default class Signup extends React.Component {
                              }
                            />
                            <button className="showpassword" onClick={e => this.showPasswordHandler(e)}>
-                             <img src={showPass} />
+                             <img src={this.state.type === "password" ? showPass : hidePass} />
                            </button>
                            <span
                              className="password_errorMsg"

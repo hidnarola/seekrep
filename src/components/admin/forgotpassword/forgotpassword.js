@@ -14,7 +14,7 @@ import { adminForgotPassword } from "../../../functions"
 // } from "reactstrap"
 import { Button, Alert, Container, Col, Row } from "react-bootstrap"
 import Spinner from "../../spinner/spinner"
-
+import { Link } from "gatsby"
 export default class ForgotPassword extends React.Component {
   state = {
     email: "",
@@ -23,6 +23,7 @@ export default class ForgotPassword extends React.Component {
     showMessage: "",
     message: "",
     status: 0,
+    loader: false,
   }
 
   validate = () => {
@@ -43,7 +44,7 @@ export default class ForgotPassword extends React.Component {
     return true
   }
 
-  changeHandler = event => {
+  handleInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value,
     })
@@ -51,20 +52,34 @@ export default class ForgotPassword extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-
+    this.setState({ loader: true })
     if (this.state.email === "") {
       this.setState({
         showMessage: true,
         message: "Please Enter Your Email",
         status: 0,
+        loader: false,
       })
     } else if (this.state.email && !this.state.email.includes("@")) {
       this.setState({
         showMessage: true,
         message: "Please Enter Valid Email",
         status: 0,
+        loader: false,
       })
     } else {
+      const reg = /^([A-Z0-9_\-\.]+)@[A-Z0-9-]+(\.[A-Z0-9-]+)*(\.[A-Z]{2,3})$/
+      // if (this.state.email && this.state.email.includes(reg)) {
+      //   console.log("capital latters")
+      // }
+      if (reg.test(this.state.email)) {
+        this.setState({
+          showMessage: true,
+          message: "Please Enter Valid Email",
+          status: 0,
+          loader: false,
+        })
+      }
       const data = {
         email: this.state.email,
       }
@@ -147,7 +162,6 @@ export default class ForgotPassword extends React.Component {
                         type="text"
                         name="email"
                         className="form-control"
-                        value={this.state.email}
                         onChange={this.handleInputChange}
                       />
                     </div>
@@ -160,6 +174,11 @@ export default class ForgotPassword extends React.Component {
                     >
                       {this.state.loader ? <Spinner /> : "Reset Password"}
                     </Button>
+                    <div className="link-text text-right mb-2">
+                      <Link to="/admin/login" className="small">
+                        Back to Login?
+                      </Link>
+                    </div>
                   </form>
                 </div>
               </div>

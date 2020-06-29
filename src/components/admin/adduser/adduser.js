@@ -3,6 +3,7 @@ import { adminAddUser } from "../../../functions"
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap"
 import { navigate } from "gatsby"
 import swal from "sweetalert"
+import { Helmet } from "react-helmet"
 
 export default class AddUser extends React.Component {
   state = {
@@ -81,8 +82,12 @@ export default class AddUser extends React.Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Add User</title>
+        </Helmet>
         <h4 className="admin-title">Add User</h4>
-        <Form onSubmit={e => this.handleSubmit(e)}>
+        <Form onSubmit={e => this.handleSubmit(e)} className="edituserform">
           <Row form>
             <Col md={6}>
               <FormGroup>
@@ -91,7 +96,7 @@ export default class AddUser extends React.Component {
                   type="email"
                   name="email"
                   id="exampleEmail"
-                  placeholder="with a placeholder"
+                  placeholder="Enter Your Email"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -102,7 +107,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="password"
                   name="password"
-                  placeholder="password placeholder"
+                  placeholder="Enter Your Password"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -115,7 +120,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="firstName"
-                  placeholder="enter frist name"
+                  placeholder="Enter Your Frist Name"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -126,7 +131,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="lastname"
-                  placeholder="Enter Last name"
+                  placeholder="Enter Your Last Name"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -139,7 +144,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="countryname"
-                  placeholder="enter country name"
+                  placeholder="Enter Your Country Name"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -163,7 +168,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="depop"
-                  placeholder="enter Depop"
+                  placeholder="Enter Your Depop"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -174,7 +179,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="eBay"
-                  placeholder="Enter Last name"
+                  placeholder="Enter Your eBay"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -187,7 +192,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="facebook"
-                  placeholder="enter Facebook"
+                  placeholder="Enter Your Facebook"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -198,7 +203,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="instagram"
-                  placeholder="Enter Instagram"
+                  placeholder="Enter Your Instagram"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -211,7 +216,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="grailed"
-                  placeholder="enter Grailed"
+                  placeholder="Enter Your Grailed"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>
@@ -222,7 +227,7 @@ export default class AddUser extends React.Component {
                 <Input
                   type="text"
                   name="stockX"
-                  placeholder="Enter StockX"
+                  placeholder="Enter Your StockX"
                   onChange={event => this.handleChange(event)}
                 />
               </FormGroup>

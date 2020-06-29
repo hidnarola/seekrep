@@ -149,7 +149,7 @@ export default class EditUser extends React.Component {
                       type="email"
                       name="email"
                       id="exampleEmail"
-                      placeholder="with a placeholder"
+                      placeholder="Enter Your Email"
                       value={this.state.email}
                       onChange={event => this.handleChange(event)}
                     />
@@ -161,7 +161,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="countryname"
-                      placeholder="countryname "
+                      placeholder="Enter Your Countryname "
                       value={this.state.countryname}
                       onChange={event => this.handleChange(event)}
                     />
@@ -175,7 +175,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="firstName"
-                      placeholder="enter frist name"
+                      placeholder="Enter Your Frist Name"
                       value={this.state.firstName}
                       onChange={event => this.handleChange(event)}
                     />
@@ -187,7 +187,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="lastname"
-                      placeholder="Enter Last name"
+                      placeholder="Enter Your Last Name"
                       value={this.state.lastname}
                       onChange={event => this.handleChange(event)}
                     />
@@ -201,7 +201,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="depop"
-                      placeholder="enter Depop"
+                      placeholder="Enter Your Depop"
                       value={this.state.depop}
                       onChange={event => this.handleChange(event)}
                     />
@@ -213,7 +213,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="eBay"
-                      placeholder="Enter Last name"
+                      placeholder="Enter Your eBay"
                       value={this.state.eBay}
                       onChange={event => this.handleChange(event)}
                     />
@@ -227,7 +227,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="facebook"
-                      placeholder="enter Facebook"
+                      placeholder="Enter Your Facebook"
                       value={this.state.facebook}
                       onChange={event => this.handleChange(event)}
                     />
@@ -239,7 +239,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="instagram"
-                      placeholder="Enter Instagram"
+                      placeholder="Enter Your Instagram"
                       value={this.state.instagram}
                       onChange={event => this.handleChange(event)}
                     />
@@ -253,7 +253,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="grailed"
-                      placeholder="enter Grailed"
+                      placeholder="Enter Your Grailed"
                       value={this.state.grailed}
                       onChange={event => this.handleChange(event)}
                     />
@@ -265,7 +265,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="stockX"
-                      placeholder="Enter StockX"
+                      placeholder="Enter Your StockX"
                       value={this.state.stockX}
                       onChange={event => this.handleChange(event)}
                     />

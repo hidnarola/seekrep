@@ -43,20 +43,29 @@ export default class UserDetails extends React.Component {
           <>
             <h4 className="admin-title">User Details</h4>
             <div className="details-box">
-              <div className="displayimg">
-                <img src={user.profileimage} />
+              <div className="row">
+                <div className="col-sm-4">
+                  <div className="displayimg">
+                    <img src={user.profileimage} />
+                  </div>
+                </div>
+                <div className="col-sm-8">
+                  <div className="name-details">
+                    <p>
+                      First Name:{" "}
+                      <span>{user.firstName ? user.firstName : "-"}</span>
+                    </p>
+                    <p>
+                      Last Name:{" "}
+                      <span>{user.lastName ? user.lastName : "-"}</span>
+                    </p>
+                    <p>
+                      Email: <span>{user.email ? user.email : "-"}</span>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="details">
-                <p>
-                  First Name:{" "}
-                  <span>{user.firstName ? user.firstName : "-"}</span>
-                </p>
-                <p>
-                  Last Name: <span>{user.lastName ? user.lastName : "-"}</span>
-                </p>
-                <p>
-                  Email: <span>{user.email ? user.email : "-"}</span>
-                </p>
                 <p>
                   Country Name:{" "}
                   <span>{user.countryname ? user.countryname : "-"}</span>
