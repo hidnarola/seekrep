@@ -14,7 +14,7 @@ export default class IndexPage extends React.Component {
     return (
       <Layout>
         <Container>
-          <h1>Dashboard</h1>
+          <h1 className="dashboard">Dashboard</h1>
         </Container>
       </Layout>
     )

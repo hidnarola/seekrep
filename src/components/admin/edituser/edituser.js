@@ -128,9 +128,7 @@ export default class EditUser extends React.Component {
                         : defaultImg
                     }
                   />
-                </Col>
-                <Col md={6}>
-                  <FormGroup>
+                  <FormGroup className="editprofile">
                     <Label for="">Profile Image</Label>
                     <Input
                       type="file"
@@ -140,6 +138,7 @@ export default class EditUser extends React.Component {
                     />
                   </FormGroup>
                 </Col>
+                {/* <Col md={6}></Col> */}
               </Row>
               <Row form>
                 <Col md={6}>
@@ -161,7 +160,7 @@ export default class EditUser extends React.Component {
                     <Input
                       type="text"
                       name="countryname"
-                      placeholder="Enter Your Countryname "
+                      placeholder="Enter Your Country Name "
                       value={this.state.countryname}
                       onChange={event => this.handleChange(event)}
                     />
