@@ -15,6 +15,7 @@ import {
   Alert,
 } from "reactstrap"
 import { navigate } from "gatsby"
+import "../../../styles/main.scss"
 
 export default class ForgotPassword extends React.Component {
   state = {
