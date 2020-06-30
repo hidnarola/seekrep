@@ -15,6 +15,7 @@ import { adminForgotPassword } from "../../../functions"
 import { Button, Alert, Container, Col, Row } from "react-bootstrap"
 import Spinner from "../../spinner/spinner"
 import { Link } from "gatsby"
+import "../../../styles/main.scss"
 export default class ForgotPassword extends React.Component {
   state = {
     email: "",

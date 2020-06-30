@@ -19,6 +19,7 @@ import { adminLogin } from "../../../functions"
 import { Button, Alert, Container, Col, Row } from "react-bootstrap"
 import Spinner from "../../spinner/spinner"
 import { navigate, Link } from "gatsby"
+import "../../../styles/main.scss"
 
 export default class Login extends React.Component {
   state = {
