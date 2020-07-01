@@ -2,6 +2,7 @@ import React from "react"
 import Header from "../components/header/header"
 import { Nav, Container, Row, Col } from "react-bootstrap"
 import Resetpassword from "../components/resetpassword/resetpassword"
+import "../styles/main.scss"
 
 const restePasswordPage = props => (
   <div>

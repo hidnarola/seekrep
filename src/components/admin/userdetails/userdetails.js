@@ -52,42 +52,46 @@ export default class UserDetails extends React.Component {
                 <div className="col-sm-8">
                   <div className="name-details">
                     <p>
-                      First Name:{" "}
+                      <b>First Name: </b>
                       <span>{user.firstName ? user.firstName : "-"}</span>
                     </p>
                     <p>
-                      Last Name:{" "}
+                      <b>Last Name: </b>
                       <span>{user.lastName ? user.lastName : "-"}</span>
                     </p>
                     <p>
-                      Email: <span>{user.email ? user.email : "-"}</span>
+                      <b>Email: </b>
+                      <span>{user.email ? user.email : "-"}</span>
                     </p>
                   </div>
                 </div>
               </div>
               <div className="details">
                 <p>
-                  Country Name:{" "}
+                  <b>Country Name: </b>
                   <span>{user.countryname ? user.countryname : "-"}</span>
                 </p>
                 <p>
-                  Depop: <span>{user.depop ? user.depop : "-"}</span>
+                  <b>Depop: </b>
+                  <span>{user.depop ? user.depop : "-"}</span>
                 </p>
                 <p>
-                  eBay: <span>{user.eBay ? user.eBay : "-"}</span>
+                  <b>eBay: </b> <span>{user.eBay ? user.eBay : "-"}</span>
                 </p>
                 <p>
-                  Facebook: <span>{user.facebook ? user.facebook : "-"}</span>
+                  <b>Facebook: </b>{" "}
+                  <span>{user.facebook ? user.facebook : "-"}</span>
                 </p>
                 <p>
-                  Instagram:{" "}
+                  <b>Instagram: </b>
                   <span>{user.instagram ? user.instagram : "-"}</span>
                 </p>
                 <p>
-                  Grailed: <span>{user.grailed ? user.grailed : "-"}</span>
+                  <b>Grailed: </b>
+                  <span>{user.grailed ? user.grailed : "-"}</span>
                 </p>
                 <p>
-                  StockX: <span>{user.stockX ? user.stockX : "-"}</span>
+                  <b>StockX: </b> <span>{user.stockX ? user.stockX : "-"}</span>
                 </p>
               </div>
             </div>

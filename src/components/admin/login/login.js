@@ -84,7 +84,7 @@ export default class Login extends React.Component {
           })
           setTimeout(() => {
             navigate("/admin")
-          }, 2000)
+          }, 1000)
         } else if (result.data.status === 0) {
           this.setState({
             showMessage: true,

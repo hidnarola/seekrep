@@ -80,30 +80,40 @@ export default class ForgotPassword extends React.Component {
           status: 0,
           loader: false,
         })
-      }
-      const data = {
-        email: this.state.email,
-      }
+      } else {
+        const data = {
+          email: this.state.email,
+        }
 
-      adminForgotPassword(data)
-        .then(result => {
-          if (result.data.status === 1) {
-            this.setState({
-              showMessage: true,
-              message: result.data.message,
-              status: 1,
-            })
-          } else if (result.data.status === 0) {
-            this.setState({
-              showMessage: true,
-              message: result.data.message,
-              status: 0,
-            })
-          }
-        })
-        .catch(err => {
-          console.log("err", err)
-        })
+        adminForgotPassword(data)
+          .then(result => {
+            if (result.data.status === 1) {
+              this.setState({
+                showMessage: true,
+                message: result.data.message,
+                status: 1,
+                loader: false,
+              })
+            } else if (result.data.status === 0) {
+              this.setState({
+                showMessage: true,
+                message: result.data.message,
+                status: 0,
+                loader: false,
+              })
+            } else if (result.data.status === 2) {
+              this.setState({
+                showMessage: true,
+                message: result.data.message,
+                status: 0,
+                loader: false,
+              })
+            }
+          })
+          .catch(err => {
+            console.log("err", err)
+          })
+      }
     }
   }
 
