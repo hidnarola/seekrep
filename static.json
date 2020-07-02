@@ -20,7 +20,9 @@
   "routes": {
     "/emailverify/**": "emailverify/index.html",
     "/sellerprofile/**": "sellerprofile/index.html",
-    "/admin/reviewdetails/**": "reviewdetails/index.html"
+    "/admin/reviewdetails/**": "reviewdetails/index.html",
+    "/admin/resetpassword/**": "resetpassword/index.html",
+    "/resetpassword/**": "resetpassword/index.html"
   },
   "https_only": true,
   "error_page": "404.html"
