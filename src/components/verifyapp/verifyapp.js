@@ -19,7 +19,7 @@ const Verifyapp = () => (
                   <br />
                   meeting is who they say they are.{" "}
                 </p>
-                <Button variant="link">Coming soon</Button>
+                <p className="comingsoon">Coming soon</p>
               </div>
             </Col>
             <Col

@@ -98,8 +98,8 @@ export default class Signup extends React.Component {
                              email: "",
                              password: "",
                              showMessage: true,
-                             message:
-                               "Successfully register and conformation email is send on your mail",
+                            //  message:
+                            //    "Successfully register and conformation email is send on your mail",
                              status: 1,
                              loader: false,
                            })
@@ -107,7 +107,7 @@ export default class Signup extends React.Component {
                              "registerId",
                              res.data.register_resp.data._id
                            )
-                           // navigate("/editprofile")
+                           navigate("/registersuccess")
                          } else {
                            this.setState({
                              showMessage: true,

@@ -113,7 +113,7 @@ export default class Login extends React.Component {
         </Helmet>
         <div className="seekrep-box">
           <h2>
-            Sign up to <span>SEEKREP</span>
+            Login to <span>SEEKREP</span>
           </h2>
           <GoogleLogin
             clientId="577694009182-enfv1fenk9j81u7cjc4e6897u1l4gmhl.apps.googleusercontent.com"

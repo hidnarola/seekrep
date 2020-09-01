@@ -59,7 +59,12 @@ export default class Searchbox extends React.Component {
             <Col xs="12" lg="8" className="mx-auto text-center">
               <h1>Behind every seller is a story that matters</h1>
               <p>Read reviews. Write reviews. Get peace of mind.</p>
-              <form className="search-box" onSubmit={this.handleSubmit}>
+              <form
+                className="search-box"
+                onSubmit={e => {
+                  this.handleSubmit(e)
+                }}
+              >
                 <div>
                   <label>Search for a full name or username</label>
                   <input
@@ -69,10 +74,16 @@ export default class Searchbox extends React.Component {
                     id="test"
                     onChange={e => this.changeHandler(e)}
                     onKeyDown={e => this.keyDownHandler(e)}
+                    onKeyPress={e => {
+                      if (e.key === "Enter") {
+                        this.handleSubmit(e)
+                      }
+                    }}
+                    autoFocus
                   />
                   <span style={{ color: "red" }} id="search_error"></span>
                 </div>
-                <Button variant="dark" onClick={this.handleSubmit}>
+                <Button variant="dark" onClick={e => this.handleSubmit(e)}>
                   Search
                 </Button>
               </form>

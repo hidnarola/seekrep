@@ -5,6 +5,7 @@ import "./header.scss"
 import profileImg from "../../images/default.png"
 import { getDataById } from "../../functions"
 import { GoogleLogout } from "react-google-login"
+import logo from "../../images/SEEKREP_logo.png"
 
 export default class Header extends React.Component {
   state = {
@@ -43,7 +44,7 @@ export default class Header extends React.Component {
       <Navbar>
         <Container>
           <Link to="/" className="navbar-brand">
-            SEEKREP
+            <img src={logo} />
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

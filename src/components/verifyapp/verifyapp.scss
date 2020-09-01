@@ -30,7 +30,7 @@
       margin: 0 0 40px 0;
     }
 
-    .btn {
+    .comingsoon {
       padding: 0;
       font-size: 20px;
       font-weight: 500;
@@ -38,10 +38,11 @@
       letter-spacing: -0.14px;
       display: block;
       font-family: "Canela-Medium";
+      color: #ffffff;
 
-      &.btn-link {
-        color: #ffffff;
-      }
+      // &.btn-link {
+      //   color: #ffffff;
+      // }
     }
   }
 }

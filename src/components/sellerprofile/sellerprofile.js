@@ -132,7 +132,6 @@ export default class SellerProfileComp extends React.Component {
 
   render() {
     let { userData, limit, totalPages, token } = this.state
-
     const year = moment(userData.createdAt).format("YYYY")
 
     return (
@@ -166,20 +165,12 @@ export default class SellerProfileComp extends React.Component {
                         {userData && userData.lastName}
                       </h4>
                       <div className="verified-boxs">
-                        <Button
-                          variant={
-                            userData.profileVerified ? "success" : "danger"
-                          }
-                        >
-                          {userData.profileVerified ? (
+                        {userData.profileVerified ? (
+                          <Button variant="success">
                             <img src={CheckmarkIcon} alt="" />
-                          ) : null}
-
-                          {userData && userData.profileVerified
-                            ? "Verified"
-                            : "Not Verified"}
-                        </Button>
-
+                            Verified
+                          </Button>
+                        ) : null}
                         <span>Joined in {year} </span>
                       </div>
                       <p> {this.state.totalreviews} verified reviews</p>
@@ -324,31 +315,47 @@ export default class SellerProfileComp extends React.Component {
                     whoever you’re dealing with can be trusted.
                   </p>
                 </div>
-                <div className="profiles-boxs">
-                  <h4>Profiles</h4>
-                  <ul className="profile-list">
-                    <li>
-                      <h6>Depop</h6>
-                      <p>{userData && userData.depop}</p>
-                    </li>
-                    <li>
-                      <h6>eBay</h6>
-                      <p>{userData && userData.eBay}</p>
-                    </li>
-                    <li>
-                      <h6>Facebook</h6>
-                      <p>{userData && userData.facebook}</p>
-                    </li>
-                    <li>
-                      <h6>Instagram</h6>
-                      <p>{userData && userData.instagram}</p>
-                    </li>
-                    <li>
-                      <h6>Grailed</h6>
-                      <p>{userData && userData.grailed}</p>
-                    </li>
-                  </ul>
-                </div>
+                {(userData && userData.depop) ||
+                userData.eBay ||
+                userData.facebook ||
+                userData.instagram ||
+                userData.grailed ? (
+                  <div className="profiles-boxs">
+                    <h4>Profiles</h4>
+                    <ul className="profile-list">
+                      {userData && userData.depop ? (
+                        <li>
+                          <h6>Depop</h6>
+                          <p>{userData && userData.depop}</p>
+                        </li>
+                      ) : null}
+                      {userData && userData.eBay ? (
+                        <li>
+                          <h6>eBay</h6>
+                          <p>{userData && userData.eBay}</p>
+                        </li>
+                      ) : null}
+                      {userData && userData.facebook ? (
+                        <li>
+                          <h6>Facebook</h6>
+                          <p>{userData && userData.facebook}</p>
+                        </li>
+                      ) : null}
+                      {userData && userData.instagram ? (
+                        <li>
+                          <h6>Instagram</h6>
+                          <p>{userData && userData.instagram}</p>
+                        </li>
+                      ) : null}
+                      {userData && userData.grailed ? (
+                        <li>
+                          <h6>Grailed</h6>
+                          <p>{userData && userData.grailed}</p>
+                        </li>
+                      ) : null}
+                    </ul>
+                  </div>
+                ) : null}
               </div>
             </div>
 
