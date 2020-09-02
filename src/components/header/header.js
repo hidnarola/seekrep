@@ -44,7 +44,7 @@ export default class Header extends React.Component {
       <Navbar>
         <Container>
           <Link to="/" className="navbar-brand">
-            <img src={logo} />
+            <img src={logo} width="100" />
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

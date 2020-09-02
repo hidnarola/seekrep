@@ -18,6 +18,7 @@ export default class Signup extends React.Component {
                    lastName: "",
                    email: "",
                    password: "",
+                   userName: "",
                    showMessage: false,
                    message: "",
                    status: "",
@@ -38,6 +39,9 @@ export default class Signup extends React.Component {
                    if (element == "password") {
                      this.setState({ password: value })
                    }
+                   if (element == "userName") {
+                     this.setState({ userName: value })
+                   }
                    if (value === "") {
                      jQuery("." + element + "_errorMsg").html(
                        "This field is required"
@@ -50,7 +54,7 @@ export default class Signup extends React.Component {
                  handleSubmit = async event => {
                    this.setState({ loader: true })
                    event.preventDefault()
-                   const { firstName, lastName, email, password } = this.state
+                   const { firstName, lastName, email, password, userName } = this.state
                    let isError = 0
                    if (firstName === "") {
                      jQuery(".firstName_errorMsg").html(
@@ -75,16 +79,23 @@ export default class Signup extends React.Component {
                      isError = 1
                    }
 
+                   if(userName === ""){
+                     jQuery(".userName_errorMsg").html("This field is required")
+                     isError = 1
+                   }
+
                    if (isError === 0) {
                      const data = {
                        firstName: this.state.firstName,
                        lastName: this.state.lastName,
                        email: this.state.email,
                        password: this.state.password,
+                       userName: this.state.userName
                      }
 
                      await createuser(data)
                        .then(res => {
+                         console.log("res signup", res)
                          if (res.data.status === 0) {
                            this.setState({
                              showMessage: true,
@@ -97,6 +108,7 @@ export default class Signup extends React.Component {
                              lastName: "",
                              email: "",
                              password: "",
+                             userName: "",
                              showMessage: true,
                             //  message:
                             //    "Successfully register and conformation email is send on your mail",
@@ -282,11 +294,39 @@ export default class Signup extends React.Component {
                                )
                              }
                            />
-                           <button className="showpassword" onClick={e => this.showPasswordHandler(e)}>
-                             <img src={this.state.type === "password" ? showPass : hidePass} />
+                           <button
+                             className="showpassword"
+                             onClick={e => this.showPasswordHandler(e)}
+                           >
+                             <img
+                               src={
+                                 this.state.type === "password"
+                                   ? showPass
+                                   : hidePass
+                               }
+                             />
                            </button>
                            <span
                              className="password_errorMsg"
+                             style={{ color: "red" }}
+                           ></span>
+                         </div>
+                         <div className="form-group">
+                           <label>User name</label>
+                           <input
+                             type="text"
+                             name="userName"
+                             id="userName"
+                             className="form-control"
+                             onChange={input =>
+                               this.handleInputChange(
+                                 input.target.name,
+                                 input.target.value
+                               )
+                             }
+                           />
+                           <span
+                             className="userName_errorMsg"
                              style={{ color: "red" }}
                            ></span>
                          </div>

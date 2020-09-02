@@ -38,6 +38,13 @@ exports.onCreatePage = async ({ page, actions }) => {
     createPage(page)
   }
 
+  if (page.path.match(/^\/userprofile/)) {
+    page.matchPath = "/userprofile/:username"
+
+    // Update the page.
+    createPage(page)
+  }
+
   if (page.path.match(/^\/admin\/edituser/)) {
     page.matchPath = "/admin/edituser/:id"
 

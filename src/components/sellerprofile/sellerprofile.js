@@ -319,10 +319,19 @@ export default class SellerProfileComp extends React.Component {
                 userData.eBay ||
                 userData.facebook ||
                 userData.instagram ||
-                userData.grailed ? (
+                userData.grailed ||
+                userData.userName ? (
                   <div className="profiles-boxs">
                     <h4>Profiles</h4>
                     <ul className="profile-list">
+                      {userData && userData.userName ? (
+                        <li>
+                          <h6>Seekrep Username</h6>
+                          <Link to={`/userprofile/${userData.userName}`}>
+                            {userData && userData.userName}
+                          </Link>
+                        </li>
+                      ) : null}
                       {userData && userData.depop ? (
                         <li>
                           <h6>Depop</h6>

@@ -18,6 +18,7 @@ export default class Search extends React.Component {
     totalPages: "",
     totalRecord: 0,
     loader: false,
+    searchterm: "",
   }
 
   componentDidMount() {
@@ -37,7 +38,7 @@ export default class Search extends React.Component {
           pageCount: result.data.requestData.totalPages,
           totalRecord: result.data.requestData.alluser.totalrecods,
           loader: false,
-          search: this.props.props.value,
+          searchterm: this.props.props.value,
         })
         /** Remove by dm */
         // if (!result.data.users) {
@@ -75,13 +76,13 @@ export default class Search extends React.Component {
           pageCount: result.data.requestData.totalPages,
           totalRecord: result.data.requestData.alluser.totalrecods,
           loader: false,
-          search: this.props.props.value,
+          searchterm: this.props.props.value,
         })
         if (!result.data.requestData.alluser.data) {
           this.setState({
             users: null,
             loader: false,
-            search: this.props.props.value,
+            searchterm: this.props.props.value,
           })
         }
       })
@@ -129,14 +130,14 @@ export default class Search extends React.Component {
             totalRecord: result.data.requestData.alluser.totalrecods,
             loader: false,
             // search: this.props.props.value,
-            search: this.state.search,
+            searchterm: this.state.search,
           })
           if (!result.data.requestData.alluser.data) {
             this.setState({
               users: null,
               loader: false,
               // search: this.props.props.value,
-              search: this.state.search,
+              searchterm: this.state.search,
             })
           }
         })
@@ -159,7 +160,7 @@ export default class Search extends React.Component {
         ) : (
           <div className="col-12 col-lg-7">
             <div className="searchbox">
-              <h4>Search results for "{this.state.search}"</h4>
+              <h4>Search results for "{this.state.searchterm}"</h4>
               <form className="search-box" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
